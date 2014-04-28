@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/uqbar/!svn/ver/62/projects/vainilla/src/main/java/com/uqbar/vainilla/sound
+END
+SoundPlay.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/uqbar/!svn/ver/53/projects/vainilla/src/main/java/com/uqbar/vainilla/sound/SoundPlay.java
+END
+SoundBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/uqbar/!svn/ver/53/projects/vainilla/src/main/java/com/uqbar/vainilla/sound/SoundBuilder.java
+END
+MonoSound.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/uqbar/!svn/ver/53/projects/vainilla/src/main/java/com/uqbar/vainilla/sound/MonoSound.java
+END
+SoundPlayer.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/uqbar/!svn/ver/53/projects/vainilla/src/main/java/com/uqbar/vainilla/sound/SoundPlayer.java
+END
+Sound.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/uqbar/!svn/ver/62/projects/vainilla/src/main/java/com/uqbar/vainilla/sound/Sound.java
+END
+StereoSound.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/uqbar/!svn/ver/53/projects/vainilla/src/main/java/com/uqbar/vainilla/sound/StereoSound.java
+END
