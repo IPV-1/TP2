@@ -10,13 +10,13 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class AsteroidGame extends Game {
-    private HashMap<String, Sprite> resources;
+    private HashMap<String, Sprite> sprites;
     private Config configuration;
 
 
     public AsteroidGame(String configFile) {
         super();
-        setResources(new HashMap<String, Sprite>());
+        setSprites(new HashMap<String, Sprite>());
         setConfiguration(new Config(configFile));
     }
 
@@ -26,6 +26,7 @@ public class AsteroidGame extends Game {
 
     @Override
     protected void initializeResources() {
+        addSprite("background", getConfig("background"));
 
     }
 
@@ -48,8 +49,16 @@ public class AsteroidGame extends Game {
         return configuration;
     }
 
-    public void addResource(String key, String ResourceName){
-        getResources().put(key, ResourceUtils.getSprite(ResourceName));
+    public String getConfig(String key){
+        return getConfiguration().fetch(key);
+    }
+
+    public void addSprite(String key, String spritePath){
+        getSprites().put(key, ResourceUtils.getSprite(spritePath));
+    }
+
+    public Sprite getSprite(String spriteKey){
+        return getSprites().get(spriteKey);
     }
 
     /**
@@ -60,11 +69,11 @@ public class AsteroidGame extends Game {
         this.configuration = configuration;
     }
 
-    private HashMap<String, Sprite> getResources() {
-        return resources;
+    private HashMap<String, Sprite> getSprites() {
+        return sprites;
     }
 
-    private void setResources(HashMap<String, Sprite> resources) {
-        this.resources = resources;
+    private void setSprites(HashMap<String, Sprite> sprites) {
+        this.sprites = sprites;
     }
 }

@@ -3,4 +3,5 @@
 <properties>
     <entry key="screenWidth">800</entry>
     <entry key="screenHeight">600</entry>
+    <entry key="background">img/background.jpg</entry>
 </properties>
