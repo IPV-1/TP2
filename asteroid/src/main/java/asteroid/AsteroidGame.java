@@ -3,7 +3,6 @@ package asteroid;
 
 import com.uqbar.vainilla.Game;
 import config.Config;
-import scenes.AsteroidScene;
 
 import java.awt.*;
 
@@ -11,8 +10,13 @@ public class AsteroidGame extends Game {
     private Config configuration;
 
 
-    public AsteroidGame(String configFile){
+    public AsteroidGame(String configFile) {
+        super();
         setConfiguration(new Config(configFile));
+    }
+
+    public AsteroidGame() {
+        this("application.xml");
     }
 
     @Override
