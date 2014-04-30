@@ -42,6 +42,6 @@ public class Circle extends SimpleShape implements Shape {
 
     @Override
     public boolean collidedByMultiShape(MultiShape multiShape) {
-        throw new NotImplementedException();
+        return multiShape.collidedByCircle(this);
     }
 }
