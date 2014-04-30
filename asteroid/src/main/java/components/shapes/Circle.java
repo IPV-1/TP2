@@ -37,7 +37,7 @@ public class Circle extends SimpleShape implements Shape {
 
     @Override
     public boolean collidedByRectangle(Rectangle rectangle) {
-        throw new NotImplementedException();
+        return CollisionDetector.INSTANCE.collidesCircleAgainstRect(getX(), getY(), getRadio(), rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
     }
 
     @Override
