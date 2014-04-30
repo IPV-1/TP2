@@ -32,7 +32,7 @@ public class Rectangle extends SimpleShape implements Shape {
 
     @Override
     public boolean collidedByMultiShape(MultiShape multiShape) {
-        throw new NotImplementedException();
+        return multiShape.collidedByRectangle(this);
     }
 
     public int getHeight() {
