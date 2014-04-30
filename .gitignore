@@ -76,3 +76,5 @@ asteroid/src/main/security/keystore.jks
 # intelliJ IDEA
 asteroid.iml
 .idea/
+
+**/**/.svn/
