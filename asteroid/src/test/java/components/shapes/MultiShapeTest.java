@@ -1,6 +1,5 @@
 package components.shapes;
 
-import com.uqbar.vainilla.GameComponent;
 import components.BasicAsteroidMovingGameComponent;
 import junit.framework.TestCase;
 

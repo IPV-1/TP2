@@ -3,7 +3,7 @@ package components.shapes;
 
 import components.BasicAsteroidMovingGameComponent;
 
-public class SimpleShape {
+public abstract class SimpleShape implements Shape{
     BasicAsteroidMovingGameComponent component;
     public BasicAsteroidMovingGameComponent getComponent() {
         return component;
@@ -20,6 +20,4 @@ public class SimpleShape {
     public double getY() {
         return getComponent().getY();
     }
-
-
 }

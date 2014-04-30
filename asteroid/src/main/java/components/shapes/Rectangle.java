@@ -2,9 +2,8 @@ package components.shapes;
 
 
 import com.uqbar.vainilla.colissions.CollisionDetector;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class Rectangle extends SimpleShape implements Shape {
+public class Rectangle extends SimpleShape{
 
     private int width;
     private int height;

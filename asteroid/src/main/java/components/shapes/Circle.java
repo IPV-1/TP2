@@ -2,9 +2,8 @@ package components.shapes;
 
 
 import com.uqbar.vainilla.colissions.CollisionDetector;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class Circle extends SimpleShape implements Shape {
+public class Circle extends SimpleShape {
 
     private double diameter;
 
