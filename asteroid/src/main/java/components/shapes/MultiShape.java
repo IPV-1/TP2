@@ -32,7 +32,10 @@ public class MultiShape implements Shape{
 
     @Override
     public boolean collidedByRectangle(Rectangle rectangle) {
-        throw new NotImplementedException();
+        boolean collided = false;
+        for(Shape s: getShapes())
+            collided |= rectangle.isColliding(s);
+        return collided;
     }
 
     @Override

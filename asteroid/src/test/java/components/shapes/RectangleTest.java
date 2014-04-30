@@ -12,6 +12,8 @@ public class RectangleTest extends TestCase{
     Circle circle;
     private Rectangle rectangle2;
     private BasicAsteroidMovingGameComponent component3;
+    private BasicAsteroidMovingGameComponent component4;
+    private MultiShape multiShape;
 
     public void setUp(){
         component = new BasicAsteroidMovingGameComponent(0, 0);
@@ -25,6 +27,16 @@ public class RectangleTest extends TestCase{
         component1 = new BasicAsteroidMovingGameComponent(0, 0);
         circle = new Circle(20);
         circle.setComponent(component1);
+
+
+        component4 = new BasicAsteroidMovingGameComponent(0,0);
+        multiShape = new MultiShape();
+        Rectangle multiShapeRectangle = new Rectangle(40, 20);
+        Rectangle multiShapeRectangle2 = new Rectangle(20, 40);
+        multiShapeRectangle.setComponent(new BasicAsteroidMovingGameComponent(0, 0));
+        multiShapeRectangle2.setComponent(new BasicAsteroidMovingGameComponent(0, 0));
+        multiShape.addShape(multiShapeRectangle);
+        multiShape.addShape(multiShapeRectangle2);
     }
 
     public void testRectangleCollidesRectangle(){
@@ -43,5 +55,24 @@ public class RectangleTest extends TestCase{
     public void testRectangleDoesntCollideCircle(){
         component.setX(20);
         assertFalse(rectangle.isColliding(circle));
+    }
+
+    public void testRectangleCollidesMultiShapes(){
+        assertTrue(rectangle.isColliding(multiShape));
+    }
+
+    public void testRectangleCollidesMultiShape(){
+        component.setX(20);
+        assertTrue(rectangle.isColliding(multiShape));
+    }
+
+    public void testRectangleCollidesSecondMultiShape(){
+        component.setY(20);
+        assertTrue(rectangle.isColliding(multiShape));
+    }
+    public void testRectangleDoesntCollidesMultiShapes(){
+        component.setY(20);
+        component.setX(20);
+        assertFalse(rectangle.isColliding(multiShape));
     }
 }
