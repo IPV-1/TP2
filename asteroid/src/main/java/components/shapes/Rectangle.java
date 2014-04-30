@@ -27,7 +27,7 @@ public class Rectangle extends SimpleShape implements Shape {
 
     @Override
     public boolean collidedByRectangle(Rectangle rectangle) {
-        throw new NotImplementedException();
+        return CollisionDetector.INSTANCE.collidesRectAgainstRect(getX(), getY(), getWidth(), getHeight(), rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
     }
 
     @Override
