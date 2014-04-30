@@ -40,7 +40,10 @@ public class MultiShape implements Shape{
 
     @Override
     public boolean collidedByMultiShape(MultiShape multiShape) {
-        throw new NotImplementedException();
+        boolean collided = false;
+        for(Shape s: getShapes())
+            collided |= multiShape.isColliding(s);
+        return collided;
     }
 
     public List<Shape> getShapes() {
