@@ -30,7 +30,11 @@ public class MovingGameComponent<SceneType extends GameScene> extends GameCompon
 		this.speed = speed;
 	}
 
-	@Override
+    public MovingGameComponent(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
 	public void update(DeltaState deltaState) {
 		double xPosition = this.getX() + this.getUVector().getX()
 				* this.getSpeedFactor(deltaState);

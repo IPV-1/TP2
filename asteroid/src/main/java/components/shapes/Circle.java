@@ -1,9 +1,30 @@
 package components.shapes;
 
 
+import com.uqbar.vainilla.colissions.CollisionDetector;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class Circle implements Shape {
+public class Circle extends SimpleShape implements Shape {
+
+    private double diameter;
+
+    public Circle(double diameter) {
+        setDiameter(diameter);
+    }
+
+    public double getDiameter() {
+        return diameter;
+    }
+
+    public void setDiameter(double diameter) {
+        this.diameter = diameter;
+    }
+
+    public double getRadio() {
+        return this.getDiameter() / 2;
+    }
+
+
     @Override
     public boolean isColliding(Shape shape) {
         return shape.collidedByCircle(this);
@@ -11,7 +32,7 @@ public class Circle implements Shape {
 
     @Override
     public boolean collidedByCircle(Circle shape) {
-        throw new NotImplementedException();
+        return CollisionDetector.INSTANCE.collidesCircleAgainstCircle(getX(), getY(), (int) getRadio(), shape.getX(), shape.getY(), (int) shape.getRadio());
     }
 
     @Override
