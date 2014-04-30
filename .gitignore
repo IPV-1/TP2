@@ -77,4 +77,4 @@ asteroid/src/main/security/keystore.jks
 asteroid.iml
 .idea/
 
-**/**/.svn/
+**/**/.svn/**
