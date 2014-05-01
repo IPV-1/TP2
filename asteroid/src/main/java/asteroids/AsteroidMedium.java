@@ -3,7 +3,7 @@ package asteroids;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class AsteroidMedium extends Asteroid {
-	
+
 	@Override
 	protected Sprite getSprite() {
 		return this.getGame().getSprite("asteroidM");
@@ -13,5 +13,5 @@ public class AsteroidMedium extends Asteroid {
 	protected double getMaxSpeed() {
 		return this.getGame().getValue("asteroidMMaxSpeed");
 	}
-	
+
 }

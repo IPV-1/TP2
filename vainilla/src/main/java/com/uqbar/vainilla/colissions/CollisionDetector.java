@@ -2,6 +2,8 @@ package com.uqbar.vainilla.colissions;
 
 import static java.awt.geom.Point2D.distanceSq;
 
+import java.awt.geom.Point2D;
+
 import com.uqbar.vainilla.GameComponent;
 
 public class CollisionDetector {
@@ -84,9 +86,8 @@ public class CollisionDetector {
 
 	public boolean collidesCircleAgainstCircle(double x1, double y1, int ratio1, double x2, double y2, int ratio2) {
 		double ratioSum = ratio1 + ratio2;
-		double distanceSq = distanceSq(x1, y1, x2, y2);
-
-		return distanceSq < ratioSum * ratioSum;
+		double distance = Point2D.distance(x1 + ratio1, y1 + ratio1, x2 + ratio2, y2 + ratio2);
+		return distance < ratioSum;
 	}
 
 	public boolean collidesPointAgainstTriangle(double x, double y, double vertexX1, double vertexY1, double vertexX2,

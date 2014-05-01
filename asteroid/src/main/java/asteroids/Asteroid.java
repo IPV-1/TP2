@@ -1,13 +1,18 @@
 package asteroids;
 
+import java.awt.Color;
+
 import utils.Utils;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
 
-import components.BasicAsteroidMovingGameComponent;
+import components.ShapeableMovingGameComponent;
+import components.shapes.Circle;
+import components.shapes.Shape;
+import components.shapes.SimpleShape;
 
-public abstract class Asteroid extends BasicAsteroidMovingGameComponent {
+public abstract class Asteroid extends ShapeableMovingGameComponent {
 
 	protected abstract Sprite getSprite();
 
@@ -15,11 +20,12 @@ public abstract class Asteroid extends BasicAsteroidMovingGameComponent {
 
 	@Override
 	public void onSceneActivated() {
-		this.getUVector().setPI(Utils.randDouble(360));
-		this.setAppearance(this.getSprite());
+		this.getUVector().setPI(Utils.randDouble(2));
+		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite().getWidth()));//this.getSprite());
 		this.setSpeed(Utils.randDouble(
 				this.getGame().getValue("asteroidMinSpeed"), this.getMaxSpeed()));
-
+		this.setShape(this.shape());
+		
 		this.setX(Utils.randDouble(this.getGame().getDisplayWidth()
 				- this.getWidth() / 2));
 		this.setY(Utils.randDouble(this.getGame().getDisplayHeight()
@@ -39,6 +45,12 @@ public abstract class Asteroid extends BasicAsteroidMovingGameComponent {
 			this.setY(this.getGame().getDisplayHeight());
 		}
 		super.update(deltaState);
+	}
+	
+	public Shape shape() {
+		SimpleShape shape = new Circle(this.getSprite().getWidth());
+		shape.setComponent(this);
+		return shape;
 	}
 
 }
