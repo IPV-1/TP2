@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import utils.Utils;
 
+import asteroid.AsteroidGame;
+
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
 
@@ -14,12 +16,7 @@ import components.shapes.SimpleShape;
 
 public abstract class Asteroid extends ShapeableMovingGameComponent {
 
-	protected abstract Sprite getSprite();
-
-	protected abstract double getMaxSpeed();
-
-	@Override
-	public void onSceneActivated() {
+	public Asteroid() {
 		this.getUVector().setPI(Utils.randDouble(2));
 		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite().getWidth()));//this.getSprite());
 		this.setSpeed(Utils.randDouble(
@@ -31,6 +28,23 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		this.setY(Utils.randDouble(this.getGame().getDisplayHeight()
 				- this.getHeight() / 2));
 	}
+	
+	public Asteroid(double x, double y) {
+		this();
+		this.setX(x);
+		this.setY(y);
+	}
+	
+	@Override
+	public AsteroidGame getGame() {
+		return AsteroidGame.INSTANCE;
+	}
+	
+	protected abstract Sprite getSprite();
+
+	protected abstract double getMaxSpeed();
+	
+	protected abstract void destroyed();
 
 	@Override
 	public void update(DeltaState deltaState) {
@@ -45,6 +59,12 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 			this.setY(this.getGame().getDisplayHeight());
 		}
 		super.update(deltaState);
+	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		this.destroyed();
 	}
 	
 	public Shape shape() {

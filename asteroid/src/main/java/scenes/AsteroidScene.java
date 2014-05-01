@@ -15,12 +15,13 @@ import components.BasicAsteroidComponent;
 
 public class AsteroidScene extends GameScene {
 
-	public List<Asteroid> asteroids = new ArrayList<Asteroid>();
+	protected List<Asteroid> asteroids = new ArrayList<Asteroid>();
 
 	@Override
 	public AsteroidGame getGame() {
 		return (AsteroidGame) super.getGame();
 	}
+
 
 	@Override
 	public void onSetAsCurrent() {
@@ -29,27 +30,30 @@ public class AsteroidScene extends GameScene {
 		super.onSetAsCurrent();
 	}
 
-	public void addBackground() {
+	protected void addBackground() {
 		addComponent(new BasicAsteroidComponent(getGame().getSprite(
 				"background"), 0, 0));
 	}
 
-	public void addAsteroids() {
+	protected void addAsteroids() {
 		for (int i = 0; i < this.getGame().getValue("asteroidLQty"); i++) {
-			Asteroid a = new AsteroidLarge();
-			asteroids.add(a);
-			this.addComponent(a);
+			this.addAsteroid(new AsteroidLarge());
 		}
 		for (int i = 0; i < this.getGame().getValue("asteroidMQty"); i++) {
-			Asteroid a = new AsteroidMedium();
-			asteroids.add(a);
-			this.addComponent(a);
+			this.addAsteroid(new AsteroidMedium());
 		}
 		for (int i = 0; i < this.getGame().getValue("asteroidSQty"); i++) {
-			Asteroid a = new AsteroidSmall();
-			asteroids.add(a);
-			this.addComponent(a);
+			this.addAsteroid(new AsteroidSmall());
 		}
+	}
+	
+	public void addAsteroid(Asteroid a) {
+		this.getAsteroids().add(a);
+		this.addComponent(a);
+	}
+
+	public List<Asteroid> getAsteroids() {
+		return asteroids;
 	}
 
 }

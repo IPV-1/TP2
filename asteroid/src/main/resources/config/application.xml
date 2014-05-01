@@ -14,8 +14,8 @@
 	<entry key="asteroidLMaxSpeed">70</entry>
 
 
-	<entry key="asteroidSQty">4</entry>
-	<entry key="asteroidMQty">3</entry>
-	<entry key="asteroidLQty">2</entry>
+	<entry key="asteroidSQty">1</entry>
+	<entry key="asteroidMQty">2</entry>
+	<entry key="asteroidLQty">3</entry>
 
 </properties>

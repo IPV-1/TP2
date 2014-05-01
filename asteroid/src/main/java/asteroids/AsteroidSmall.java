@@ -4,6 +4,13 @@ import com.uqbar.vainilla.appearances.Sprite;
 
 public class AsteroidSmall extends Asteroid {
 
+	public AsteroidSmall(){
+	}
+	
+	public AsteroidSmall(double x, double y) {
+		super(x,y);
+	}
+	
 	@Override
 	protected Sprite getSprite() {
 		return this.getGame().getSprite("asteroidS");
@@ -12,6 +19,10 @@ public class AsteroidSmall extends Asteroid {
 	@Override
 	protected double getMaxSpeed() {
 		return this.getGame().getValue("asteroidSMaxSpeed");
+	}
+	
+	@Override
+	protected void destroyed() {
 	}
 
 }

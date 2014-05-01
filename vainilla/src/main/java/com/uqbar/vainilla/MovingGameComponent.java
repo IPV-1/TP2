@@ -30,7 +30,7 @@ public class MovingGameComponent<SceneType extends GameScene> extends GameCompon
 		this.speed = speed;
 	}
 
-    public MovingGameComponent(int x, int y) {
+    public MovingGameComponent(double x, double y) {
         super(x, y);
     }
 

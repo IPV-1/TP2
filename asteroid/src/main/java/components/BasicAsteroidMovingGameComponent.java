@@ -23,7 +23,7 @@ public class BasicAsteroidMovingGameComponent extends MovingGameComponent<Astero
         super(xPos, yPos, xVec, yVec, speed);
     }
 
-    public BasicAsteroidMovingGameComponent(int x, int y) {
+    public BasicAsteroidMovingGameComponent(double x, double y) {
         super(x, y);
     }
 

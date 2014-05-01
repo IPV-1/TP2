@@ -10,7 +10,7 @@ public class ShapeableMovingGameComponent extends BasicAsteroidMovingGameCompone
     public ShapeableMovingGameComponent(){
     }
 
-    public ShapeableMovingGameComponent(int x, int y) {
+    public ShapeableMovingGameComponent(double x, double y) {
         super(x, y);
     }
 
