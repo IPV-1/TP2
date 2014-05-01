@@ -10,20 +10,24 @@ import scenes.AsteroidScene;
 public class BasicAsteroidMovingGameComponent extends MovingGameComponent<AsteroidScene> {
 
     public BasicAsteroidMovingGameComponent() {
-		super();
-	}
+        super();
+    }
 
-	public BasicAsteroidMovingGameComponent(Appearance appearance, double xPos,
-			double yPos, double xVec, double yVec, double speed) {
-		super(appearance, xPos, yPos, xVec, yVec, speed);
-	}
+    public BasicAsteroidMovingGameComponent(Appearance appearance, double xPos,
+                                            double yPos, double xVec, double yVec, double speed) {
+        super(appearance, xPos, yPos, xVec, yVec, speed);
+    }
 
-	public BasicAsteroidMovingGameComponent(double xPos, double yPos,
-			double xVec, double yVec, double speed) {
-		super(xPos, yPos, xVec, yVec, speed);
-	}
+    public BasicAsteroidMovingGameComponent(double xPos, double yPos,
+                                            double xVec, double yVec, double speed) {
+        super(xPos, yPos, xVec, yVec, speed);
+    }
 
-	@Override
+    public BasicAsteroidMovingGameComponent(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
     public AsteroidGame getGame() {
         return (AsteroidGame) super.getGame();
     }
