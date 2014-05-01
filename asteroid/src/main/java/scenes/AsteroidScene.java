@@ -29,13 +29,13 @@ public class AsteroidScene extends GameScene {
     }
     
     public void addAsteroids() {
-    	for (int i = 0; i < 2; i++) {
+    	for (int i = 0; i < this.getGame().getValue("asteroidLQty"); i++) {
     		this.addComponent(new AsteroidLarge());
 		}
-    	for (int i = 0; i < 3; i++) {
+    	for (int i = 0; i < this.getGame().getValue("asteroidMQty"); i++) {
     		this.addComponent(new AsteroidMedium());
     	}
-    	for (int i = 0; i < 4; i++) {
+    	for (int i = 0; i < this.getGame().getValue("asteroidSQty"); i++) {
     		this.addComponent(new AsteroidSmall());
 		}
     }
