@@ -4,4 +4,12 @@
     <entry key="screenWidth">800</entry>
     <entry key="screenHeight">600</entry>
     <entry key="background">background.jpg</entry>
+	<entry key="asteroidS">asteroids/asteroidS0.png</entry>
+	<entry key="asteroidM">asteroids/asteroidM0.png</entry>
+	<entry key="asteroidL">asteroids/asteroidL0.png</entry>
+
+	<entry key="asteroidMinSpeed">10</entry>
+	<entry key="asteroidSMaxSpeed">120</entry>
+	<entry key="asteroidMMaxSpeed">90</entry>
+	<entry key="asteroidLMaxSpeed">70</entry>
 </properties>

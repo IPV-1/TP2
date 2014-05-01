@@ -117,9 +117,8 @@ public class GameScene {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void addComponent(GameComponent component) {
-		this.getComponents().add(this.indexToInsert(component), component);
-
 		component.setScene(this);
+		this.getComponents().add(this.indexToInsert(component), component);
 	}
 
 	public void addComponents(GameComponent<?>... components) {

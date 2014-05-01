@@ -16,6 +16,7 @@ public class AsteroidGame extends Game {
     private static AsteroidScene defaultScene = new Level1();
     private static String defaultConfigurationFile = "application.xml";
     private HashMap<String, Sprite> sprites;
+    private HashMap<String, Double> values;
     private Config configuration;
 
     public AsteroidGame(String configFile, AsteroidScene scene) {
@@ -42,16 +43,28 @@ public class AsteroidGame extends Game {
      */
     public void loadConfigurations() {
         addSprite("background", getConfig("background"));
+        addSprite("asteroidS", getConfig("asteroidS"));
+        addSprite("asteroidM", getConfig("asteroidM"));
+        addSprite("asteroidL", getConfig("asteroidL"));
+        
+        addValue("screenWidth");
+        addValue("screenHeight");
+
+        addValue("asteroidMinSpeed");
+        addValue("asteroidSMaxSpeed");
+        addValue("asteroidMMaxSpeed");
+        addValue("asteroidLMaxSpeed");
     }
 
     @Override
     protected void initializeResources() {
         setSprites(new HashMap<String, Sprite>());
+        setValues(new HashMap<String, Double>());
     }
 
     @Override
     protected void setUpScenes() {
-        setCurrentScene(new Level1());
+        //setCurrentScene(new Level1());
     }
 
     @Override
@@ -79,6 +92,18 @@ public class AsteroidGame extends Game {
     public Sprite getSprite(String spriteKey) {
         return getSprites().get(spriteKey);
     }
+    
+    public void addValue(String value) {
+    	this.addValue(value, getConfig(value));
+    }
+    
+    public void addValue(String key, String value) {
+        getValues().put(key, Double.valueOf(value));
+    }
+
+    public double getValue(String valueKey) {
+        return getValues().get(valueKey);
+    }
 
     public static void main(String[] args) throws Exception {
         new DesktopGameLauncher(new AsteroidGame()).launch();
@@ -99,4 +124,13 @@ public class AsteroidGame extends Game {
     private void setSprites(HashMap<String, Sprite> sprites) {
         this.sprites = sprites;
     }
+
+	public HashMap<String, Double> getValues() {
+		return values;
+	}
+
+	public void setValues(HashMap<String, Double> values) {
+		this.values = values;
+	}
+    
 }
