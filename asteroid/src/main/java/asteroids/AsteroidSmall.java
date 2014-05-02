@@ -1,24 +1,27 @@
 package asteroids;
 
+import asteroid.AsteroidGame;
+
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class AsteroidSmall extends Asteroid {
 
-	public AsteroidSmall(){
+	public AsteroidSmall(AsteroidGame game){
+		super(game);
 	}
 	
-	public AsteroidSmall(double x, double y) {
-		super(x,y);
+	public AsteroidSmall(AsteroidGame game, double x, double y) {
+		super(game,x,y);
 	}
 	
 	@Override
-	protected Sprite getSprite() {
-		return this.getGame().getSprite("asteroidS");
+	protected Sprite getSprite(AsteroidGame game) {
+		return game.getSprite("asteroidS");
 	}
 
 	@Override
-	protected double getMaxSpeed() {
-		return this.getGame().getValue("asteroidSMaxSpeed");
+	protected double getMaxSpeed(AsteroidGame game) {
+		return game.getValue("asteroidSMaxSpeed");
 	}
 	
 	@Override

@@ -22,7 +22,6 @@ public class AsteroidScene extends GameScene {
 		return (AsteroidGame) super.getGame();
 	}
 
-
 	@Override
 	public void onSetAsCurrent() {
 		addBackground();
@@ -37,13 +36,13 @@ public class AsteroidScene extends GameScene {
 
 	protected void addAsteroids() {
 		for (int i = 0; i < this.getGame().getValue("asteroidLQty"); i++) {
-			this.addAsteroid(new AsteroidLarge());
+			this.addAsteroid(new AsteroidLarge(this.getGame()));
 		}
 		for (int i = 0; i < this.getGame().getValue("asteroidMQty"); i++) {
-			this.addAsteroid(new AsteroidMedium());
+			this.addAsteroid(new AsteroidMedium(this.getGame()));
 		}
 		for (int i = 0; i < this.getGame().getValue("asteroidSQty"); i++) {
-			this.addAsteroid(new AsteroidSmall());
+			this.addAsteroid(new AsteroidSmall(this.getGame()));
 		}
 	}
 	

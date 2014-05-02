@@ -16,33 +16,28 @@ import components.shapes.SimpleShape;
 
 public abstract class Asteroid extends ShapeableMovingGameComponent {
 
-	public Asteroid() {
+	public Asteroid(AsteroidGame game) {
 		this.getUVector().setPI(Utils.randDouble(2));
-		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite().getWidth()));//this.getSprite());
+		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite(game).getWidth()));//this.getSprite(game));
 		this.setSpeed(Utils.randDouble(
-				this.getGame().getValue("asteroidMinSpeed"), this.getMaxSpeed()));
-		this.setShape(this.shape());
+				game.getValue("asteroidMinSpeed"), this.getMaxSpeed(game)));
+		this.setShape(this.shape(game));
 		
-		this.setX(Utils.randDouble(this.getGame().getDisplayWidth()
+		this.setX(Utils.randDouble(game.getDisplayWidth()
 				- this.getWidth() / 2));
-		this.setY(Utils.randDouble(this.getGame().getDisplayHeight()
+		this.setY(Utils.randDouble(game.getDisplayHeight()
 				- this.getHeight() / 2));
 	}
 	
-	public Asteroid(double x, double y) {
-		this();
+	public Asteroid(AsteroidGame game, double x, double y) {
+		this(game);
 		this.setX(x);
 		this.setY(y);
 	}
 	
-	@Override
-	public AsteroidGame getGame() {
-		return AsteroidGame.INSTANCE;
-	}
-	
-	protected abstract Sprite getSprite();
+	protected abstract Sprite getSprite(AsteroidGame game);
 
-	protected abstract double getMaxSpeed();
+	protected abstract double getMaxSpeed(AsteroidGame game);
 	
 	protected abstract void destroyed();
 
@@ -67,8 +62,8 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		this.destroyed();
 	}
 	
-	public Shape shape() {
-		SimpleShape shape = new Circle(this.getSprite().getWidth());
+	public Shape shape(AsteroidGame game) {
+		SimpleShape shape = new Circle(this.getSprite(game).getWidth());
 		shape.setComponent(this);
 		return shape;
 	}

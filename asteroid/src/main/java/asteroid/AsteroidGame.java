@@ -18,11 +18,8 @@ public class AsteroidGame extends Game {
 	private HashMap<String, Double> values;
 	private Config configuration;
 	
-	public static AsteroidGame INSTANCE;
-
 	public AsteroidGame(String configFile, AsteroidScene scene) {
 		super();
-		INSTANCE = this;
 		setConfiguration(new Config(configFile));
 		loadConfigurations();
 		setCurrentScene(scene);
