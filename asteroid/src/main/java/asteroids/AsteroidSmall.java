@@ -10,11 +10,11 @@ public class AsteroidSmall extends Asteroid {
 
 	public static final Stack<AsteroidSmall> ASTEROIDS = new Stack<AsteroidSmall>();
 
-	public AsteroidSmall(AsteroidGame game) {
+	protected AsteroidSmall(AsteroidGame game) {
 		super(game);
 	}
 
-	public AsteroidSmall(AsteroidGame game, double x, double y) {
+	protected AsteroidSmall(AsteroidGame game, double x, double y) {
 		super(game, x, y);
 	}
 

@@ -42,6 +42,7 @@ public class AsteroidGame extends Game {
 	 */
 	public void loadConfigurations() {
 		addSprite("background", getConfig("background"));
+		addSprite("bullet", getConfig("bullet"));
 		addSprite("asteroidS", getConfig("asteroidS"));
 		addSprite("asteroidM", getConfig("asteroidM"));
 		addSprite("asteroidL", getConfig("asteroidL"));
@@ -49,6 +50,7 @@ public class AsteroidGame extends Game {
 		addValue("screenWidth");
 		addValue("screenHeight");
 
+		addValue("bulletSpeed");
 		addValue("asteroidMinSpeed");
 		addValue("asteroidSMaxSpeed");
 		addValue("asteroidMMaxSpeed");

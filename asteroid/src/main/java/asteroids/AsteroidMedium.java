@@ -10,11 +10,11 @@ public class AsteroidMedium extends Asteroid {
 	
 	public static final Stack<AsteroidMedium> ASTEROIDS = new Stack<AsteroidMedium>();
 
-	public AsteroidMedium(AsteroidGame game){
+	protected AsteroidMedium(AsteroidGame game){
 		super(game);
 	}
 	
-	public AsteroidMedium(AsteroidGame game, double x, double y) {
+	protected AsteroidMedium(AsteroidGame game, double x, double y) {
 		super(game,x,y);
 	}
 	

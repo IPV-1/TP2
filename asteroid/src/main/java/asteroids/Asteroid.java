@@ -12,10 +12,9 @@ import components.ShapeableMovingGameComponent;
 import components.shapes.Circle;
 import components.shapes.Shape;
 import components.shapes.SimpleShape;
-
 public abstract class Asteroid extends ShapeableMovingGameComponent {
 
-	public Asteroid(AsteroidGame game) {
+	protected Asteroid(AsteroidGame game) {
 		this.clean(game);
 		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite(game).getWidth()));//this.getSprite(game));
 		this.setShape(this.shape(game));
@@ -26,7 +25,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 				- this.getHeight() / 2));
 	}
 	
-	public Asteroid(AsteroidGame game, double x, double y) {
+	protected Asteroid(AsteroidGame game, double x, double y) {
 		this(game);
 		this.setX(x);
 		this.setY(y);
@@ -47,7 +46,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		this.setDestroyPending(false);
 		return this;
 	}
-	
+		
 	@Override
 	public void destroy() {
 		this.store();

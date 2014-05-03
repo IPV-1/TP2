@@ -12,14 +12,27 @@ import asteroids.AsteroidSmall;
 import com.uqbar.vainilla.GameScene;
 
 import components.BasicAsteroidComponent;
+import components.Bullet;
+import components.ShapeableMovingGameComponent;
 
 public class AsteroidScene extends GameScene {
 
-	protected List<Asteroid> asteroids = new ArrayList<Asteroid>();
-	
+	protected List<ShapeableMovingGameComponent> enemyGroup = new ArrayList<ShapeableMovingGameComponent>();
+	protected List<ShapeableMovingGameComponent> playerGroup = new ArrayList<ShapeableMovingGameComponent>();
+
 	@Override
 	public AsteroidGame getGame() {
 		return (AsteroidGame) super.getGame();
+	}
+
+	public void update(ShapeableMovingGameComponent playerComp) {
+		for (ShapeableMovingGameComponent enemyComp : this.getEnemyGroup()) {
+			if (playerComp.isColliding(enemyComp)) {
+				this.remove(playerComp, this.getPlayerGroup());
+				this.remove(enemyComp, this.getEnemyGroup());
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -34,6 +47,12 @@ public class AsteroidScene extends GameScene {
 				"background"), 0, 0));
 	}
 
+	public void addBullet(double x, double y, double pi) {
+		Bullet bullet = Bullet.get(this.getGame(), x, y, pi);
+		this.getPlayerGroup().add(bullet);
+		this.addComponent(bullet);
+	}
+
 	protected void addAsteroids() {
 		for (int i = 0; i < this.getGame().getValue("asteroidLQty"); i++) {
 			this.addAsteroidL();
@@ -45,11 +64,11 @@ public class AsteroidScene extends GameScene {
 			this.addAsteroidS();
 		}
 	}
-	
+
 	public void addAsteroidL() {
 		this.addAsteroid(AsteroidLarge.get(this.getGame()));
 	}
-	
+
 	public void addAsteroidM() {
 		this.addAsteroid(AsteroidMedium.get(this.getGame()));
 	}
@@ -57,20 +76,25 @@ public class AsteroidScene extends GameScene {
 	public void addAsteroidS() {
 		this.addAsteroid(AsteroidSmall.get(this.getGame()));
 	}
-	
+
 	public void addAsteroid(Asteroid a) {
-		this.getAsteroids().add(a);
+		this.getEnemyGroup().add(a);
 		this.addComponent(a);
 	}
-	
-	public void removeAsteroid(Asteroid a) {
-		this.getAsteroids().remove(a);
-		a.destroy();
-		this.removeComponent(a);
+
+	protected void remove(ShapeableMovingGameComponent comp,
+			List<ShapeableMovingGameComponent> fromList) {
+		fromList.remove(comp);
+		comp.destroy();
+		this.removeComponent(comp);
 	}
-	
-	public List<Asteroid> getAsteroids() {
-		return asteroids;
+
+	public List<ShapeableMovingGameComponent> getEnemyGroup() {
+		return enemyGroup;
+	}
+
+	public List<ShapeableMovingGameComponent> getPlayerGroup() {
+		return playerGroup;
 	}
 
 }
