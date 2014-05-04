@@ -46,6 +46,10 @@ public class UnitVector2D {
 	public void setPI(double multiplier) {
 		this.setLocation(Math.cos(Math.PI * multiplier), Math.sin(Math.PI * multiplier));
 	}
+	
+	public void setAngle(double angle) {
+		this.setPI(angle / 180);
+	}
 
 	protected void setLocation(double x, double y){
 		this.getPoint().setLocation(x, y);

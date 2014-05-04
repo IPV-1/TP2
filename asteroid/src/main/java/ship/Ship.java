@@ -1,7 +1,6 @@
 package ship;
 
 import handlers.KeyboardHandler;
-import utils.Utils;
 import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.DeltaState;
@@ -14,7 +13,7 @@ import components.shapes.SimpleShape;
 public class Ship extends ShapeableMovingGameComponent {
 	
 	private static Ship SHIP;
-	private double rotation = 0.2;
+	private double rotation = 0;
 	
 	public static Ship SHIP(AsteroidGame game) {
 		if(SHIP == null) {
@@ -32,11 +31,10 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 	
 	protected Ship clean(AsteroidGame game) {
-		this.getUVector().setPI(Utils.randDouble(2));
 		this.setSpeed(0);
 		this.setDestroyPending(false);
 		
-		this.setAppearance(this.getSprite(game));
+		this.rotate(game, 0);
 		
 		this.setShape(this.shape(game));
 		
@@ -76,6 +74,8 @@ public class Ship extends ShapeableMovingGameComponent {
 	public void rotate(AsteroidGame game, int direction) {
 		this.setRotation(getRotation() + game.getValue("shipRotation") * direction);
 		
+        this.getUVector().setAngle(Math.toDegrees(this.getRotation()) + 90);
+        
 		Sprite sprite = this.getSprite(game).rotate(getRotation());
 		this.setAppearance(sprite);
 	}
