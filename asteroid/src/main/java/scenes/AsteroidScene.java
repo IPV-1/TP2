@@ -3,6 +3,8 @@ package scenes;
 import java.util.ArrayList;
 import java.util.List;
 
+import ship.Ship;
+
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
 import asteroids.AsteroidLarge;
@@ -39,7 +41,12 @@ public class AsteroidScene extends GameScene {
 	public void onSetAsCurrent() {
 		addBackground();
 		addAsteroids();
+		addShip();
 		super.onSetAsCurrent();
+	}
+
+	private void addShip() {
+		addComponent(Ship.SHIP(getGame()));
 	}
 
 	protected void addBackground() {

@@ -8,12 +8,14 @@
 	<entry key="asteroidM">asteroids/asteroidM0.png</entry>
 	<entry key="asteroidL">asteroids/asteroidL0.png</entry>
 	<entry key="bullet">bullet.png</entry>
+	<entry key="ship">ship.png</entry>
 
 	<entry key="bulletSpeed">450</entry>
 	<entry key="asteroidMinSpeed">10</entry>
 	<entry key="asteroidSMaxSpeed">120</entry>
 	<entry key="asteroidMMaxSpeed">90</entry>
 	<entry key="asteroidLMaxSpeed">70</entry>
+	<entry key="shipMaxSpeed">20</entry>
 
 	<entry key="asteroidSQty">1</entry>
 	<entry key="asteroidMQty">1</entry>

@@ -46,6 +46,7 @@ public class AsteroidGame extends Game {
 		addSprite("asteroidS", getConfig("asteroidS"));
 		addSprite("asteroidM", getConfig("asteroidM"));
 		addSprite("asteroidL", getConfig("asteroidL"));
+		addSprite("ship", getConfig("ship"));
 
 		addValue("screenWidth");
 		addValue("screenHeight");
@@ -55,6 +56,7 @@ public class AsteroidGame extends Game {
 		addValue("asteroidSMaxSpeed");
 		addValue("asteroidMMaxSpeed");
 		addValue("asteroidLMaxSpeed");
+		addValue("shipMaxSpeed");
 
 		addValue("asteroidSQty");
 		addValue("asteroidMQty");
