@@ -1,8 +1,10 @@
 package ship;
 
+import handlers.KeyboardHandler;
 import utils.Utils;
 import asteroid.AsteroidGame;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.ShapeableMovingGameComponent;
 import components.shapes.Circle;
@@ -12,6 +14,7 @@ import components.shapes.SimpleShape;
 public class Ship extends ShapeableMovingGameComponent {
 	
 	private static Ship SHIP;
+	private double rotation = 0.2;
 	
 	public static Ship SHIP(AsteroidGame game) {
 		if(SHIP == null) {
@@ -34,6 +37,7 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.setDestroyPending(false);
 		
 		this.setAppearance(this.getSprite(game));
+		
 		this.setShape(this.shape(game));
 		
 		this.setX(game.getDisplayWidth() / 2 - this.getWidth() / 2);
@@ -56,6 +60,32 @@ public class Ship extends ShapeableMovingGameComponent {
 		SimpleShape shape = new Circle(this.getSprite(game).getWidth());
 		shape.setComponent(this);
 		return shape;
+	}
+	
+	@Override
+	public void update(DeltaState deltaState) {
+		super.update(deltaState);
+		
+		KeyboardHandler.INSTANCE.updateShip(this, deltaState);
+	}
+
+	public void setMaxSpeed() {
+		this.setSpeed(this.getMaxSpeed(getGame()));
+	}
+
+	public void rotate(AsteroidGame game, int direction) {
+		this.setRotation(getRotation() + game.getValue("shipRotation") * direction);
+		
+		Sprite sprite = this.getSprite(game).rotate(getRotation());
+		this.setAppearance(sprite);
+	}
+
+	public double getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(double rotation) {
+		this.rotation = rotation;
 	}
 
 }

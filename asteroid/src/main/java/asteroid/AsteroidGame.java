@@ -57,6 +57,7 @@ public class AsteroidGame extends Game {
 		addValue("asteroidMMaxSpeed");
 		addValue("asteroidLMaxSpeed");
 		addValue("shipMaxSpeed");
+		addValue("shipRotation");
 
 		addValue("asteroidSQty");
 		addValue("asteroidMQty");
