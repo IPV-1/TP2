@@ -82,6 +82,22 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.setAppearance(sprite);
 	}
 
+	public void shot() {
+		this.getScene().addBullet(this.getCenterX(), this.getCenterY(), this.getDirection());
+	}
+	
+	private double getCenterX() {
+		return this.getX() + this.getWidth() / 2;
+	}
+	
+	private double getCenterY() {
+		return this.getY() + this.getHeight() / 2;
+	}
+	
+	private double getDirection() {
+		return Math.toDegrees(this.getRotation()) + 90;
+	}
+	
 	public double getRotation() {
 		return rotation;
 	}
@@ -90,20 +106,8 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.rotation = rotation;
 	}
 
-	public void shot() {
-		this.getScene().addBullet(this.getCenterX(), this.getCenterY(), this.getDirection());
-	}
-
-	private double getCenterX() {
-		return this.getX() + this.getWidth() / 2;
-	}
-	
-	private double getCenterY() {
-		return this.getY() + this.getHeight() / 2;
-	}
-
-	private double getDirection() {
-		return Math.toDegrees(this.getRotation()) + 90;
+	public void breakingSpeed(DeltaState deltaState) {
+		this.setSpeed(this.getSpeed() - deltaState.getDelta() * 10);
 	}
 
 }
