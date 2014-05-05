@@ -248,7 +248,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.uqbar</groupId>
-			<artifactId>vainilla</artifactId>
+			<artifactId>vainilla-asteroid</artifactId>
 			<version>0.0.4</version>
 		</dependency>
 		<dependency>
