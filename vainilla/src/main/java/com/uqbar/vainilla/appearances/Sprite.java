@@ -71,7 +71,7 @@ public class Sprite extends SimpleAppearance<Sprite> {
 	}
 
 	public Sprite rotate(double radians) {
-		BufferedImage newImage = new BufferedImage((int) this.getWidth(), (int) this.getHeight(), this.getImage().getType());
+		BufferedImage newImage = new BufferedImage((int) this.getWidth(), (int) this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D graphics = newImage.createGraphics();
 		graphics.rotate(radians, this.getWidth() / 2, this.getHeight() / 2);
