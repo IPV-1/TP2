@@ -41,7 +41,7 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.setX(game.getDisplayWidth() / 2 - this.getWidth() / 2);
 		this.setY(game.getDisplayHeight() / 2 - this.getHeight() / 2);
 		
-		this.setZ(2);
+		this.setZ(1);
 		
 		return this;
 	}
@@ -65,6 +65,8 @@ public class Ship extends ShapeableMovingGameComponent {
 		super.update(deltaState);
 		
 		KeyboardHandler.INSTANCE.updateShip(this, deltaState);
+		
+		//this.getScene().update(this);
 	}
 
 	public void setMaxSpeed() {
@@ -74,7 +76,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	public void rotate(AsteroidGame game, int direction) {
 		this.setRotation(getRotation() + game.getValue("shipRotation") * direction);
 		
-        this.getUVector().setAngle(Math.toDegrees(this.getRotation()) + 90);
+        this.getUVector().setAngle(this.getDirection());
         
 		Sprite sprite = this.getSprite(game).rotate(getRotation());
 		this.setAppearance(sprite);
@@ -86,6 +88,22 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void setRotation(double rotation) {
 		this.rotation = rotation;
+	}
+
+	public void shot() {
+		this.getScene().addBullet(this.getCenterX(), this.getCenterY(), this.getDirection());
+	}
+
+	private double getCenterX() {
+		return this.getX() + this.getWidth() / 2;
+	}
+	
+	private double getCenterY() {
+		return this.getY() + this.getHeight() / 2;
+	}
+
+	private double getDirection() {
+		return Math.toDegrees(this.getRotation()) + 90;
 	}
 
 }

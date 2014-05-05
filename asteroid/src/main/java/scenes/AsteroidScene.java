@@ -11,6 +11,7 @@ import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 
+import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 
 import components.BasicAsteroidComponent;
@@ -47,8 +48,8 @@ public class AsteroidScene extends GameScene {
 
 	private void addShip() {
 		Ship ship = Ship.SHIP(getGame());
-		addComponent(ship);
 		this.getPlayerGroup().add(ship);
+		this.addComponent(ship);
 	}
 
 	protected void addBackground() {
@@ -58,6 +59,9 @@ public class AsteroidScene extends GameScene {
 
 	public void addBullet(double x, double y, double pi) {
 		Bullet bullet = Bullet.get(this.getGame(), x, y, pi);
+		bullet.setX(x - bullet.getWidth() / 2);
+		bullet.setY(y - bullet.getHeight() / 2);
+		
 		this.getPlayerGroup().add(bullet);
 		this.addComponent(bullet);
 	}
@@ -104,6 +108,16 @@ public class AsteroidScene extends GameScene {
 
 	public List<ShapeableMovingGameComponent> getPlayerGroup() {
 		return playerGroup;
+	}
+
+	/*
+	 * Por si el area de juego es mas chica que la pantalla
+	 */
+	public boolean isOutside(GameComponent<AsteroidScene> comp) {
+		return (comp.getX() >= comp.getGame().getDisplayWidth()) || 
+			(comp.getX() + comp.getWidth() <= 0) ||
+			(comp.getY() >= comp.getGame().getDisplayHeight()) ||
+			(comp.getY() + comp.getHeight() <= 0);
 	}
 
 }

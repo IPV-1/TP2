@@ -19,6 +19,8 @@ public class KeyboardHandler {
         	ship.rotate(ship.getGame(), 1);
         } else if(deltaState.isKeyBeingHold(Key.UP)) {
         	ship.setMaxSpeed();
+        } else if(deltaState.isKeyReleased(Key.SPACE)){
+        	ship.shot();
         } else {
         	ship.setSpeed(0);
         }
