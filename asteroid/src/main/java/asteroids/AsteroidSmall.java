@@ -14,8 +14,8 @@ public class AsteroidSmall extends Asteroid {
 		super(game);
 	}
 
-	protected AsteroidSmall(AsteroidGame game, double x, double y) {
-		super(game, x, y);
+	protected AsteroidSmall(AsteroidGame game, double pi) {
+		super(game, pi);
 	}
 
 	@Override
@@ -46,9 +46,12 @@ public class AsteroidSmall extends Asteroid {
 		return (AsteroidSmall) (ASTEROIDS.empty() ? new AsteroidSmall(game)
 				: ASTEROIDS.pop().clean(game));
 	}
-	
-	public static AsteroidSmall get(AsteroidGame game, double x, double y) {
-		AsteroidSmall asteroid = AsteroidSmall.get(game);
+
+	protected static AsteroidSmall get(AsteroidGame game, double x, double y,
+			double fromPi) {
+		double newPi = Asteroid.getNewPiFrom(game, fromPi);
+		AsteroidSmall asteroid = (AsteroidSmall) (ASTEROIDS.empty() ? new AsteroidSmall(
+				game, newPi) : ASTEROIDS.pop().cleanWithPi(game, newPi));
 		asteroid.setX(x);
 		asteroid.setY(y);
 		return asteroid;

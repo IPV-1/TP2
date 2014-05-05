@@ -14,10 +14,6 @@ public class AsteroidLarge extends Asteroid {
 		super(game);
 	}
 
-	protected AsteroidLarge(AsteroidGame game, double x, double y) {
-		super(game, x, y);
-	}
-
 	@Override
 	protected Sprite getSprite(AsteroidGame game) {
 		return game.getSprite("asteroidL");
@@ -33,8 +29,10 @@ public class AsteroidLarge extends Asteroid {
 		double radius = this.getGame().getSprite("asteroidM").getWidth() / 2;
 		double x = this.getX() + this.getWidth() / 2 - radius / 2;
 		double y = this.getY() + this.getHeight() / 2 - radius / 2;
-		this.getScene().addAsteroid(AsteroidMedium.get(this.getGame(), x, y));
-		this.getScene().addAsteroid(AsteroidMedium.get(this.getGame(), x, y));
+		this.getScene().addAsteroid(
+				AsteroidMedium.get(this.getGame(), x, y, this.getPi()));
+		this.getScene().addAsteroid(
+				AsteroidMedium.get(this.getGame(), x, y, this.getPi()));
 	}
 
 	@Override
@@ -51,7 +49,7 @@ public class AsteroidLarge extends Asteroid {
 		return (AsteroidLarge) (ASTEROIDS.empty() ? new AsteroidLarge(game)
 				: ASTEROIDS.pop().clean(game));
 	}
-	
+
 	public static AsteroidLarge get(AsteroidGame game, double x, double y) {
 		AsteroidLarge asteroid = AsteroidLarge.get(game);
 		asteroid.setX(x);

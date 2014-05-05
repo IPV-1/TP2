@@ -1,6 +1,5 @@
 package scenes;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import asteroids.Asteroid;
 import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
-import boards.Board;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
@@ -24,8 +22,6 @@ public class AsteroidScene extends GameScene {
 
 	protected List<ShapeableMovingGameComponent> enemyGroup = new ArrayList<ShapeableMovingGameComponent>();
 	protected List<ShapeableMovingGameComponent> playerGroup = new ArrayList<ShapeableMovingGameComponent>();
-	
-	public final Board BOARD = new Board(0, 0, Color.WHITE);
 
 	@Override
 	public AsteroidGame getGame() {
@@ -47,7 +43,7 @@ public class AsteroidScene extends GameScene {
 		addBackground();
 		addAsteroids();
 		addShip();
-		this.addComponent(BOARD);
+		this.addComponent(this.getGame().BOARD);
 		super.onSetAsCurrent();
 	}
 
