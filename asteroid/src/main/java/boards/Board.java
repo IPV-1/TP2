@@ -14,14 +14,7 @@ public class Board extends BasicAsteroidComponent {
 	protected boolean changed = false;
 
 	public Board(double x, double y, Color color) {
-		super(new Label(new Font("verdana", Font.BOLD, 34), color, "0"), x, y);
-	}
-
-	public void updateText() {
-		if(this.isChanged()) {
-			this.getAppearance().setText(Integer.toString(this.getValue()));
-		}
-		this.setChanged(false);
+		super(new Label(new Font("verdana", Font.PLAIN, 24), color, "0"), x, y);
 	}
 
 	public void add(int value) {
@@ -34,7 +27,10 @@ public class Board extends BasicAsteroidComponent {
 
 	@Override
 	public void update(DeltaState deltaState) {
-		this.updateText();
+		if(this.isChanged()) {
+			this.getAppearance().setText(Integer.toString(this.getValue()));
+			this.setChanged(false);
+		}
 		super.update(deltaState);
 	}
 

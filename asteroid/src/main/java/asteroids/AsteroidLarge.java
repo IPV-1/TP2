@@ -42,6 +42,11 @@ public class AsteroidLarge extends Asteroid {
 		ASTEROIDS.push(this);
 	}
 
+	@Override
+	public int getPoints() {
+		return 20;
+	}
+
 	public static AsteroidLarge get(AsteroidGame game) {
 		return (AsteroidLarge) (ASTEROIDS.empty() ? new AsteroidLarge(game)
 				: ASTEROIDS.pop().clean(game));

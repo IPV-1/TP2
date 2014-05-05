@@ -36,6 +36,11 @@ public class AsteroidSmall extends Asteroid {
 	public void store() {
 		ASTEROIDS.push(this);
 	}
+	
+	@Override
+	public int getPoints() {
+		return 100;
+	}
 
 	public static AsteroidSmall get(AsteroidGame game) {
 		return (AsteroidSmall) (ASTEROIDS.empty() ? new AsteroidSmall(game)
