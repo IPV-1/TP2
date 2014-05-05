@@ -8,7 +8,7 @@ import scenes.AsteroidScene;
 
 public class BasicAsteroidComponent extends GameComponent<AsteroidScene> {
 
-    public BasicAsteroidComponent(Appearance appearance, int x, int y) {
+    public BasicAsteroidComponent(Appearance appearance, double x, double y) {
         super(appearance, x, y);
     }
 

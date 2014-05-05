@@ -39,6 +39,8 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	
 	public abstract void store();
 	
+	public abstract int getPoints();
+	
 	protected Asteroid clean(AsteroidGame game) {
 		this.getUVector().setPI(Utils.randDouble(2));
 		this.setSpeed(Utils.randDouble(
@@ -49,6 +51,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		
 	@Override
 	public void destroy() {
+		this.getScene().BOARD.add(this.getPoints());
 		this.store();
 		this.explode();
 		super.destroy();

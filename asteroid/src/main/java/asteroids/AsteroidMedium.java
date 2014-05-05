@@ -42,6 +42,11 @@ public class AsteroidMedium extends Asteroid {
 		ASTEROIDS.push(this);
 	}
 	
+	@Override
+	public int getPoints() {
+		return 50;
+	}
+	
 	public static AsteroidMedium get(AsteroidGame game) {
 		return (AsteroidMedium) (ASTEROIDS.empty() ? new AsteroidMedium(game)
 		: ASTEROIDS.pop().clean(game));
