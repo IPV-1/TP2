@@ -13,10 +13,12 @@ public class Ship extends ShapeableMovingGameComponent {
 	private double rotation = 0;
 	private double rotationSpeed;
 	private Sprite defaultSprite;
+	private double maxSpeed;
 
 
-	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed){
+	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed, double maxSpeed){
 		super(appearance, shape, x, y, xV, yV, speed);
+		setMaxSpeed(maxSpeed);
 		setDefaultSprite(appearance);
 		setRotationSpeed(rotationSpeed);
 		initRotation();
@@ -35,10 +37,6 @@ public class Ship extends ShapeableMovingGameComponent {
 		return (Sprite) super.getAppearance();
 	}
 
-	protected double getMaxSpeed(AsteroidGame game) {
-		return game.getValue("shipMaxSpeed");
-	}
-
 	
 	@Override
 	public void update(DeltaState deltaState) {
@@ -50,7 +48,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 
 	public void setMaxSpeed() {
-		this.setSpeed(this.getMaxSpeed(getGame()));
+		setSpeed(getMaxSpeed());
 	}
 
 	public void rotate(int direction) {
@@ -104,5 +102,13 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void setDefaultSprite(Sprite defaultSprite) {
 		this.defaultSprite = defaultSprite;
+	}
+
+	public double getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public void setMaxSpeed(double maxSpeed) {
+		this.maxSpeed = maxSpeed;
 	}
 }
