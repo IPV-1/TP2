@@ -1,6 +1,7 @@
 package components;
 
 
+import com.uqbar.vainilla.appearances.Appearance;
 import components.shapes.Shape;
 import components.shapes.Shapeable;
 
@@ -9,6 +10,13 @@ public class ShapeableMovingGameComponent extends BasicAsteroidMovingGameCompone
     
     public ShapeableMovingGameComponent(){
     }
+
+	public ShapeableMovingGameComponent(Appearance appearance, Shape shape, double xPos,
+	                                    double yPos, double xVec, double yVec, double speed){
+		super(appearance, xPos, yPos, xVec, yVec, speed);
+		setShape(shape);
+		shape.setShapeable(this);
+	}
 
     public ShapeableMovingGameComponent(double x, double y) {
         super(x, y);

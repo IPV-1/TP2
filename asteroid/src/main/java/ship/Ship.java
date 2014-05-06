@@ -1,5 +1,6 @@
 package ship;
 
+import com.uqbar.vainilla.appearances.Appearance;
 import handlers.KeyboardHandler;
 import asteroid.AsteroidGame;
 
@@ -16,6 +17,10 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public Ship(AsteroidGame game) {
 		this.clean(game);
+	}
+
+	public Ship(Appearance appearance, Shape shape, double x, double y, int xV, int yV, int speed){
+		super(appearance, shape, x, y, xV, yV, speed);
 	}
 	
 	protected void explode() {
