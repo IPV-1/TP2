@@ -4,24 +4,20 @@ import java.util.Stack;
 
 import asteroid.AsteroidGame;
 
-import com.uqbar.vainilla.appearances.Sprite;
+import asteroids.factories.AsteroidLargeFactory;
+import com.uqbar.vainilla.appearances.Appearance;
+import components.shapes.Shape;
 
 public class AsteroidLarge extends Asteroid {
 
 	public static final Stack<AsteroidLarge> ASTEROIDS = new Stack<AsteroidLarge>();
 
-	protected AsteroidLarge(AsteroidGame game) {
-		super(game);
+	public AsteroidLarge(Appearance appearance, Shape shape, double x,double y, double pi, double speed){
+		super(appearance, shape, x, y, pi, speed);
 	}
 
-	@Override
-	protected Sprite getSprite(AsteroidGame game) {
-		return game.getSprite("asteroidL");
-	}
-
-	@Override
-	protected double getMaxSpeed(AsteroidGame game) {
-		return game.getValue("asteroidLMaxSpeed");
+	public AsteroidLarge() {
+		super();
 	}
 
 	@Override
@@ -46,15 +42,10 @@ public class AsteroidLarge extends Asteroid {
 	}
 
 	public static AsteroidLarge get(AsteroidGame game) {
-		return (AsteroidLarge) (ASTEROIDS.empty() ? new AsteroidLarge(game)
-				: ASTEROIDS.pop().clean(game));
-	}
-
-	public static AsteroidLarge get(AsteroidGame game, double x, double y) {
-		AsteroidLarge asteroid = AsteroidLarge.get(game);
-		asteroid.setX(x);
-		asteroid.setY(y);
-		return asteroid;
+		if(ASTEROIDS.empty()){
+			return AsteroidLargeFactory.newAsteroid(game);
+		}
+		return AsteroidLargeFactory.clean(ASTEROIDS.pop(), game);
 	}
 
 }
