@@ -3,6 +3,8 @@ package scenes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uqbar.vainilla.appearances.Sprite;
+import components.shapes.Circle;
 import ship.Ship;
 
 import asteroid.AsteroidGame;
@@ -48,7 +50,12 @@ public class AsteroidScene extends GameScene {
 	}
 
 	private void addShip() {
-		Ship ship = new Ship(getGame());
+		Sprite sprite =  getGame().getSprite("ship");
+		Circle shape = new Circle(sprite.getWidth());
+		double x = getGame().getDisplayWidth() / 2 - shape.getDiameter() / 2;
+		double y = getGame().getDisplayHeight() / 2 - shape.getDiameter() / 2;
+		Ship ship = new Ship(sprite, shape, x, y, 1, 0, 0, 0);
+		ship.setZ(1);
 		this.getPlayerGroup().add(ship);
 		this.addComponent(ship);
 	}

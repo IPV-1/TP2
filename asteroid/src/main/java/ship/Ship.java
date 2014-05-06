@@ -14,16 +14,29 @@ import components.shapes.SimpleShape;
 public class Ship extends ShapeableMovingGameComponent {
 
 	private double rotation = 0;
+	private double rotationSpeed;
 
 	public Ship(AsteroidGame game) {
 		this.clean(game);
 	}
 
-	public Ship(Appearance appearance, Shape shape, double x, double y, int xV, int yV, int speed){
+	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed){
 		super(appearance, shape, x, y, xV, yV, speed);
+		setRotationSpeed(rotationSpeed);
+		initRotation();
+	}
+
+	public void initRotation(){
+		getUVector().setAngle(getDirection());
+		Sprite sprite = getAppearance().rotate(getRotation());
+		setAppearance(sprite);
 	}
 	
 	protected void explode() {
+	}
+
+	public Sprite getAppearance(){
+		return (Sprite) super.getAppearance();
 	}
 	
 	protected Ship clean(AsteroidGame game) {
@@ -106,4 +119,11 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.setSpeed(this.getSpeed() - deltaState.getDelta() * 10);
 	}
 
+	public double getRotationSpeed() {
+		return rotationSpeed;
+	}
+
+	public void setRotationSpeed(double rotationSpeed) {
+		this.rotationSpeed = rotationSpeed;
+	}
 }
