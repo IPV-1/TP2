@@ -6,18 +6,18 @@ import asteroid.AsteroidGame;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.ShapeableMovingGameComponent;
-import components.shapes.Circle;
 import components.shapes.Shape;
-import components.shapes.SimpleShape;
 
 public class Ship extends ShapeableMovingGameComponent {
 
 	private double rotation = 0;
 	private double rotationSpeed;
+	private Sprite defaultSprite;
 
 
 	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed){
 		super(appearance, shape, x, y, xV, yV, speed);
+		setDefaultSprite(appearance);
 		setRotationSpeed(rotationSpeed);
 		initRotation();
 	}
@@ -35,20 +35,10 @@ public class Ship extends ShapeableMovingGameComponent {
 		return (Sprite) super.getAppearance();
 	}
 
-	
-	protected Sprite getSprite(AsteroidGame game) {
-		return game.getSprite("ship");
-	}
-
 	protected double getMaxSpeed(AsteroidGame game) {
 		return game.getValue("shipMaxSpeed");
 	}
-	
-	protected Shape shape(AsteroidGame game) {
-		SimpleShape shape = new Circle(this.getSprite(game).getWidth());
-		shape.setShapeable(this);
-		return shape;
-	}
+
 	
 	@Override
 	public void update(DeltaState deltaState) {
@@ -68,7 +58,7 @@ public class Ship extends ShapeableMovingGameComponent {
 		
         this.getUVector().setAngle(this.getDirection());
         
-		Sprite sprite = this.getSprite(getGame()).rotate(getRotation());
+		Sprite sprite = getDefaultSprite().rotate(getRotation());
 		this.setAppearance(sprite);
 	}
 
@@ -106,5 +96,13 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void setRotationSpeed(double rotationSpeed) {
 		this.rotationSpeed = rotationSpeed;
+	}
+
+	public Sprite getDefaultSprite() {
+		return defaultSprite;
+	}
+
+	public void setDefaultSprite(Sprite defaultSprite) {
+		this.defaultSprite = defaultSprite;
 	}
 }
