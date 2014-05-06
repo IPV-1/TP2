@@ -11,19 +11,10 @@ import components.shapes.Shape;
 import components.shapes.SimpleShape;
 
 public class Ship extends ShapeableMovingGameComponent {
-	
-	private static Ship SHIP;
+
 	private double rotation = 0;
-	
-	public static Ship SHIP(AsteroidGame game) {
-		if(SHIP == null) {
-			SHIP = new Ship(game);
-		}
-		
-		return SHIP;
-	}
-	
-	private Ship(AsteroidGame game) {
+
+	public Ship(AsteroidGame game) {
 		this.clean(game);
 	}
 	

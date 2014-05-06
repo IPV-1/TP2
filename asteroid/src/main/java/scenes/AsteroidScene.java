@@ -48,7 +48,7 @@ public class AsteroidScene extends GameScene {
 	}
 
 	private void addShip() {
-		Ship ship = Ship.SHIP(getGame());
+		Ship ship = new Ship(getGame());
 		this.getPlayerGroup().add(ship);
 		this.addComponent(ship);
 	}
@@ -62,7 +62,7 @@ public class AsteroidScene extends GameScene {
 		Bullet bullet = Bullet.get(this.getGame(), x, y, angle);
 		bullet.setX(x - bullet.getWidth() / 2);
 		bullet.setY(y - bullet.getHeight() / 2);
-		
+
 		this.getPlayerGroup().add(bullet);
 		this.addComponent(bullet);
 	}
@@ -97,7 +97,7 @@ public class AsteroidScene extends GameScene {
 	}
 
 	protected void remove(ShapeableMovingGameComponent comp,
-			List<ShapeableMovingGameComponent> fromList) {
+	                      List<ShapeableMovingGameComponent> fromList) {
 		fromList.remove(comp);
 		comp.destroy();
 		this.removeComponent(comp);
@@ -115,10 +115,10 @@ public class AsteroidScene extends GameScene {
 	 * Por si el area de juego es mas chica que la pantalla
 	 */
 	public boolean isOutside(GameComponent<AsteroidScene> comp) {
-		return (comp.getX() >= comp.getGame().getDisplayWidth()) || 
-			(comp.getX() + comp.getWidth() <= 0) ||
-			(comp.getY() >= comp.getGame().getDisplayHeight()) ||
-			(comp.getY() + comp.getHeight() <= 0);
+		return (comp.getX() >= comp.getGame().getDisplayWidth()) ||
+				(comp.getX() + comp.getWidth() <= 0) ||
+				(comp.getY() >= comp.getGame().getDisplayHeight()) ||
+				(comp.getY() + comp.getHeight() <= 0);
 	}
 
 }
