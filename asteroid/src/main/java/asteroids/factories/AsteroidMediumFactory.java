@@ -38,6 +38,7 @@ public class AsteroidMediumFactory {
 		asteroidMedium.setPi(pi);
 		asteroidMedium.getUVector().setPI(pi);
 		asteroidMedium.setSpeed(speed);
+		asteroidMedium.setPoints(50);
 		return asteroidMedium;
 	}
 

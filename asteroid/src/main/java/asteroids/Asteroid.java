@@ -8,10 +8,11 @@ import asteroid.AsteroidGame;
 import components.ShapeableMovingGameComponent;
 import components.shapes.Shape;
 public abstract class Asteroid extends ShapeableMovingGameComponent {
+	private int points;
 	
 	protected double pi;
 
-	public Asteroid(Appearance appearance, Shape shape, double x,double y, double pi, double speed){
+	public Asteroid(Appearance appearance, Shape shape, double x,double y, double pi, double speed, int points){
 		setPi(pi);
 		getUVector().setPI(getPi());
 		setSpeed(speed);
@@ -20,6 +21,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		setAppearance(appearance);
 		setShape(shape);
 		shape.setShapeable(this);
+		setPoints(points);
 	}
 
 	public Asteroid() {
@@ -29,8 +31,6 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	protected abstract void explode();
 	
 	public abstract void store();
-	
-	public abstract int getPoints();
 	
 	protected static double getNewPiFrom(AsteroidGame game, double pi) {
 		double piExp = game.getValue("asteroidPiExplosion");
@@ -53,4 +53,11 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		this.pi = pi;
 	}
 
+	public int getPoints(){
+		return this.points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
 }

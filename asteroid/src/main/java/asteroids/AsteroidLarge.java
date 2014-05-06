@@ -5,16 +5,10 @@ import java.util.Stack;
 import asteroid.AsteroidGame;
 
 import asteroids.factories.AsteroidLargeFactory;
-import com.uqbar.vainilla.appearances.Appearance;
-import components.shapes.Shape;
 
 public class AsteroidLarge extends Asteroid {
 
 	public static final Stack<AsteroidLarge> ASTEROIDS = new Stack<AsteroidLarge>();
-
-	public AsteroidLarge(Appearance appearance, Shape shape, double x,double y, double pi, double speed){
-		super(appearance, shape, x, y, pi, speed);
-	}
 
 	public AsteroidLarge() {
 		super();
@@ -36,13 +30,8 @@ public class AsteroidLarge extends Asteroid {
 		ASTEROIDS.push(this);
 	}
 
-	@Override
-	public int getPoints() {
-		return 20;
-	}
-
 	public static AsteroidLarge get(AsteroidGame game) {
-		if(ASTEROIDS.empty()){
+		if (ASTEROIDS.empty()) {
 			return AsteroidLargeFactory.newAsteroid(game);
 		}
 		return AsteroidLargeFactory.clean(ASTEROIDS.pop(), game);

@@ -38,6 +38,7 @@ public class AsteroidSmallFactory {
 		asteroidSmall.setPi(pi);
 		asteroidSmall.getUVector().setPI(pi);
 		asteroidSmall.setSpeed(speed);
+		asteroidSmall.setPoints(100);
 		return asteroidSmall;
 	}
 

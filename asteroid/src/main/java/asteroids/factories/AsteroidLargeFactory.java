@@ -36,6 +36,7 @@ public class AsteroidLargeFactory {
 		asteroidLarge.setPi(pi);
 		asteroidLarge.getUVector().setPI(pi);
 		asteroidLarge.setSpeed(speed);
+		asteroidLarge.setPoints(20);
 		return asteroidLarge;
 	}
 }
