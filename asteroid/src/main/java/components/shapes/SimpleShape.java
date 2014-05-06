@@ -1,10 +1,7 @@
 package components.shapes;
 
-
-import components.BasicAsteroidMovingGameComponent;
-
 public abstract class SimpleShape implements Shape {
-	BasicAsteroidMovingGameComponent component;
+	private Shapeable shapeable;
 	private double relativeX;
 	private double relativeY;
 
@@ -18,20 +15,12 @@ public abstract class SimpleShape implements Shape {
 		setRelativeY(relativeY);
 	}
 
-	public BasicAsteroidMovingGameComponent getComponent() {
-		return component;
-	}
-
-	public void setComponent(BasicAsteroidMovingGameComponent component) {
-		this.component = component;
-	}
-
 	public double getX() {
-		return getComponent().getX() + getRelativeX();
+		return getShapeable().getX() + getRelativeX();
 	}
 
 	public double getY() {
-		return getComponent().getY() + getRelativeY();
+		return getShapeable().getY() + getRelativeY();
 	}
 
 	public double getRelativeY() {
@@ -48,5 +37,13 @@ public abstract class SimpleShape implements Shape {
 
 	public void setRelativeX(double relativeX) {
 		this.relativeX = relativeX;
+	}
+
+	public Shapeable getShapeable() {
+		return shapeable;
+	}
+
+	public void setShapeable(Shapeable shapeable) {
+		this.shapeable = shapeable;
 	}
 }

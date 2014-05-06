@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultiShape implements Shape {
+	private Shapeable shapeable;
 	private List<Shape> shapes;
 
 	public MultiShape() {
@@ -47,5 +48,15 @@ public class MultiShape implements Shape {
 		for (Shape s : getShapes())
 			collided |= shape.isColliding(s);
 		return collided;
+	}
+
+	@Override
+	public Shapeable getShapeable() {
+		return shapeable;
+	}
+
+	@Override
+	public void setShapeable(Shapeable shapeable) {
+		this.shapeable = shapeable;
 	}
 }

@@ -1,42 +1,42 @@
 package components.shapes;
 
-import components.BasicAsteroidMovingGameComponent;
+import components.ShapeableMovingGameComponent;
 import junit.framework.TestCase;
 
 public class CircleTest extends TestCase {
-    BasicAsteroidMovingGameComponent component;
+    ShapeableMovingGameComponent component;
     Circle circle;
 
 
-    BasicAsteroidMovingGameComponent component2;
+    ShapeableMovingGameComponent component2;
     Circle circle2;
 
-    BasicAsteroidMovingGameComponent component3;
+    ShapeableMovingGameComponent component3;
     Rectangle rectangle;
 
-    BasicAsteroidMovingGameComponent component4;
+    ShapeableMovingGameComponent component4;
     MultiShape multiShape;
 
 
     public void setUp() {
-        component = new BasicAsteroidMovingGameComponent(0, 0);
+        component = new ShapeableMovingGameComponent(0, 0);
         circle = new Circle(20);
-        circle.setComponent(component);
+        circle.setShapeable(component);
 
-        component2 = new BasicAsteroidMovingGameComponent(0, 0);
+        component2 = new ShapeableMovingGameComponent(0, 0);
         circle2 = new Circle(20);
-        circle2.setComponent(component2);
+        circle2.setShapeable(component2);
 
-        component3 = new BasicAsteroidMovingGameComponent(0, 0);
+        component3 = new ShapeableMovingGameComponent(0, 0);
         rectangle = new Rectangle(20, 10);
-        rectangle.setComponent(component3);
+        rectangle.setShapeable(component3);
 
-        component4 = new BasicAsteroidMovingGameComponent(0,0);
+        component4 = new ShapeableMovingGameComponent(0,0);
         multiShape = new MultiShape();
         Rectangle multiShapeRectangle = new Rectangle(40, 20);
         Rectangle multiShapeRectangle2 = new Rectangle(20, 40);
-        multiShapeRectangle.setComponent(new BasicAsteroidMovingGameComponent(0, 0));
-        multiShapeRectangle2.setComponent(new BasicAsteroidMovingGameComponent(0, 0));
+        multiShapeRectangle.setShapeable(new ShapeableMovingGameComponent(0, 0));
+        multiShapeRectangle2.setShapeable(new ShapeableMovingGameComponent(0, 0));
         multiShape.addShape(multiShapeRectangle);
         multiShape.addShape(multiShapeRectangle2);
 
@@ -71,18 +71,18 @@ public class CircleTest extends TestCase {
     }
 
     public void testCircleCollidesWithMultiShape(){
-        circle.getComponent().setX(20);
+        circle.getShapeable().setX(20);
         assertTrue(circle.isColliding(multiShape));
     }
 
     public void testCircleCollidesWithSecondMultiShape(){
-        circle.getComponent().setY(20);
+        circle.getShapeable().setY(20);
         assertTrue(circle.isColliding(multiShape));
     }
 
     public void testCircleDoesntCollideMultiShape(){
-        circle.getComponent().setY(20);
-        circle.getComponent().setX(20);
+        circle.getShapeable().setY(20);
+        circle.getShapeable().setX(20);
         assertFalse(circle.isColliding(multiShape));
     }
 }

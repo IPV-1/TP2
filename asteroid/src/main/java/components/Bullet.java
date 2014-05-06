@@ -47,7 +47,7 @@ public class Bullet extends ShapeableMovingGameComponent {
 		//this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.GREEN, (int) sprite.getWidth()));
 		SimpleShape shape = new Circle(sprite.getWidth());
 		this.setShape(shape);
-		shape.setComponent(this);
+		shape.setShapeable(this);
 		this.setX(x);
 		this.setY(y);
 		this.getUVector().setAngle(angle);

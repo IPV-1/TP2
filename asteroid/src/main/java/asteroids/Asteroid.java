@@ -68,7 +68,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	
 	protected Shape shape(AsteroidGame game) {
 		SimpleShape shape = new Circle(this.getSprite(game).getWidth());
-		shape.setComponent(this);
+		shape.setShapeable(this);
 		return shape;
 	}
 	

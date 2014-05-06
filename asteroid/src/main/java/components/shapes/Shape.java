@@ -9,4 +9,8 @@ public interface Shape {
     public boolean collidedByRectangle(Rectangle rectangle);
 
     public boolean collidedByMultiShape(MultiShape multiShape);
+
+	public void setShapeable(Shapeable shapeable);
+
+	public Shapeable getShapeable();
 }
