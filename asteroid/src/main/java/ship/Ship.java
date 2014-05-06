@@ -16,9 +16,6 @@ public class Ship extends ShapeableMovingGameComponent {
 	private double rotation = 0;
 	private double rotationSpeed;
 
-	public Ship(AsteroidGame game) {
-		this.clean(game);
-	}
 
 	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed){
 		super(appearance, shape, x, y, xV, yV, speed);
@@ -38,22 +35,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	public Sprite getAppearance(){
 		return (Sprite) super.getAppearance();
 	}
-	
-	protected Ship clean(AsteroidGame game) {
-		this.setSpeed(0);
-		this.setDestroyPending(false);
-		
-		this.rotate(game, 0);
-		
-		this.setShape(this.shape(game));
-		
-		this.setX(game.getDisplayWidth() / 2 - this.getWidth() / 2);
-		this.setY(game.getDisplayHeight() / 2 - this.getHeight() / 2);
-		
-		this.setZ(1);
-		
-		return this;
-	}
+
 	
 	protected Sprite getSprite(AsteroidGame game) {
 		return game.getSprite("ship");
@@ -82,12 +64,12 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.setSpeed(this.getMaxSpeed(getGame()));
 	}
 
-	public void rotate(AsteroidGame game, int direction) {
-		this.setRotation(getRotation() + game.getValue("shipRotation") * direction);
+	public void rotate(int direction) {
+		this.setRotation(getRotation() + getGame().getValue("shipRotation") * direction);
 		
         this.getUVector().setAngle(this.getDirection());
         
-		Sprite sprite = this.getSprite(game).rotate(getRotation());
+		Sprite sprite = this.getSprite(getGame()).rotate(getRotation());
 		this.setAppearance(sprite);
 	}
 
