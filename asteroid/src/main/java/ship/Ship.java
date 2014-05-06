@@ -1,6 +1,5 @@
 package ship;
 
-import com.uqbar.vainilla.appearances.Appearance;
 import handlers.KeyboardHandler;
 import asteroid.AsteroidGame;
 
@@ -65,7 +64,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 
 	public void rotate(int direction) {
-		this.setRotation(getRotation() + getGame().getValue("shipRotation") * direction);
+		this.setRotation(getRotation() + getRotationSpeed() * direction);
 		
         this.getUVector().setAngle(this.getDirection());
         
