@@ -32,7 +32,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	
 	public abstract void store();
 	
-	protected static double getNewPiFrom(AsteroidGame game, double pi) {
+	public static double getNewPiFrom(AsteroidGame game, double pi) {
 		double piExp = game.getValue("asteroidPiExplosion");
 		return Utils.randDouble(pi - piExp, pi + piExp);
 	}
