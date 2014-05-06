@@ -1,7 +1,6 @@
 package ship;
 
 import handlers.KeyboardHandler;
-import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
