@@ -11,7 +11,7 @@ import java.util.Stack;
 
 public class AsteroidPools {
     private Stack<AsteroidLarge> asteroidLargePool = new Stack<AsteroidLarge>();
-    private AsteroidMediumPool asteroidMediumPool = new AsteroidMediumPool();
+    private Stack<AsteroidMedium> asteroidMediumPool = new Stack<AsteroidMedium>();
     private AsteroidSmallPool asteroidSmallPool = new AsteroidSmallPool();
     private static AsteroidPools ourInstance = new AsteroidPools();
 
@@ -52,7 +52,7 @@ public class AsteroidPools {
         if (getAsteroidMediumPool().empty()) {
             asteroid = AsteroidFactory.newAsteroidMedium(game, pi);
         } else {
-            asteroid = AsteroidFactory.clean(getAsteroidMediumPool().getAsteroids().pop(), game, pi);
+            asteroid = AsteroidFactory.clean(getAsteroidMediumPool().pop(), game, pi);
         }
         return asteroid;
     }
@@ -95,7 +95,7 @@ public class AsteroidPools {
     private AsteroidPools() {
     }
 
-    protected AsteroidMediumPool getAsteroidMediumPool() {
+    protected Stack<AsteroidMedium> getAsteroidMediumPool() {
         return asteroidMediumPool;
     }
 
