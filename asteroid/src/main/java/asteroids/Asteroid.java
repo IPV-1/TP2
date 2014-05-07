@@ -3,6 +3,7 @@ package asteroids;
 import asteroids.estrategies.ExplodeStrategy;
 import asteroids.estrategies.Exploitable;
 import asteroids.estrategies.JustExplode;
+import asteroids.pools.AsteroidPools;
 import com.uqbar.vainilla.appearances.Appearance;
 import utils.Utils;
 
@@ -11,7 +12,7 @@ import asteroid.AsteroidGame;
 import components.ShapeableMovingGameComponent;
 import components.shapes.Shape;
 
-public abstract class Asteroid extends ShapeableMovingGameComponent implements Exploitable {
+public class Asteroid extends ShapeableMovingGameComponent implements Exploitable {
     private int points;
     private ExplodeStrategy explodeStrategy = new JustExplode();
 
@@ -25,7 +26,9 @@ public abstract class Asteroid extends ShapeableMovingGameComponent implements E
         getExplodeStrategy().explode(this);
     }
 
-    public abstract void store();
+    public void store() {
+        AsteroidPools.getInstance().push(this);
+    }
 
     public static double getNewPiFrom(AsteroidGame game, double pi) {
         double piExp = game.getValue("asteroidPiExplosion");

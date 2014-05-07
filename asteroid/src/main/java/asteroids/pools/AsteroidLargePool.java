@@ -2,14 +2,14 @@ package asteroids.pools;
 
 import asteroid.AsteroidGame;
 import asteroids.AsteroidLarge;
-import asteroids.factories.AsteroidLargeFactory;
+import asteroids.factories.AsteroidFactory;
 
 public class AsteroidLargePool extends AsteroidPool<AsteroidLarge>{
     public AsteroidLarge get(AsteroidGame game) {
         if (empty()) {
-            return AsteroidLargeFactory.newAsteroid(game);
+            return AsteroidFactory.newAsteroidLarge(game);
         }
-        return AsteroidLargeFactory.clean(pop(), game);
+        return AsteroidFactory.clean(pop(), game);
     }
 
 }
