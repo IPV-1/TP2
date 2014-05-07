@@ -12,11 +12,19 @@ public class AsteroidPools {
     private static AsteroidPools ourInstance = new AsteroidPools();
 
     //Large
+    public void push(AsteroidLarge asteroidLarge) {
+        getAsteroidLargePool().push(asteroidLarge);
+    }
+
     public AsteroidLarge getAsteroidLarge(AsteroidGame game) {
         return getAsteroidLargePool().get(game);
     }
 
     //Medium
+    public void push(AsteroidMedium asteroidMedium) {
+        getAsteroidMediumPool().push(asteroidMedium);
+    }
+
     public AsteroidMedium getAsteroidMedium(AsteroidGame game) {
         return getAsteroidMediumPool().get(game);
     }
@@ -26,12 +34,17 @@ public class AsteroidPools {
     }
 
     //Small
+
+    public void push(AsteroidSmall asteroidSmall) {
+        getAsteroidSmallPool().push(asteroidSmall);
+    }
+
     public AsteroidSmall getAsteroidSmall(AsteroidGame game) {
         return getAsteroidSmallPool().get(game);
     }
 
     public AsteroidSmall getAsteroidSmall(AsteroidGame game, double x, double y, double fromPi) {
-        return getAsteroidSmallPool().get(game,x,y,fromPi);
+        return getAsteroidSmallPool().get(game, x, y, fromPi);
     }
 
 

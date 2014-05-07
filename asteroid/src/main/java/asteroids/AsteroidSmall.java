@@ -1,21 +1,15 @@
 package asteroids;
 
-import asteroids.pools.AsteroidSmallPool;
+import asteroids.pools.AsteroidPools;
 
 public class AsteroidSmall extends Asteroid {
-
-    public static AsteroidSmallPool pool = new AsteroidSmallPool();
 
 	public AsteroidSmall() {
 		super();
 	}
 
-	@Override
-	public void store() {
-        getPool().push(this);
-	}
-
-    public static AsteroidSmallPool getPool() {
-        return pool;
+    @Override
+    public void store() {
+        AsteroidPools.getInstance().push(this);
     }
 }
