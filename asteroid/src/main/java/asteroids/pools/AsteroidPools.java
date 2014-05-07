@@ -62,11 +62,23 @@ public class AsteroidPools {
     }
 
     public AsteroidSmall getAsteroidSmall(AsteroidGame game) {
-        return getAsteroidSmallPool().get(game);
+        if(getAsteroidSmallPool().empty()){
+            return AsteroidFactory.newAsteroidSmall(game);
+        }
+        return AsteroidFactory.clean(getAsteroidSmallPool().pop(), game);
     }
 
     public AsteroidSmall getAsteroidSmall(AsteroidGame game, double x, double y, double fromPi) {
-        return getAsteroidSmallPool().get(game, x, y, fromPi);
+        double newPi = Asteroid.getNewPiFrom(game, fromPi);
+        AsteroidSmall asteroid;
+        if (getAsteroidSmallPool().empty() ){
+            asteroid = AsteroidFactory.newAsteroidSmall(game, newPi);
+        }else {
+            asteroid = AsteroidFactory.clean(getAsteroidSmallPool().pop(),game, newPi);
+        }
+        asteroid.setX(x);
+        asteroid.setY(y);
+        return asteroid;
     }
 
 
