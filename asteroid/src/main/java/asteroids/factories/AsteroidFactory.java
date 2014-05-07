@@ -2,7 +2,7 @@ package asteroids.factories;
 
 
 import asteroid.AsteroidGame;
-import asteroids.AsteroidLarge;
+import asteroids.Asteroid;
 import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 import asteroids.estrategies.ExplodeToMediumAsteroids;
@@ -16,11 +16,11 @@ import java.awt.*;
 public class AsteroidFactory {
 
     //Large
-    public static AsteroidLarge newAsteroidLarge(AsteroidGame game) {
-        return clean(new AsteroidLarge(), game);
+    public static Asteroid newAsteroidLarge(AsteroidGame game) {
+        return cleanLarge(new Asteroid(), game);
     }
 
-    public static AsteroidLarge clean(AsteroidLarge asteroidLarge, AsteroidGame game) {
+    public static Asteroid cleanLarge(Asteroid asteroidLarge, AsteroidGame game) {
         Circle shape = new Circle(game.getSprite("asteroidL").getWidth());
         double pi = Utils.randDouble(2);
         double speed = Utils.randDouble(

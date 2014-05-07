@@ -2,7 +2,6 @@ package asteroids.pools;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 import asteroids.factories.AsteroidFactory;
@@ -10,21 +9,23 @@ import asteroids.factories.AsteroidFactory;
 import java.util.Stack;
 
 public class AsteroidPools {
-    private Stack<AsteroidLarge> asteroidLargePool = new Stack<AsteroidLarge>();
+    private Stack<Asteroid> asteroidPool = new Stack<Asteroid>();
     private Stack<AsteroidMedium> asteroidMediumPool = new Stack<AsteroidMedium>();
     private Stack<AsteroidSmall> asteroidSmallPool = new Stack<AsteroidSmall>();
     private static AsteroidPools ourInstance = new AsteroidPools();
 
-    //Large
-    public void push(AsteroidLarge asteroidLarge) {
-        getAsteroidLargePool().push(asteroidLarge);
+    //Asteroid
+    public void push(Asteroid asteroid) {
+        getAsteroidPool().push(asteroid);
     }
 
-    public AsteroidLarge getAsteroidLarge(AsteroidGame game) {
-        if (getAsteroidLargePool().empty()) {
+    //Large
+
+    public Asteroid getAsteroidLarge(AsteroidGame game) {
+        if (getAsteroidPool().empty()) {
             return AsteroidFactory.newAsteroidLarge(game);
         }
-        return AsteroidFactory.clean(getAsteroidLargePool().pop(), game);
+        return AsteroidFactory.cleanLarge(getAsteroidPool().pop(), game);
     }
 
     //Medium
@@ -103,7 +104,7 @@ public class AsteroidPools {
         return asteroidSmallPool;
     }
 
-    public Stack<AsteroidLarge> getAsteroidLargePool() {
-        return asteroidLargePool;
+    public Stack<Asteroid> getAsteroidPool() {
+        return asteroidPool;
     }
 }
