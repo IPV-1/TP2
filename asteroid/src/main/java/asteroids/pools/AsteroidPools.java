@@ -1,6 +1,7 @@
 package asteroids.pools;
 
 import asteroid.AsteroidGame;
+import asteroids.Asteroid;
 import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
@@ -30,11 +31,28 @@ public class AsteroidPools {
     }
 
     public AsteroidMedium getAsteroidMedium(AsteroidGame game) {
-        return getAsteroidMediumPool().get(game);
+        if (getAsteroidMediumPool().empty()) {
+            return AsteroidFactory.newAsteroidMedium(game);
+        }
+        return AsteroidFactory.clean(getAsteroidMediumPool().pop(), game);
     }
 
     public AsteroidMedium getAsteroidMedium(AsteroidGame game, double x, double y, double fromPi) {
-        return getAsteroidMediumPool().get(game, x, y, fromPi);
+        double newPi = Asteroid.getNewPiFrom(game, fromPi);
+        AsteroidMedium asteroid = getAsteroidMedium(game, newPi);
+        asteroid.setX(x);
+        asteroid.setY(y);
+        return asteroid;
+    }
+
+    public AsteroidMedium getAsteroidMedium(AsteroidGame game, double pi) {
+        AsteroidMedium asteroid;
+        if (getAsteroidMediumPool().empty()) {
+            asteroid = AsteroidFactory.newAsteroidMedium(game, pi);
+        } else {
+            asteroid = AsteroidFactory.clean(getAsteroidMediumPool().getAsteroids().pop(), game, pi);
+        }
+        return asteroid;
     }
 
     //Small
