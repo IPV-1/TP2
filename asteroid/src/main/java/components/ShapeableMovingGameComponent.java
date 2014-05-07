@@ -1,6 +1,8 @@
 package components;
 
 
+import com.uqbar.vainilla.appearances.Appearance;
+
 import components.shapes.Shape;
 import components.shapes.Shapeable;
 
@@ -14,7 +16,13 @@ public class ShapeableMovingGameComponent extends BasicAsteroidMovingGameCompone
         super(x, y);
     }
 
-    @Override
+    public ShapeableMovingGameComponent(Appearance appearance, Shape shape, double x, double y) {
+    	super(x, y);
+    	this.setAppearance(appearance);
+    	this.setShape(shape);
+	}
+
+	@Override
     public boolean isColliding(Shapeable shapeable) {
         return getShape().isColliding(shapeable.getShape());
     }

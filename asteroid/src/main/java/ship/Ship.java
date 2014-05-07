@@ -12,23 +12,14 @@ import components.shapes.SimpleShape;
 
 public class Ship extends ShapeableMovingGameComponent {
 	
-	private static Ship SHIP;
 	private double rotation = 0;
-	
-	public static Ship SHIP(AsteroidGame game) {
-		if(SHIP == null) {
-			SHIP = new Ship(game);
-		}
 		
-		return SHIP;
-	}
-	
-	private Ship(AsteroidGame game) {
+	public Ship(AsteroidGame game) {
+		super();
 		this.clean(game);
 	}
 	
-	protected void explode() {
-	}
+	protected void explode() {}
 	
 	protected Ship clean(AsteroidGame game) {
 		this.setSpeed(0);
@@ -71,12 +62,12 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void setMaxSpeed() {
 		this.setSpeed(this.getMaxSpeed(getGame()));
+		this.getUVector().setAngle(this.getDirection());
 	}
 
 	public void rotate(AsteroidGame game, int direction) {
 		this.setRotation(getRotation() + game.getValue("shipRotation") * direction);
 		
-        this.getUVector().setAngle(this.getDirection());
         
 		Sprite sprite = this.getSprite(game).rotate(getRotation());
 		this.setAppearance(sprite);
