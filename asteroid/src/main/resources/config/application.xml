@@ -15,6 +15,7 @@
 	<entry key="asteroidSMaxSpeed">120</entry>
 	<entry key="asteroidMMaxSpeed">90</entry>
 	<entry key="asteroidLMaxSpeed">70</entry>
+	<entry key="asteroidPiExplosion">0.2</entry>
 	<entry key="shipMaxSpeed">80</entry>
 	<entry key="shipRotation">0.07</entry>
 

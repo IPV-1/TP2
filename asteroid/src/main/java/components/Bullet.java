@@ -1,7 +1,5 @@
 package components;
 
-import java.util.Stack;
-
 import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.DeltaState;
@@ -11,10 +9,13 @@ import components.shapes.SimpleShape;
 
 public class Bullet extends ShapeableMovingGameComponent {
 
-	public static final Stack<Bullet> BULLETS = new Stack<Bullet>();
-
-	protected Bullet(AsteroidGame game, double x, double y, double angle) {
-		this.reset(game, x, y, angle);
+	public Bullet(AsteroidGame game) {
+		Sprite sprite = game.getSprite("bullet");
+		this.setAppearance(sprite);
+		//this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.GREEN, (int) sprite.getWidth()));
+		SimpleShape shape = new Circle(sprite.getWidth());
+		this.setShape(shape);
+		shape.setComponent(this);
 	}
 	
 	@Override
@@ -25,33 +26,21 @@ public class Bullet extends ShapeableMovingGameComponent {
 		}
 		
 		super.update(deltaState);
-		this.getScene().update(this);
+		this.getScene().updatePlayerComponent(this);
 	}
 
 	@Override
 	public void destroy() {
-		BULLETS.push(this);
+		PoolManager.BULLETS.push(this);
 		super.destroy();
 	}
 
-	public static Bullet get(AsteroidGame game, double x, double y, double angle) {
-		Bullet bullet = BULLETS.empty() ? new Bullet(game, x, y, angle) : BULLETS.pop();
-		bullet.reset(game, x, y, angle);
-		bullet.setDestroyPending(false);
-		return bullet;
-	}
-
-	private void reset(AsteroidGame game, double x, double y, double angle) {
-		Sprite sprite = game.getSprite("bullet");
-		this.setAppearance(sprite);
-		//this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.GREEN, (int) sprite.getWidth()));
-		SimpleShape shape = new Circle(sprite.getWidth());
-		this.setShape(shape);
-		shape.setComponent(this);
+	public void reset(AsteroidGame game, double x, double y, double angle) {
 		this.setX(x);
 		this.setY(y);
 		this.getUVector().setAngle(angle);
 		this.setSpeed(game.getValue("bulletSpeed"));
+		this.setDestroyPending(false);
 	}
 
 }

@@ -1,21 +1,18 @@
 package asteroids;
 
-import java.util.Stack;
-
 import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.appearances.Sprite;
+import components.PoolManager;
 
 public class AsteroidSmall extends Asteroid {
 
-	public static final Stack<AsteroidSmall> ASTEROIDS = new Stack<AsteroidSmall>();
-
-	protected AsteroidSmall(AsteroidGame game) {
+	public AsteroidSmall(AsteroidGame game) {
 		super(game);
 	}
 
-	protected AsteroidSmall(AsteroidGame game, double x, double y) {
-		super(game, x, y);
+	public AsteroidSmall(AsteroidGame game, double pi) {
+		super(game, pi);
 	}
 
 	@Override
@@ -34,24 +31,12 @@ public class AsteroidSmall extends Asteroid {
 
 	@Override
 	public void store() {
-		ASTEROIDS.push(this);
+		PoolManager.ASTEROIDS_S.push(this);
 	}
 	
 	@Override
 	public int getPoints() {
 		return 100;
-	}
-
-	public static AsteroidSmall get(AsteroidGame game) {
-		return (AsteroidSmall) (ASTEROIDS.empty() ? new AsteroidSmall(game)
-				: ASTEROIDS.pop().clean(game));
-	}
-	
-	public static AsteroidSmall get(AsteroidGame game, double x, double y) {
-		AsteroidSmall asteroid = AsteroidSmall.get(game);
-		asteroid.setX(x);
-		asteroid.setY(y);
-		return asteroid;
 	}
 
 }

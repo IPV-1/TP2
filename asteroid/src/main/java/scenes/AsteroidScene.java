@@ -1,6 +1,5 @@
 package scenes;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,31 +7,26 @@ import ship.Ship;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidLarge;
-import asteroids.AsteroidMedium;
-import asteroids.AsteroidSmall;
-import boards.Board;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 
 import components.BasicAsteroidComponent;
 import components.Bullet;
+import components.PoolManager;
 import components.ShapeableMovingGameComponent;
 
 public class AsteroidScene extends GameScene {
 
 	protected List<ShapeableMovingGameComponent> enemyGroup = new ArrayList<ShapeableMovingGameComponent>();
 	protected List<ShapeableMovingGameComponent> playerGroup = new ArrayList<ShapeableMovingGameComponent>();
-	
-	public final Board BOARD = new Board(0, 0, Color.WHITE);
 
 	@Override
 	public AsteroidGame getGame() {
 		return (AsteroidGame) super.getGame();
 	}
 
-	public void update(ShapeableMovingGameComponent playerComp) {
+	public void updatePlayerComponent(ShapeableMovingGameComponent playerComp) {
 		for (ShapeableMovingGameComponent enemyComp : this.getEnemyGroup()) {
 			if (playerComp.isColliding(enemyComp)) {
 				this.remove(playerComp, this.getPlayerGroup());
@@ -47,7 +41,7 @@ public class AsteroidScene extends GameScene {
 		addBackground();
 		addAsteroids();
 		addShip();
-		this.addComponent(BOARD);
+		this.addComponent(this.getGame().BOARD);
 		super.onSetAsCurrent();
 	}
 
@@ -63,7 +57,7 @@ public class AsteroidScene extends GameScene {
 	}
 
 	public void addBullet(double x, double y, double angle) {
-		Bullet bullet = Bullet.get(this.getGame(), x, y, angle);
+		Bullet bullet = PoolManager.getBullet(this.getGame(), x, y, angle);
 		bullet.setX(x - bullet.getWidth() / 2);
 		bullet.setY(y - bullet.getHeight() / 2);
 		
@@ -84,15 +78,15 @@ public class AsteroidScene extends GameScene {
 	}
 
 	public void addAsteroidL() {
-		this.addAsteroid(AsteroidLarge.get(this.getGame()));
+		this.addAsteroid(PoolManager.getAsteroidL(this.getGame()));
 	}
 
 	public void addAsteroidM() {
-		this.addAsteroid(AsteroidMedium.get(this.getGame()));
+		this.addAsteroid(PoolManager.getAsteroidM(this.getGame()));
 	}
 
 	public void addAsteroidS() {
-		this.addAsteroid(AsteroidSmall.get(this.getGame()));
+		this.addAsteroid(PoolManager.getAsteroidS(this.getGame()));
 	}
 
 	public void addAsteroid(Asteroid a) {
@@ -106,6 +100,16 @@ public class AsteroidScene extends GameScene {
 		comp.destroy();
 		this.removeComponent(comp);
 	}
+	
+	/*
+	 * Por si el area de juego es mas chica que la pantalla
+	 */
+	public boolean isOutside(GameComponent<AsteroidScene> comp) {
+		return (comp.getX() >= comp.getGame().getDisplayWidth()) || 
+				(comp.getX() + comp.getWidth() <= 0) ||
+				(comp.getY() >= comp.getGame().getDisplayHeight()) ||
+				(comp.getY() + comp.getHeight() <= 0);
+	}
 
 	public List<ShapeableMovingGameComponent> getEnemyGroup() {
 		return enemyGroup;
@@ -113,16 +117,6 @@ public class AsteroidScene extends GameScene {
 
 	public List<ShapeableMovingGameComponent> getPlayerGroup() {
 		return playerGroup;
-	}
-
-	/*
-	 * Por si el area de juego es mas chica que la pantalla
-	 */
-	public boolean isOutside(GameComponent<AsteroidScene> comp) {
-		return (comp.getX() >= comp.getGame().getDisplayWidth()) || 
-			(comp.getX() + comp.getWidth() <= 0) ||
-			(comp.getY() >= comp.getGame().getDisplayHeight()) ||
-			(comp.getY() + comp.getHeight() <= 0);
 	}
 
 }

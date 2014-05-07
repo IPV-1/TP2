@@ -1,5 +1,7 @@
 package asteroid;
 
+import boards.Board;
+
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Sprite;
@@ -17,6 +19,8 @@ public class AsteroidGame extends Game {
 	private HashMap<String, Sprite> sprites;
 	private HashMap<String, Double> values;
 	private Config configuration;
+	
+	public final Board BOARD = new Board(0, 0, Color.WHITE);
 	
 	public AsteroidGame(String configFile, AsteroidScene scene) {
 		super();
@@ -56,6 +60,7 @@ public class AsteroidGame extends Game {
 		addValue("asteroidSMaxSpeed");
 		addValue("asteroidMMaxSpeed");
 		addValue("asteroidLMaxSpeed");
+		addValue("asteroidPiExplosion");
 		addValue("shipMaxSpeed");
 		addValue("shipRotation");
 
