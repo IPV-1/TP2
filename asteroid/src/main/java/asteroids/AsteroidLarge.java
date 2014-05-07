@@ -1,8 +1,5 @@
 package asteroids;
 
-import asteroid.AsteroidGame;
-
-import asteroids.factories.AsteroidLargeFactory;
 import asteroids.pools.AsteroidLargePool;
 
 public class AsteroidLarge extends Asteroid {
