@@ -2,7 +2,6 @@ package asteroids.pools;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 import asteroids.factories.AsteroidFactory;
 
@@ -10,7 +9,6 @@ import java.util.Stack;
 
 public class AsteroidPools {
     private Stack<Asteroid> asteroidPool = new Stack<Asteroid>();
-    private Stack<AsteroidMedium> asteroidMediumPool = new Stack<AsteroidMedium>();
     private Stack<AsteroidSmall> asteroidSmallPool = new Stack<AsteroidSmall>();
     private static AsteroidPools ourInstance = new AsteroidPools();
 
@@ -29,31 +27,28 @@ public class AsteroidPools {
     }
 
     //Medium
-    public void push(AsteroidMedium asteroidMedium) {
-        getAsteroidMediumPool().push(asteroidMedium);
-    }
 
-    public AsteroidMedium getAsteroidMedium(AsteroidGame game) {
-        if (getAsteroidMediumPool().empty()) {
+    public Asteroid getAsteroidMedium(AsteroidGame game) {
+        if (getAsteroidPool().empty()) {
             return AsteroidFactory.newAsteroidMedium(game);
         }
-        return AsteroidFactory.clean(getAsteroidMediumPool().pop(), game);
+        return AsteroidFactory.cleanMedium(getAsteroidPool().pop(), game);
     }
 
-    public AsteroidMedium getAsteroidMedium(AsteroidGame game, double x, double y, double fromPi) {
+    public Asteroid getAsteroidMedium(AsteroidGame game, double x, double y, double fromPi) {
         double newPi = Asteroid.getNewPiFrom(game, fromPi);
-        AsteroidMedium asteroid = getAsteroidMedium(game, newPi);
+        Asteroid asteroid = getAsteroidMedium(game, newPi);
         asteroid.setX(x);
         asteroid.setY(y);
         return asteroid;
     }
 
-    public AsteroidMedium getAsteroidMedium(AsteroidGame game, double pi) {
-        AsteroidMedium asteroid;
-        if (getAsteroidMediumPool().empty()) {
+    public Asteroid getAsteroidMedium(AsteroidGame game, double pi) {
+        Asteroid asteroid;
+        if (getAsteroidPool().empty()) {
             asteroid = AsteroidFactory.newAsteroidMedium(game, pi);
         } else {
-            asteroid = AsteroidFactory.clean(getAsteroidMediumPool().pop(), game, pi);
+            asteroid = AsteroidFactory.cleanMedium(getAsteroidPool().pop(), game, pi);
         }
         return asteroid;
     }
@@ -94,10 +89,6 @@ public class AsteroidPools {
     }
 
     private AsteroidPools() {
-    }
-
-    protected Stack<AsteroidMedium> getAsteroidMediumPool() {
-        return asteroidMediumPool;
     }
 
     protected Stack<AsteroidSmall> getAsteroidSmallPool() {

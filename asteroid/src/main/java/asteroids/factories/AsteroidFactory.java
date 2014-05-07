@@ -3,7 +3,6 @@ package asteroids.factories;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 import asteroids.estrategies.ExplodeToMediumAsteroids;
 import asteroids.estrategies.ExplodeToSmallAsteroids;
@@ -46,15 +45,15 @@ public class AsteroidFactory {
 
     //Medium
 
-    public static AsteroidMedium newAsteroidMedium(AsteroidGame game, double newPi) {
-        return clean(new AsteroidMedium(), game, newPi);
+    public static Asteroid newAsteroidMedium(AsteroidGame game, double newPi) {
+        return cleanMedium(new Asteroid(), game, newPi);
     }
 
-    public static AsteroidMedium newAsteroidMedium(AsteroidGame game) {
-        return clean(new AsteroidMedium(), game);
+    public static Asteroid newAsteroidMedium(AsteroidGame game) {
+        return cleanMedium(new Asteroid(), game);
     }
 
-    public static AsteroidMedium clean(AsteroidMedium asteroidMedium, AsteroidGame game, double pi) {
+    public static Asteroid cleanMedium(Asteroid asteroidMedium, AsteroidGame game, double pi) {
         Circle shape = new Circle(game.getSprite("asteroidM").getWidth());
         double speed = Utils.randDouble(
                 game.getValue("asteroidMinSpeed"), game.getValue("asteroidMMaxSpeed"));
@@ -77,9 +76,9 @@ public class AsteroidFactory {
         return asteroidMedium;
     }
 
-    public static AsteroidMedium clean(AsteroidMedium asteroidMedium, AsteroidGame game) {
+    public static Asteroid cleanMedium(Asteroid asteroidMedium, AsteroidGame game) {
         double pi = Utils.randDouble(2);
-        return clean(asteroidMedium, game, pi);
+        return cleanMedium(asteroidMedium, game, pi);
     }
 
     //Small
@@ -117,7 +116,6 @@ public class AsteroidFactory {
         double pi = Utils.randDouble(2);
         return clean(asteroidSmall, game, pi);
     }
-
 
 
 }
