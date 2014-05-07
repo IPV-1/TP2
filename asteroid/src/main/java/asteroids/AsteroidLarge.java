@@ -29,13 +29,6 @@ public class AsteroidLarge extends Asteroid {
         getPool().push(this);
 	}
 
-	public static AsteroidLarge get(AsteroidGame game) {
-		if (getPool().empty()) {
-			return AsteroidLargeFactory.newAsteroid(game);
-		}
-		return AsteroidLargeFactory.clean(getPool().pop(), game);
-	}
-
     public static AsteroidLargePool getPool() {
         return pool;
     }
