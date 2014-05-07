@@ -93,7 +93,7 @@ public class AsteroidScene extends GameScene {
     }
 
     public void addAsteroidM() {
-        this.addAsteroid(AsteroidMedium.getPool().get(this.getGame()));
+        this.addAsteroid(AsteroidPools.getInstance().getAsteroidMedium(this.getGame()));
     }
 
     public void addAsteroidS() {
