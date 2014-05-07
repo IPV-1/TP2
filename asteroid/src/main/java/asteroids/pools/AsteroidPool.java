@@ -9,10 +9,6 @@ import java.util.Stack;
 public abstract class AsteroidPool<AsteroidClass extends Asteroid> {
 	public Stack<AsteroidClass> asteroids = new Stack<AsteroidClass>();
 
-	public abstract AsteroidClass get(AsteroidGame game, double pi);
-
-	public abstract AsteroidClass get(AsteroidGame game, double x, double y, double fromPi);
-
 	public Stack<AsteroidClass> getAsteroids() {
 		return asteroids;
 	}

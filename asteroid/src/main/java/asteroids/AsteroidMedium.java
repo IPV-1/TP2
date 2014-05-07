@@ -1,8 +1,5 @@
 package asteroids;
 
-import asteroid.AsteroidGame;
-
-import asteroids.factories.AsteroidMediumFactory;
 import asteroids.pools.AsteroidMediumPool;
 
 public class AsteroidMedium extends Asteroid {
@@ -30,29 +27,6 @@ public class AsteroidMedium extends Asteroid {
 	@Override
 	public void store() {
         getPool().push(this);
-	}
-
-	public static AsteroidMedium get(AsteroidGame game) {
-
-		if (getPool().empty()) {
-			return AsteroidMediumFactory.newAsteroid(game);
-		}
-		return AsteroidMediumFactory.clean(getPool().pop(), game);
-
-	}
-
-	protected static AsteroidMedium get(AsteroidGame game, double x, double y,
-	                                    double fromPi) {
-		double newPi = Asteroid.getNewPiFrom(game, fromPi);
-		AsteroidMedium asteroid;
-		if (getPool().empty()) {
-			asteroid = AsteroidMediumFactory.newAsteroid(game, newPi);
-		} else {
-			asteroid = AsteroidMediumFactory.clean(getPool().pop(), game, newPi);
-		}
-		asteroid.setX(x);
-		asteroid.setY(y);
-		return asteroid;
 	}
 
 }

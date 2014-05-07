@@ -8,10 +8,18 @@ import asteroids.factories.AsteroidMediumFactory;
 
 public class AsteroidMediumPool extends AsteroidPool<AsteroidMedium>{
 
-	@Override
+    public AsteroidMedium get(AsteroidGame game) {
+
+        if (empty()) {
+            return AsteroidMediumFactory.newAsteroid(game);
+        }
+        return AsteroidMediumFactory.clean(pop(), game);
+
+    }
+
 	public AsteroidMedium get(AsteroidGame game, double pi) {
 		AsteroidMedium asteroid;
-		if (getAsteroids().empty()) {
+		if (empty()) {
 			asteroid = AsteroidMediumFactory.newAsteroid(game, pi);
 		} else {
 			asteroid = AsteroidMediumFactory.clean(getAsteroids().pop(), game, pi);
@@ -19,7 +27,7 @@ public class AsteroidMediumPool extends AsteroidPool<AsteroidMedium>{
 		return asteroid;
 	}
 
-	@Override
+
 	public AsteroidMedium get(AsteroidGame game, double x, double y, double fromPi) {
 		double newPi = Asteroid.getNewPiFrom(game, fromPi);
 		AsteroidMedium asteroid = get(game, newPi);

@@ -20,9 +20,9 @@ public class AsteroidLarge extends Asteroid {
 		double x = this.getX() + this.getWidth() / 2 - radius / 2;
 		double y = this.getY() + this.getHeight() / 2 - radius / 2;
 		this.getScene().addAsteroid(
-				AsteroidMedium.get(this.getGame(), x, y, this.getPi()));
+				AsteroidMedium.getPool().get(this.getGame(), x, y, this.getPi()));
 		this.getScene().addAsteroid(
-				AsteroidMedium.get(this.getGame(), x, y, this.getPi()));
+				AsteroidMedium.getPool().get(this.getGame(), x, y, this.getPi()));
 	}
 
 	@Override
