@@ -11,10 +11,6 @@ public class AsteroidSmall extends Asteroid {
 	}
 
 	@Override
-	protected void explode() {
-	}
-
-	@Override
 	public void store() {
         getPool().push(this);
 	}

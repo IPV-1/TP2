@@ -3,6 +3,7 @@ package asteroids.factories;
 
 import asteroid.AsteroidGame;
 import asteroids.AsteroidLarge;
+import asteroids.estrategies.ExplodeToMediumAsteroids;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.shapes.Circle;
 import components.shapes.Shape;
@@ -37,6 +38,7 @@ public class AsteroidLargeFactory {
 		asteroidLarge.getUVector().setPI(pi);
 		asteroidLarge.setSpeed(speed);
 		asteroidLarge.setPoints(20);
-		return asteroidLarge;
+        asteroidLarge.setExplodeStrategy(new ExplodeToMediumAsteroids());
+        return asteroidLarge;
 	}
 }
