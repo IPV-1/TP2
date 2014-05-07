@@ -7,7 +7,6 @@ import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 
 public class AsteroidPools {
-    private ConcreteAsteroidPool concreteAsteroidPool = new ConcreteAsteroidPool();
     private AsteroidLargePool asteroidLargePool = new AsteroidLargePool();
     private AsteroidMediumPool asteroidMediumPool = new AsteroidMediumPool();
     private AsteroidSmallPool asteroidSmallPool = new AsteroidSmallPool();
@@ -73,11 +72,4 @@ public class AsteroidPools {
         return asteroidSmallPool;
     }
 
-    public void push(Asteroid asteroid) {
-        getConcreteAsteroidPool().push(asteroid);
-    }
-
-    public ConcreteAsteroidPool getConcreteAsteroidPool() {
-        return concreteAsteroidPool;
-    }
 }

@@ -12,7 +12,7 @@ import asteroid.AsteroidGame;
 import components.ShapeableMovingGameComponent;
 import components.shapes.Shape;
 
-public class Asteroid extends ShapeableMovingGameComponent implements Exploitable {
+public abstract class Asteroid extends ShapeableMovingGameComponent implements Exploitable {
     private int points;
     private ExplodeStrategy explodeStrategy = new JustExplode();
 
@@ -26,9 +26,7 @@ public class Asteroid extends ShapeableMovingGameComponent implements Exploitabl
         getExplodeStrategy().explode(this);
     }
 
-    public void store() {
-        AsteroidPools.getInstance().push(this);
-    }
+    public abstract void store();
 
     public static double getNewPiFrom(AsteroidGame game, double pi) {
         double piExp = game.getValue("asteroidPiExplosion");
