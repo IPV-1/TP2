@@ -7,8 +7,10 @@ import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
 import asteroids.factories.AsteroidFactory;
 
+import java.util.Stack;
+
 public class AsteroidPools {
-    private AsteroidLargePool asteroidLargePool = new AsteroidLargePool();
+    private Stack<AsteroidLarge> asteroidLargePool = new Stack<AsteroidLarge>();
     private AsteroidMediumPool asteroidMediumPool = new AsteroidMediumPool();
     private AsteroidSmallPool asteroidSmallPool = new AsteroidSmallPool();
     private static AsteroidPools ourInstance = new AsteroidPools();
@@ -93,10 +95,6 @@ public class AsteroidPools {
     private AsteroidPools() {
     }
 
-    protected AsteroidLargePool getAsteroidLargePool() {
-        return asteroidLargePool;
-    }
-
     protected AsteroidMediumPool getAsteroidMediumPool() {
         return asteroidMediumPool;
     }
@@ -105,4 +103,7 @@ public class AsteroidPools {
         return asteroidSmallPool;
     }
 
+    public Stack<AsteroidLarge> getAsteroidLargePool() {
+        return asteroidLargePool;
+    }
 }
