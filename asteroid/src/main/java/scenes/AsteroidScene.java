@@ -3,7 +3,6 @@ package scenes;
 import java.util.ArrayList;
 import java.util.List;
 
-import asteroids.pools.AsteroidPool;
 import asteroids.pools.AsteroidPools;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.shapes.Circle;
@@ -11,9 +10,6 @@ import ship.Ship;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidLarge;
-import asteroids.AsteroidMedium;
-import asteroids.AsteroidSmall;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
