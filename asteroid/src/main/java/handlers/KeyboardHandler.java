@@ -29,10 +29,10 @@ public class KeyboardHandler {
 		this.updateKEYS(deltaState);
 		
 		if(KEYS.get(Key.LEFT)) {
-        	ship.rotate(ship.getGame(), -1);
+        	ship.rotate(-1);
         }
 		if(KEYS.get(Key.RIGHT)) {
-        	ship.rotate(ship.getGame(), 1);
+        	ship.rotate(1);
         }
 		if(KEYS.get(Key.UP)) {
         	ship.setMaxSpeed();

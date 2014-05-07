@@ -1,7 +1,6 @@
 package ship;
 
 import handlers.KeyboardHandler;
-import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
@@ -10,43 +9,45 @@ import components.shapes.Circle;
 import components.shapes.Shape;
 import components.shapes.SimpleShape;
 
+import config.Configuration;
+
 public class Ship extends ShapeableMovingGameComponent {
 	
 	private double rotation = 0;
 		
-	public Ship(AsteroidGame game) {
+	public Ship() {
 		super();
-		this.clean(game);
+		this.clean();
 	}
 	
 	protected void explode() {}
 	
-	protected Ship clean(AsteroidGame game) {
+	protected Ship clean() {
 		this.setSpeed(0);
 		this.setDestroyPending(false);
 		
-		this.rotate(game, 0);
+		this.rotate(0);
 		
-		this.setShape(this.shape(game));
+		this.setShape(this.shape());
 		
-		this.setX(game.getDisplayWidth() / 2 - this.getWidth() / 2);
-		this.setY(game.getDisplayHeight() / 2 - this.getHeight() / 2);
+		this.setX(Configuration.getDisplayWidth() / 2 - this.getWidth() / 2);
+		this.setY(Configuration.getDisplayHeight() / 2 - this.getHeight() / 2);
 		
 		this.setZ(1);
 		
 		return this;
 	}
 	
-	protected Sprite getSprite(AsteroidGame game) {
-		return game.getSprite("ship");
+	protected Sprite getSprite() {
+		return Configuration.getSprite("ship");
 	}
 
-	protected double getMaxSpeed(AsteroidGame game) {
-		return game.getValue("shipMaxSpeed");
+	protected double getMaxSpeed() {
+		return Configuration.getValue("shipMaxSpeed");
 	}
 	
-	protected Shape shape(AsteroidGame game) {
-		SimpleShape shape = new Circle(this.getSprite(game).getWidth());
+	protected Shape shape() {
+		SimpleShape shape = new Circle(this.getSprite().getWidth());
 		shape.setComponent(this);
 		return shape;
 	}
@@ -61,15 +62,15 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 
 	public void setMaxSpeed() {
-		this.setSpeed(this.getMaxSpeed(getGame()));
+		this.setSpeed(this.getMaxSpeed());
 		this.getUVector().setAngle(this.getDirection());
 	}
 
-	public void rotate(AsteroidGame game, int direction) {
-		this.setRotation(getRotation() + game.getValue("shipRotation") * direction);
+	public void rotate(int direction) {
+		this.setRotation(getRotation() + Configuration.getValue("shipRotation") * direction);
 		
         
-		Sprite sprite = this.getSprite(game).rotate(getRotation());
+		Sprite sprite = this.getSprite().rotate(getRotation());
 		this.setAppearance(sprite);
 	}
 

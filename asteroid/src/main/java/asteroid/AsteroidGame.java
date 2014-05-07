@@ -6,6 +6,7 @@ import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Sprite;
 import config.Config;
+import config.Configuration;
 import resource.ResourceUtils;
 import scenes.AsteroidScene;
 import scenes.levels.Level1;
@@ -24,6 +25,7 @@ public class AsteroidGame extends Game {
 	
 	public AsteroidGame(String configFile, AsteroidScene scene) {
 		super();
+		Configuration.LOAD(configFile);
 		setConfiguration(new Config(configFile));
 		loadConfigurations();
 		setCurrentScene(scene);

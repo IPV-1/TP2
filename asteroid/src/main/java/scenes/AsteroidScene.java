@@ -46,7 +46,7 @@ public class AsteroidScene extends GameScene {
 	}
 
 	private void addShip() {
-		Ship ship = new Ship(getGame());
+		Ship ship = new Ship();
 		this.getPlayerGroup().add(ship);
 		this.addComponent(ship);
 	}
