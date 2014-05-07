@@ -1,24 +1,22 @@
 package asteroids;
 
-import java.util.Stack;
-
 import asteroid.AsteroidGame;
 
-import asteroids.factories.AsteroidLargeFactory;
 import asteroids.factories.AsteroidMediumFactory;
-import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Sprite;
-import components.shapes.Shape;
+import asteroids.pools.AsteroidMediumPool;
 
 public class AsteroidMedium extends Asteroid {
-
-	public static final Stack<AsteroidMedium> ASTEROIDS = new Stack<AsteroidMedium>();
+    private static AsteroidMediumPool pool = new AsteroidMediumPool();
 
 	public AsteroidMedium() {
 		super();
 	}
 
-	@Override
+    public static AsteroidMediumPool getPool() {
+        return pool;
+    }
+
+    @Override
 	protected void explode() {
 		double radius = this.getGame().getSprite("asteroidS").getWidth() / 2;
 		double x = this.getX() + this.getWidth() / 2 - radius / 2;
@@ -31,15 +29,15 @@ public class AsteroidMedium extends Asteroid {
 
 	@Override
 	public void store() {
-		ASTEROIDS.push(this);
+        getPool().push(this);
 	}
 
 	public static AsteroidMedium get(AsteroidGame game) {
 
-		if (ASTEROIDS.empty()) {
+		if (getPool().empty()) {
 			return AsteroidMediumFactory.newAsteroid(game);
 		}
-		return AsteroidMediumFactory.clean(ASTEROIDS.pop(), game);
+		return AsteroidMediumFactory.clean(getPool().pop(), game);
 
 	}
 
@@ -47,10 +45,10 @@ public class AsteroidMedium extends Asteroid {
 	                                    double fromPi) {
 		double newPi = Asteroid.getNewPiFrom(game, fromPi);
 		AsteroidMedium asteroid;
-		if (ASTEROIDS.empty()) {
+		if (getPool().empty()) {
 			asteroid = AsteroidMediumFactory.newAsteroid(game, newPi);
 		} else {
-			asteroid = AsteroidMediumFactory.clean(ASTEROIDS.pop(), game, newPi);
+			asteroid = AsteroidMediumFactory.clean(getPool().pop(), game, newPi);
 		}
 		asteroid.setX(x);
 		asteroid.setY(y);

@@ -24,4 +24,12 @@ public abstract class AsteroidPool<AsteroidClass extends Asteroid> {
 	public void push(AsteroidClass asteroid){
 		getAsteroids().push(asteroid);
 	}
+
+    public boolean empty(){
+        return getAsteroids().empty();
+    }
+
+    public AsteroidClass pop(){
+        return getAsteroids().pop();
+    }
 }
