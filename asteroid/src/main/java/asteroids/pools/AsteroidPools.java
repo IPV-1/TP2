@@ -12,7 +12,7 @@ import java.util.Stack;
 public class AsteroidPools {
     private Stack<AsteroidLarge> asteroidLargePool = new Stack<AsteroidLarge>();
     private Stack<AsteroidMedium> asteroidMediumPool = new Stack<AsteroidMedium>();
-    private AsteroidSmallPool asteroidSmallPool = new AsteroidSmallPool();
+    private Stack<AsteroidSmall> asteroidSmallPool = new Stack<AsteroidSmall>();
     private static AsteroidPools ourInstance = new AsteroidPools();
 
     //Large
@@ -99,7 +99,7 @@ public class AsteroidPools {
         return asteroidMediumPool;
     }
 
-    protected AsteroidSmallPool getAsteroidSmallPool() {
+    protected Stack<AsteroidSmall> getAsteroidSmallPool() {
         return asteroidSmallPool;
     }
 
