@@ -1,10 +1,10 @@
 package asteroids.pools;
 
 import asteroid.AsteroidGame;
-import asteroids.Asteroid;
 import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
 import asteroids.AsteroidSmall;
+import asteroids.factories.AsteroidFactory;
 
 public class AsteroidPools {
     private AsteroidLargePool asteroidLargePool = new AsteroidLargePool();
@@ -18,7 +18,10 @@ public class AsteroidPools {
     }
 
     public AsteroidLarge getAsteroidLarge(AsteroidGame game) {
-        return getAsteroidLargePool().get(game);
+        if (getAsteroidLargePool().empty()) {
+            return AsteroidFactory.newAsteroidLarge(game);
+        }
+        return AsteroidFactory.clean(getAsteroidLargePool().pop(), game);
     }
 
     //Medium
