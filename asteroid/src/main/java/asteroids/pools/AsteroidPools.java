@@ -2,14 +2,12 @@ package asteroids.pools;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidSmall;
 import asteroids.factories.AsteroidFactory;
 
 import java.util.Stack;
 
 public class AsteroidPools {
     private Stack<Asteroid> asteroidPool = new Stack<Asteroid>();
-    private Stack<AsteroidSmall> asteroidSmallPool = new Stack<AsteroidSmall>();
     private static AsteroidPools ourInstance = new AsteroidPools();
 
     //Asteroid
@@ -55,24 +53,20 @@ public class AsteroidPools {
 
     //Small
 
-    public void push(AsteroidSmall asteroidSmall) {
-        getAsteroidSmallPool().push(asteroidSmall);
-    }
-
-    public AsteroidSmall getAsteroidSmall(AsteroidGame game) {
-        if(getAsteroidSmallPool().empty()){
+    public Asteroid getAsteroidSmall(AsteroidGame game) {
+        if(getAsteroidPool().empty()){
             return AsteroidFactory.newAsteroidSmall(game);
         }
-        return AsteroidFactory.clean(getAsteroidSmallPool().pop(), game);
+        return AsteroidFactory.clean(getAsteroidPool().pop(), game);
     }
 
-    public AsteroidSmall getAsteroidSmall(AsteroidGame game, double x, double y, double fromPi) {
+    public Asteroid getAsteroidSmall(AsteroidGame game, double x, double y, double fromPi) {
         double newPi = Asteroid.getNewPiFrom(game, fromPi);
-        AsteroidSmall asteroid;
-        if (getAsteroidSmallPool().empty() ){
+        Asteroid asteroid;
+        if (getAsteroidPool().empty() ){
             asteroid = AsteroidFactory.newAsteroidSmall(game, newPi);
         }else {
-            asteroid = AsteroidFactory.clean(getAsteroidSmallPool().pop(),game, newPi);
+            asteroid = AsteroidFactory.clean(getAsteroidPool().pop(),game, newPi);
         }
         asteroid.setX(x);
         asteroid.setY(y);
@@ -89,10 +83,6 @@ public class AsteroidPools {
     }
 
     private AsteroidPools() {
-    }
-
-    protected Stack<AsteroidSmall> getAsteroidSmallPool() {
-        return asteroidSmallPool;
     }
 
     public Stack<Asteroid> getAsteroidPool() {

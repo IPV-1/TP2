@@ -3,7 +3,6 @@ package asteroids.factories;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
-import asteroids.AsteroidSmall;
 import asteroids.estrategies.ExplodeToMediumAsteroids;
 import asteroids.estrategies.ExplodeToSmallAsteroids;
 import com.uqbar.vainilla.appearances.Appearance;
@@ -82,15 +81,15 @@ public class AsteroidFactory {
     }
 
     //Small
-    public static AsteroidSmall newAsteroidSmall(AsteroidGame game, double newPi) {
-        return clean(new AsteroidSmall(), game, newPi);
+    public static  Asteroid newAsteroidSmall(AsteroidGame game, double newPi) {
+        return clean(new  Asteroid(), game, newPi);
     }
 
-    public static AsteroidSmall newAsteroidSmall(AsteroidGame game) {
-        return clean(new AsteroidSmall(), game);
+    public static  Asteroid newAsteroidSmall(AsteroidGame game) {
+        return clean(new  Asteroid(), game);
     }
 
-    public static AsteroidSmall clean(AsteroidSmall asteroidSmall, AsteroidGame game, double pi) {
+    public static  Asteroid clean( Asteroid asteroidSmall, AsteroidGame game, double pi) {
         Circle shape = new Circle(game.getSprite("asteroidS").getWidth());
         double speed = Utils.randDouble(
                 game.getValue("asteroidMinSpeed"), game.getValue("asteroidSMaxSpeed"));
@@ -112,7 +111,7 @@ public class AsteroidFactory {
         return asteroidSmall;
     }
 
-    public static AsteroidSmall clean(AsteroidSmall asteroidSmall, AsteroidGame game) {
+    public static  Asteroid clean( Asteroid asteroidSmall, AsteroidGame game) {
         double pi = Utils.randDouble(2);
         return clean(asteroidSmall, game, pi);
     }
