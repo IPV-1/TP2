@@ -3,6 +3,7 @@ package asteroids.factories;
 
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
+import asteroids.estrategies.ExplodeStrategy;
 import asteroids.estrategies.ExplodeToMediumAsteroids;
 import asteroids.estrategies.ExplodeToSmallAsteroids;
 import com.uqbar.vainilla.appearances.Appearance;
@@ -18,17 +19,13 @@ public class AsteroidFactory {
         return cleanLarge(new Asteroid(), game);
     }
 
-    public static Asteroid cleanLarge(Asteroid asteroidLarge, AsteroidGame game) {
-        Circle shape = new Circle(game.getSprite("asteroidL").getWidth());
+    public static Asteroid clean(Appearance appearance, Asteroid asteroidLarge, AsteroidGame game, Circle shape, double minSpeed, double masSpeed, int points, ExplodeStrategy explodeStrategy) {
         double pi = Utils.randDouble(2);
-        double speed = Utils.randDouble(
-                game.getValue("asteroidMinSpeed"), game.getValue("asteroidLMaxSpeed"));
+        double speed = Utils.randDouble(minSpeed, masSpeed);
         double x = Utils.randDouble(game.getDisplayWidth()
                 - shape.getDiameter() / 2);
         double y = Utils.randDouble(game.getDisplayHeight()
                 - shape.getDiameter() / 2);
-        Appearance appearance = new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int) shape.getDiameter());
-
         asteroidLarge.setAppearance(appearance);
         asteroidLarge.setShape(shape);
         shape.setShapeable(asteroidLarge);
@@ -37,8 +34,15 @@ public class AsteroidFactory {
         asteroidLarge.setPi(pi);
         asteroidLarge.getUVector().setPI(pi);
         asteroidLarge.setSpeed(speed);
-        asteroidLarge.setPoints(20);
-        asteroidLarge.setExplodeStrategy(new ExplodeToMediumAsteroids());
+        asteroidLarge.setPoints(points);
+        asteroidLarge.setExplodeStrategy(explodeStrategy);
+        return asteroidLarge;
+    }
+
+    public static Asteroid cleanLarge(Asteroid asteroidLarge, AsteroidGame game) {
+        Circle shape = new Circle(game.getSprite("asteroidL").getWidth());
+        Appearance appearance = new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int) shape.getDiameter());
+        clean(appearance, asteroidLarge, game, shape, game.getValue("asteroidMinSpeed"), game.getValue("asteroidLMaxSpeed"), 20, new ExplodeToMediumAsteroids());
         return asteroidLarge;
     }
 
@@ -54,24 +58,10 @@ public class AsteroidFactory {
 
     public static Asteroid cleanMedium(Asteroid asteroidMedium, AsteroidGame game, double pi) {
         Circle shape = new Circle(game.getSprite("asteroidM").getWidth());
-        double speed = Utils.randDouble(
-                game.getValue("asteroidMinSpeed"), game.getValue("asteroidMMaxSpeed"));
-        double x = Utils.randDouble(game.getDisplayWidth()
-                - shape.getDiameter() / 2);
-        double y = Utils.randDouble(game.getDisplayHeight()
-                - shape.getDiameter() / 2);
         Appearance appearance = new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int) shape.getDiameter());
-
-        asteroidMedium.setAppearance(appearance);
-        asteroidMedium.setShape(shape);
-        shape.setShapeable(asteroidMedium);
-        asteroidMedium.setX(x);
-        asteroidMedium.setY(y);
+        clean(appearance, asteroidMedium, game, shape, game.getValue("asteroidMinSpeed"), game.getValue("asteroidMMaxSpeed"), 50, new ExplodeToSmallAsteroids());
         asteroidMedium.setPi(pi);
         asteroidMedium.getUVector().setPI(pi);
-        asteroidMedium.setSpeed(speed);
-        asteroidMedium.setPoints(50);
-        asteroidMedium.setExplodeStrategy(new ExplodeToSmallAsteroids());
         return asteroidMedium;
     }
 
@@ -81,37 +71,25 @@ public class AsteroidFactory {
     }
 
     //Small
-    public static  Asteroid newAsteroidSmall(AsteroidGame game, double newPi) {
-        return clean(new  Asteroid(), game, newPi);
+    public static Asteroid newAsteroidSmall(AsteroidGame game, double newPi) {
+        return clean(new Asteroid(), game, newPi);
     }
 
-    public static  Asteroid newAsteroidSmall(AsteroidGame game) {
-        return clean(new  Asteroid(), game);
+    public static Asteroid newAsteroidSmall(AsteroidGame game) {
+        return clean(new Asteroid(), game);
     }
 
-    public static  Asteroid clean( Asteroid asteroidSmall, AsteroidGame game, double pi) {
+    public static Asteroid clean(Asteroid asteroidSmall, AsteroidGame game, double pi) {
         Circle shape = new Circle(game.getSprite("asteroidS").getWidth());
-        double speed = Utils.randDouble(
-                game.getValue("asteroidMinSpeed"), game.getValue("asteroidSMaxSpeed"));
-        double x = Utils.randDouble(game.getDisplayWidth()
-                - shape.getDiameter() / 2);
-        double y = Utils.randDouble(game.getDisplayHeight()
-                - shape.getDiameter() / 2);
         Appearance appearance = new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int) shape.getDiameter());
 
-        asteroidSmall.setAppearance(appearance);
-        asteroidSmall.setShape(shape);
-        shape.setShapeable(asteroidSmall);
-        asteroidSmall.setX(x);
-        asteroidSmall.setY(y);
+        clean(appearance, asteroidSmall, game, shape, game.getValue("asteroidMinSpeed"), game.getValue("asteroidSMaxSpeed"), 100, new ExplodeToSmallAsteroids());
         asteroidSmall.setPi(pi);
         asteroidSmall.getUVector().setPI(pi);
-        asteroidSmall.setSpeed(speed);
-        asteroidSmall.setPoints(100);
         return asteroidSmall;
     }
 
-    public static  Asteroid clean( Asteroid asteroidSmall, AsteroidGame game) {
+    public static Asteroid clean(Asteroid asteroidSmall, AsteroidGame game) {
         double pi = Utils.randDouble(2);
         return clean(asteroidSmall, game, pi);
     }
