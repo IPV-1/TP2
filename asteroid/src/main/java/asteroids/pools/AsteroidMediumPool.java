@@ -4,25 +4,25 @@ package asteroids.pools;
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
 import asteroids.AsteroidMedium;
-import asteroids.factories.AsteroidMediumFactory;
+import asteroids.factories.AsteroidFactory;
 
 public class AsteroidMediumPool extends AsteroidPool<AsteroidMedium>{
 
     public AsteroidMedium get(AsteroidGame game) {
 
         if (empty()) {
-            return AsteroidMediumFactory.newAsteroid(game);
+            return AsteroidFactory.newAsteroidMedium(game);
         }
-        return AsteroidMediumFactory.clean(pop(), game);
+        return AsteroidFactory.clean(pop(), game);
 
     }
 
 	public AsteroidMedium get(AsteroidGame game, double pi) {
 		AsteroidMedium asteroid;
 		if (empty()) {
-			asteroid = AsteroidMediumFactory.newAsteroid(game, pi);
+			asteroid = AsteroidFactory.newAsteroidMedium(game, pi);
 		} else {
-			asteroid = AsteroidMediumFactory.clean(getAsteroids().pop(), game, pi);
+			asteroid = AsteroidFactory.clean(getAsteroids().pop(), game, pi);
 		}
 		return asteroid;
 	}
