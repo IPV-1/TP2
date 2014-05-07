@@ -3,6 +3,7 @@ package asteroids.pools;
 import asteroid.AsteroidGame;
 import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
+import asteroids.AsteroidSmall;
 
 public class AsteroidPools {
     private AsteroidLargePool asteroidLargePool = new AsteroidLargePool();
@@ -11,7 +12,7 @@ public class AsteroidPools {
     private static AsteroidPools ourInstance = new AsteroidPools();
 
     //Large
-    public AsteroidLarge getAsteroidLarge(AsteroidGame game){
+    public AsteroidLarge getAsteroidLarge(AsteroidGame game) {
         return getAsteroidLargePool().get(game);
     }
 
@@ -21,7 +22,16 @@ public class AsteroidPools {
     }
 
     public AsteroidMedium getAsteroidMedium(AsteroidGame game, double x, double y, double fromPi) {
-        return getAsteroidMediumPool().get(game,x,y,fromPi);
+        return getAsteroidMediumPool().get(game, x, y, fromPi);
+    }
+
+    //Small
+    public AsteroidSmall getAsteroidSmall(AsteroidGame game) {
+        return getAsteroidSmallPool().get(game);
+    }
+
+    public AsteroidSmall getAsteroidSmall(AsteroidGame game, double x, double y, double fromPi) {
+        return getAsteroidSmallPool().get(game,x,y,fromPi);
     }
 
 
