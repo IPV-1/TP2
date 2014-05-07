@@ -17,9 +17,11 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	protected double pi;
 	
 	protected Asteroid(AsteroidGame game, double pi) {
-		this.cleanWithPi(game, pi);
-		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite(game).getWidth()));//this.getSprite(game));
+		this.reset(game);
+		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite(game).getWidth()));
+//		this.setAppearance(this.getSprite(game));
 		this.setShape(this.shape(game));
+		this.setPi(pi);
 	}
 
 	protected Asteroid(AsteroidGame game) {
@@ -36,13 +38,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	
 	public abstract int getPoints();
 	
-	protected Asteroid clean(AsteroidGame game) {
-		return this.cleanWithPi(game, Utils.randDouble(2));
-	}
-	
-	protected Asteroid cleanWithPi(AsteroidGame game, double pi) {
-		this.setPi(pi);
-		this.getUVector().setPI(this.getPi());
+	public Asteroid reset(AsteroidGame game) {
 		this.setSpeed(Utils.randDouble(
 				game.getValue("asteroidMinSpeed"), this.getMaxSpeed(game)));
 		this.setX(Utils.randDouble(game.getDisplayWidth()
@@ -72,12 +68,21 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		return shape;
 	}
 	
-	protected double getPi() {
-		return this.pi;
+	public Asteroid setXYPI(double x, double y, double pi) {
+		this.setX(x);
+		this.setY(y);
+		this.setPi(pi);
+		return this;
 	}
 	
-	protected void setPi(double pi){ 
+	public Asteroid setPi(double pi){ 
 		this.pi = pi;
+		this.getUVector().setPI(this.getPi());
+		return this;
+	}
+	
+	protected double getPi() {
+		return this.pi;
 	}
 
 }

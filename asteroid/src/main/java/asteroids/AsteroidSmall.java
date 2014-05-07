@@ -10,11 +10,11 @@ public class AsteroidSmall extends Asteroid {
 
 	public static final Stack<AsteroidSmall> ASTEROIDS = new Stack<AsteroidSmall>();
 
-	protected AsteroidSmall(AsteroidGame game) {
+	public AsteroidSmall(AsteroidGame game) {
 		super(game);
 	}
 
-	protected AsteroidSmall(AsteroidGame game, double pi) {
+	public AsteroidSmall(AsteroidGame game, double pi) {
 		super(game, pi);
 	}
 
@@ -40,21 +40,6 @@ public class AsteroidSmall extends Asteroid {
 	@Override
 	public int getPoints() {
 		return 100;
-	}
-
-	public static AsteroidSmall get(AsteroidGame game) {
-		return (AsteroidSmall) (ASTEROIDS.empty() ? new AsteroidSmall(game)
-				: ASTEROIDS.pop().clean(game));
-	}
-
-	protected static AsteroidSmall get(AsteroidGame game, double x, double y,
-			double fromPi) {
-		double newPi = Asteroid.getNewPiFrom(game, fromPi);
-		AsteroidSmall asteroid = (AsteroidSmall) (ASTEROIDS.empty() ? new AsteroidSmall(
-				game, newPi) : ASTEROIDS.pop().cleanWithPi(game, newPi));
-		asteroid.setX(x);
-		asteroid.setY(y);
-		return asteroid;
 	}
 
 }

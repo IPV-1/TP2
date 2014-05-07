@@ -5,16 +5,17 @@ import java.util.Stack;
 import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.appearances.Sprite;
+import components.PoolManager;
 
 public class AsteroidMedium extends Asteroid {
 
 	public static final Stack<AsteroidMedium> ASTEROIDS = new Stack<AsteroidMedium>();
 
-	protected AsteroidMedium(AsteroidGame game) {
+	public AsteroidMedium(AsteroidGame game) {
 		super(game);
 	}
 
-	protected AsteroidMedium(AsteroidGame game, double pi) {
+	public AsteroidMedium(AsteroidGame game, double pi) {
 		super(game, pi);
 	}
 
@@ -34,9 +35,11 @@ public class AsteroidMedium extends Asteroid {
 		double x = this.getX() + this.getWidth() / 2 - radius / 2;
 		double y = this.getY() + this.getHeight() / 2 - radius / 2;
 		this.getScene().addAsteroid(
-				AsteroidSmall.get(this.getGame(), x, y, this.getPi()));
+				PoolManager.getAsteroidS(this.getGame(), x, y,
+						getNewPiFrom(this.getGame(), this.getPi())));
 		this.getScene().addAsteroid(
-				AsteroidSmall.get(this.getGame(), x, y, this.getPi()));
+				PoolManager.getAsteroidS(this.getGame(), x, y,
+						getNewPiFrom(this.getGame(), this.getPi())));
 	}
 
 	@Override
@@ -47,21 +50,6 @@ public class AsteroidMedium extends Asteroid {
 	@Override
 	public int getPoints() {
 		return 50;
-	}
-
-	public static AsteroidMedium get(AsteroidGame game) {
-		return (AsteroidMedium) (ASTEROIDS.empty() ? new AsteroidMedium(game)
-				: ASTEROIDS.pop().clean(game));
-	}
-
-	protected static AsteroidMedium get(AsteroidGame game, double x, double y,
-			double fromPi) {
-		double newPi = Asteroid.getNewPiFrom(game, fromPi);
-		AsteroidMedium asteroid = (AsteroidMedium) (ASTEROIDS.empty() ? new AsteroidMedium(
-				game, newPi) : ASTEROIDS.pop().cleanWithPi(game, newPi));
-		asteroid.setX(x);
-		asteroid.setY(y);
-		return asteroid;
 	}
 
 }
