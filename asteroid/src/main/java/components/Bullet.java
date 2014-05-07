@@ -1,7 +1,5 @@
 package components;
 
-import java.util.Stack;
-
 import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.DeltaState;
@@ -11,8 +9,6 @@ import components.shapes.SimpleShape;
 
 public class Bullet extends ShapeableMovingGameComponent {
 
-	public static final Stack<Bullet> BULLETS = new Stack<Bullet>();
-	
 	public Bullet(AsteroidGame game) {
 		Sprite sprite = game.getSprite("bullet");
 		this.setAppearance(sprite);
@@ -35,7 +31,7 @@ public class Bullet extends ShapeableMovingGameComponent {
 
 	@Override
 	public void destroy() {
-		BULLETS.push(this);
+		PoolManager.BULLETS.push(this);
 		super.destroy();
 	}
 
