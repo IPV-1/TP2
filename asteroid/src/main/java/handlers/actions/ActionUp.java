@@ -4,7 +4,7 @@ import ship.Ship;
 
 public class ActionUp extends Action {
 	@Override
-	public void execute(Ship ship) {
+	public void execute(Ship ship, double delta) {
 		ship.setMaxSpeed();
 	}
 }

@@ -61,7 +61,7 @@ public class KeyboardHandler {
 			}
 			
 			if(KEYS.get(key)) {
-				getKeyActions().get(key).execute(ship);
+				getKeyActions().get(key).execute(ship, deltaState.getDelta());
 			}
 		}
 	}

@@ -26,7 +26,7 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.setSpeed(0);
 		this.setDestroyPending(false);
 		
-		this.rotate(0);
+		this.rotate();
 		
 		this.setShape(this.shape());
 		
@@ -66,9 +66,13 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.getUVector().setAngle(this.getDirection());
 	}
 
-	public void rotate(int direction) {
-		this.setRotation(getRotation() + Configuration.getValue("shipRotation") * direction);
+	public void rotate(int direction, double delta) {
+		this.setRotation(getRotation() + Configuration.getValue("shipRotation") * direction * delta);
         
+		this.rotate();
+	}
+	
+	public void rotate() {
 		Sprite sprite = this.getSprite().rotate(getRotation());
 		this.setAppearance(sprite);
 	}
