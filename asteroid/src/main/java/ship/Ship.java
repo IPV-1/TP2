@@ -68,7 +68,6 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void rotate(int direction) {
 		this.setRotation(getRotation() + Configuration.getValue("shipRotation") * direction);
-		
         
 		Sprite sprite = this.getSprite().rotate(getRotation());
 		this.setAppearance(sprite);

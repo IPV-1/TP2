@@ -3,14 +3,13 @@ package scenes;
 import java.util.ArrayList;
 import java.util.List;
 
+import scenes.levels.Level1;
 import ship.Ship;
-
 import asteroid.AsteroidGame;
 import asteroids.Asteroid;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
-
 import components.BasicAsteroidComponent;
 import components.Bullet;
 import components.PoolManager;
@@ -20,6 +19,7 @@ public class AsteroidScene extends GameScene {
 
 	protected List<ShapeableMovingGameComponent> enemyGroup = new ArrayList<ShapeableMovingGameComponent>();
 	protected List<ShapeableMovingGameComponent> playerGroup = new ArrayList<ShapeableMovingGameComponent>();
+	private List<Asteroid> ASTEROIDS = new ArrayList<Asteroid>();
 
 	@Override
 	public AsteroidGame getGame() {
@@ -31,6 +31,7 @@ public class AsteroidScene extends GameScene {
 			if (playerComp.isColliding(enemyComp)) {
 				this.remove(playerComp, this.getPlayerGroup());
 				this.remove(enemyComp, this.getEnemyGroup());
+				this.removeAsteroid(enemyComp);
 				break;
 			}
 		}
@@ -91,11 +92,18 @@ public class AsteroidScene extends GameScene {
 
 	public void addAsteroid(Asteroid a) {
 		this.getEnemyGroup().add(a);
+		this.ASTEROIDS.add(a);
 		this.addComponent(a);
 	}
+	
+	public void removeAsteroid(ShapeableMovingGameComponent enemyComp) {
+		ASTEROIDS.remove(enemyComp);
+		if(ASTEROIDS.isEmpty()) {
+			//win();
+		}
+	}
 
-	protected void remove(ShapeableMovingGameComponent comp,
-			List<ShapeableMovingGameComponent> fromList) {
+	protected void remove(ShapeableMovingGameComponent comp, List<ShapeableMovingGameComponent> fromList) {
 		fromList.remove(comp);
 		comp.destroy();
 		this.removeComponent(comp);
@@ -110,6 +118,10 @@ public class AsteroidScene extends GameScene {
 				(comp.getY() >= comp.getGame().getDisplayHeight()) ||
 				(comp.getY() + comp.getHeight() <= 0);
 	}
+	
+    public void win() {
+        this.getGame().setCurrentScene(new Level1());
+    }
 
 	public List<ShapeableMovingGameComponent> getEnemyGroup() {
 		return enemyGroup;
