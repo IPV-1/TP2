@@ -7,6 +7,8 @@ import com.uqbar.vainilla.appearances.Sprite;
 import components.shapes.Circle;
 import components.shapes.SimpleShape;
 
+import config.Configuration;
+
 public class Bullet extends ShapeableMovingGameComponent {
 
 	public Bullet(AsteroidGame game) {
@@ -39,7 +41,7 @@ public class Bullet extends ShapeableMovingGameComponent {
 		this.setX(x);
 		this.setY(y);
 		this.getUVector().setAngle(angle);
-		this.setSpeed(game.getValue("bulletSpeed"));
+		this.setSpeed(Configuration.getValue("bulletSpeed"));
 		this.setDestroyPending(false);
 	}
 

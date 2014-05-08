@@ -15,6 +15,8 @@ import components.Bullet;
 import components.PoolManager;
 import components.ShapeableMovingGameComponent;
 
+import config.Configuration;
+
 public class AsteroidScene extends GameScene {
 
 	protected List<ShapeableMovingGameComponent> enemyGroup = new ArrayList<ShapeableMovingGameComponent>();
@@ -99,7 +101,7 @@ public class AsteroidScene extends GameScene {
 	public void removeAsteroid(ShapeableMovingGameComponent enemyComp) {
 		ASTEROIDS.remove(enemyComp);
 		if(ASTEROIDS.isEmpty()) {
-			//win();
+			win();
 		}
 	}
 
@@ -113,9 +115,9 @@ public class AsteroidScene extends GameScene {
 	 * Por si el area de juego es mas chica que la pantalla
 	 */
 	public boolean isOutside(GameComponent<AsteroidScene> comp) {
-		return (comp.getX() >= comp.getGame().getDisplayWidth()) || 
+		return (comp.getX() >= Configuration.getDisplayWidth()) || 
 				(comp.getX() + comp.getWidth() <= 0) ||
-				(comp.getY() >= comp.getGame().getDisplayHeight()) ||
+				(comp.getY() >= Configuration.getDisplayHeight()) ||
 				(comp.getY() + comp.getHeight() <= 0);
 	}
 	

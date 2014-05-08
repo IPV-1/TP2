@@ -1,12 +1,13 @@
 package components;
 
+import scenes.AsteroidScene;
 import asteroid.AsteroidGame;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.appearances.Appearance;
 
-import scenes.AsteroidScene;
+import config.Configuration;
 
 
 public class BasicAsteroidMovingGameComponent extends MovingGameComponent<AsteroidScene> {
@@ -36,15 +37,15 @@ public class BasicAsteroidMovingGameComponent extends MovingGameComponent<Astero
     
     @Override
     public void update(DeltaState deltaState) {
-    	if (this.getX() >= this.getGame().getDisplayWidth()) {
+    	if (this.getX() >= Configuration.getDisplayWidth()) {
 			this.setX(1 - this.getWidth());
 		} else if (this.getX() + this.getWidth() <= 0) {
-			this.setX(this.getGame().getDisplayWidth());
+			this.setX(Configuration.getDisplayWidth());
 		}
-		if (this.getY() >= this.getGame().getDisplayHeight()) {
+		if (this.getY() >= Configuration.getDisplayHeight()) {
 			this.setY(1 - this.getHeight());
 		} else if (this.getY() + this.getHeight() <= 0) {
-			this.setY(this.getGame().getDisplayHeight());
+			this.setY(Configuration.getDisplayHeight());
 		}
     	super.update(deltaState);
     }
