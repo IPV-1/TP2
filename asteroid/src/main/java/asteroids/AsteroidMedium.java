@@ -26,19 +26,6 @@ public class AsteroidMedium extends Asteroid {
 	}
 
 	@Override
-	protected void explode() {
-		double radius = this.getGame().getSprite("asteroidS").getWidth() / 2;
-		double x = this.getX() + this.getWidth() / 2 - radius / 2;
-		double y = this.getY() + this.getHeight() / 2 - radius / 2;
-		this.getScene().addAsteroid(
-				PoolManager.getAsteroidS(this.getGame(), x, y,
-						getNewPiFrom(this.getGame(), this.getPi())));
-		this.getScene().addAsteroid(
-				PoolManager.getAsteroidS(this.getGame(), x, y,
-						getNewPiFrom(this.getGame(), this.getPi())));
-	}
-
-	@Override
 	public void store() {
 		PoolManager.ASTEROIDS_M.push(this);
 	}
@@ -46,6 +33,11 @@ public class AsteroidMedium extends Asteroid {
 	@Override
 	public int getPoints() {
 		return 50;
+	}
+	
+	@Override
+	protected Asteroid getInnerAsteroid(double x, double y, double pi) {
+		return PoolManager.getAsteroidS(this.getGame(), x, y, pi);
 	}
 
 }

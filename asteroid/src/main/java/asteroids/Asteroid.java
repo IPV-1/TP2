@@ -32,7 +32,15 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 
 	protected abstract double getMaxSpeed(AsteroidGame game);
 	
-	protected abstract void explode();
+	protected abstract Asteroid getInnerAsteroid(double x, double y, double pi);
+	
+	protected void explode() {
+		double radius = this.getSprite(this.getGame()).getWidth() / 2;
+		double x = this.getX() + this.getWidth() / 2 - radius / 2;
+		double y = this.getY() + this.getHeight() / 2 - radius / 2;
+		this.getScene().addAsteroid(this.getInnerAsteroid(x, y, getNewPiFrom(this.getGame(), this.getPi())));
+		this.getScene().addAsteroid(this.getInnerAsteroid(x, y, getNewPiFrom(this.getGame(), this.getPi())));
+	}
 	
 	public abstract void store();
 	

@@ -38,5 +38,10 @@ public class AsteroidSmall extends Asteroid {
 	public int getPoints() {
 		return 100;
 	}
+	
+	@Override
+	protected Asteroid getInnerAsteroid(double x, double y, double pi) {
+		return null;
+	}
 
 }
