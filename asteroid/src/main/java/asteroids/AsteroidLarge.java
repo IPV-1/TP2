@@ -1,24 +1,19 @@
 package asteroids;
 
-import asteroid.AsteroidGame;
-
 import com.uqbar.vainilla.appearances.Sprite;
 import components.PoolManager;
+import config.Configuration;
 
 public class AsteroidLarge extends Asteroid {
 
-	public AsteroidLarge(AsteroidGame game) {
-		super(game);
+	@Override
+	protected Sprite getSprite() {
+		return Configuration.getSprite("asteroidL");
 	}
 
 	@Override
-	protected Sprite getSprite(AsteroidGame game) {
-		return game.getSprite("asteroidL");
-	}
-
-	@Override
-	protected double getMaxSpeed(AsteroidGame game) {
-		return game.getValue("asteroidLMaxSpeed");
+	protected double getMaxSpeed() {
+		return Configuration.getValue("asteroidLMaxSpeed");
 	}
 
 	@Override
@@ -33,7 +28,7 @@ public class AsteroidLarge extends Asteroid {
 
 	@Override
 	protected Asteroid getInnerAsteroid(double x, double y, double pi) {
-		return PoolManager.getAsteroidM(this.getGame(), x, y, pi);
+		return PoolManager.getAsteroidM(x, y, pi);
 	}
 
 }

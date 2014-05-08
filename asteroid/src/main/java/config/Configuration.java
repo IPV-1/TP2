@@ -30,6 +30,7 @@ public class Configuration {
 		addValue("screenHeight");
 	
 		addValue("bulletSpeed");
+		addValue("bulletQty");
 		addValue("asteroidMinSpeed");
 		addValue("asteroidSMaxSpeed");
 		addValue("asteroidMMaxSpeed");
