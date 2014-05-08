@@ -2,6 +2,8 @@ package components;
 
 import java.util.Stack;
 
+import config.Configuration;
+
 import asteroid.AsteroidGame;
 import asteroids.AsteroidLarge;
 import asteroids.AsteroidMedium;
@@ -14,12 +16,27 @@ public class PoolManager {
 	public static final Stack<AsteroidLarge> ASTEROIDS_L = new Stack<AsteroidLarge>();
 	public static final Stack<AsteroidMedium> ASTEROIDS_M = new Stack<AsteroidMedium>();
 	public static final Stack<AsteroidSmall> ASTEROIDS_S = new Stack<AsteroidSmall>();
+	
+	static {
+		for(int i = 0; i < Configuration.getValue("bulletQty"); i++) {
+			BULLETS.add(new Bullet());			
+		}
+	}
 
 	public static Bullet getBullet(AsteroidGame game, double x, double y,
 			double angle) {
-		Bullet bullet = BULLETS.empty() ? new Bullet(game) : BULLETS.pop();
-		bullet.reset(game, x, y, angle);
+		Bullet bullet;
+		if(! BULLETS.empty()) {
+			bullet = BULLETS.pop();
+			bullet.reset(game, x, y, angle);
+		} else {
+			bullet = null;
+		}
 		return bullet;
+	}
+	
+	public static boolean bulletAvailable() {
+		return ! BULLETS.empty();
 	}
 
 	public static AsteroidLarge getAsteroidL(AsteroidGame game) {

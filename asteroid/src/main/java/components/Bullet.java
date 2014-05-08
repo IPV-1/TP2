@@ -11,8 +11,8 @@ import config.Configuration;
 
 public class Bullet extends ShapeableMovingGameComponent {
 
-	public Bullet(AsteroidGame game) {
-		Sprite sprite = game.getSprite("bullet");
+	public Bullet() {
+		Sprite sprite = Configuration.getSprite("bullet");
 		this.setAppearance(sprite);
 		//this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.GREEN, (int) sprite.getWidth()));
 		SimpleShape shape = new Circle(sprite.getWidth());

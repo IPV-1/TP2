@@ -60,12 +60,14 @@ public class AsteroidScene extends GameScene {
 	}
 
 	public void addBullet(double x, double y, double angle) {
-		Bullet bullet = PoolManager.getBullet(this.getGame(), x, y, angle);
-		bullet.setX(x - bullet.getWidth() / 2);
-		bullet.setY(y - bullet.getHeight() / 2);
-		
-		this.getPlayerGroup().add(bullet);
-		this.addComponent(bullet);
+		if(PoolManager.bulletAvailable()) {
+			Bullet bullet = PoolManager.getBullet(this.getGame(), x, y, angle);
+			bullet.setX(x - bullet.getWidth() / 2);
+			bullet.setY(y - bullet.getHeight() / 2);
+			
+			this.getPlayerGroup().add(bullet);
+			this.addComponent(bullet);
+		}
 	}
 
 	protected void addAsteroids() {
