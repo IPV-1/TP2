@@ -1,28 +1,27 @@
 package asteroids;
 
-import asteroid.AsteroidGame;
-
 import com.uqbar.vainilla.appearances.Sprite;
 import components.PoolManager;
+import config.Configuration;
 
 public class AsteroidSmall extends Asteroid {
 
-	public AsteroidSmall(AsteroidGame game) {
-		super(game);
+	public AsteroidSmall() {
+		super();
 	}
 
-	public AsteroidSmall(AsteroidGame game, double pi) {
-		super(game, pi);
-	}
-
-	@Override
-	protected Sprite getSprite(AsteroidGame game) {
-		return game.getSprite("asteroidS");
+	public AsteroidSmall(double pi) {
+		super(pi);
 	}
 
 	@Override
-	protected double getMaxSpeed(AsteroidGame game) {
-		return game.getValue("asteroidSMaxSpeed");
+	protected Sprite getSprite() {
+		return Configuration.getSprite("asteroidS");
+	}
+
+	@Override
+	protected double getMaxSpeed() {
+		return Configuration.getValue("asteroidSMaxSpeed");
 	}
 
 	@Override

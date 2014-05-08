@@ -61,7 +61,7 @@ public class AsteroidScene extends GameScene {
 
 	public void addBullet(double x, double y, double angle) {
 		if(PoolManager.bulletAvailable()) {
-			Bullet bullet = PoolManager.getBullet(this.getGame(), x, y, angle);
+			Bullet bullet = PoolManager.getBullet(x, y, angle);
 			bullet.setX(x - bullet.getWidth() / 2);
 			bullet.setY(y - bullet.getHeight() / 2);
 			
@@ -83,15 +83,15 @@ public class AsteroidScene extends GameScene {
 	}
 
 	public void addAsteroidL() {
-		this.addAsteroid(PoolManager.getAsteroidL(this.getGame()));
+		this.addAsteroid(PoolManager.getAsteroidL());
 	}
 
 	public void addAsteroidM() {
-		this.addAsteroid(PoolManager.getAsteroidM(this.getGame()));
+		this.addAsteroid(PoolManager.getAsteroidM());
 	}
 
 	public void addAsteroidS() {
-		this.addAsteroid(PoolManager.getAsteroidS(this.getGame()));
+		this.addAsteroid(PoolManager.getAsteroidS());
 	}
 
 	public void addAsteroid(Asteroid a) {
@@ -123,7 +123,17 @@ public class AsteroidScene extends GameScene {
 				(comp.getY() + comp.getHeight() <= 0);
 	}
 	
+	public void releaseComponents() {
+		for(ShapeableMovingGameComponent comp : this.getEnemyGroup()) {
+			comp.destroy();
+		}
+		for(ShapeableMovingGameComponent comp : this.getPlayerGroup()) {
+			comp.destroy();
+		}
+	}
+	
     public void win() {
+    	this.releaseComponents();
         this.getGame().setCurrentScene(new Level1());
     }
 

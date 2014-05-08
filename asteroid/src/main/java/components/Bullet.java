@@ -1,7 +1,5 @@
 package components;
 
-import asteroid.AsteroidGame;
-
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.shapes.Circle;
@@ -37,7 +35,7 @@ public class Bullet extends ShapeableMovingGameComponent {
 		super.destroy();
 	}
 
-	public void reset(AsteroidGame game, double x, double y, double angle) {
+	public void reset(double x, double y, double angle) {
 		this.setX(x);
 		this.setY(y);
 		this.getUVector().setAngle(angle);
