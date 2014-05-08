@@ -1,6 +1,12 @@
 package handlers;
 
-import java.util.Arrays;
+import handlers.actions.Action;
+import handlers.actions.ActionLeft;
+import handlers.actions.ActionRight;
+import handlers.actions.ActionSpace;
+import handlers.actions.ActionUp;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,45 +29,45 @@ public class KeyboardHandler {
 			KEYS.put(key, false);
 		}
 	}
+	
+	/**
+	 * Change to define key actions
+	 */
+	private Map<Key, Action> getKeyActions() {
+		Map<Key, Action> actions = new HashMap<Key,Action>();
+		actions.put(Key.LEFT, new ActionLeft());
+		actions.put(Key.RIGHT, new ActionRight());
+		actions.put(Key.UP, new ActionUp());
+		actions.put(Key.SPACE, new ActionSpace());
+
+		return actions;
+	}
 
 	public void updateShip(Ship ship, DeltaState deltaState) {
 		
-		this.updateKEYS(deltaState);
+		this.updateKEYS(ship, deltaState);
 		
-		if(KEYS.get(Key.LEFT)) {
-        	ship.rotate(-1);
-        }
-		if(KEYS.get(Key.RIGHT)) {
-        	ship.rotate(1);
-        }
-		if(KEYS.get(Key.UP)) {
-        	ship.setMaxSpeed();
-        }
-		if(KEYS.get(Key.SPACE)) {
-        	ship.shot();
-        }
 		if(! KEYS.get(Key.UP) && ship.getSpeed() > 0) {
         	ship.breakingSpeed(deltaState);
 		}
 	}
 	
-	private void updateKEYS(DeltaState deltaState) {
+	private void updateKEYS(Ship ship, DeltaState deltaState) {
 		for (Key key : getListeningKeys()) {
 			if(deltaState.isKeyPressed(key)) {
 				KEYS.put(key, true);
 			} else if(deltaState.isKeyReleased(key)){
 				KEYS.put(key, false);
 			}
+			
+			if(KEYS.get(key)) {
+				getKeyActions().get(key).execute(ship);
+			}
 		}
 	}
 
 	private List<Key> getListeningKeys() {
-		return Arrays.asList(new Key[]{
-			Key.LEFT,
-			Key.RIGHT,
-			Key.UP,
-			Key.SPACE
-		});
+		return new ArrayList<Key>(getKeyActions().keySet());
 	}
-
+	
 }
