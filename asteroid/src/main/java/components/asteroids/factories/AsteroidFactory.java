@@ -80,14 +80,14 @@ public class AsteroidFactory {
         return clean(new Asteroid(), game);
     }
 
-    public static Asteroid clean(Asteroid asteroidSmall, AsteroidGame game, double pi) {
+    public static Asteroid clean(Asteroid asteroid, AsteroidGame game, double pi) {
         Circle shape = new Circle(game.getSprite("asteroidS").getWidth());
         Appearance appearance = new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int) shape.getDiameter());
 
-        clean(appearance, asteroidSmall, game, shape, game.getValue("asteroidMinSpeed"), game.getValue("asteroidSMaxSpeed"), 100, ExplodeToSmallAsteroids.getInstance());
-        asteroidSmall.setPi(pi);
-        asteroidSmall.getUVector().setPI(pi);
-        return asteroidSmall;
+        clean(appearance, asteroid, game, shape, game.getValue("asteroidMinSpeed"), game.getValue("asteroidSMaxSpeed"), 100, JustExplode.getInstance());
+        asteroid.setPi(pi);
+        asteroid.getUVector().setPI(pi);
+        return asteroid;
     }
 
     public static Asteroid clean(Asteroid asteroidSmall, AsteroidGame game) {
