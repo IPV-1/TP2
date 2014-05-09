@@ -50,6 +50,11 @@ public class Asteroid extends CollidableMovingGameComponent implements Exploitab
         this.pi = pi;
     }
 
+	public void updatePi(double pi){
+		setPi(pi);
+		getUVector().setPI(pi);
+	}
+
     public int getPoints() {
         return this.points;
     }
