@@ -36,7 +36,7 @@ public class Asteroid extends CollidableMovingGameComponent implements Exploitab
     @Override
     public void destroy() {
         getScene().getEnemyGroup().remove(this);
-        this.getGame().BOARD.add(this.getPoints());
+        this.getGame().getBoard().add(this.getPoints());
         this.explode();
         this.store();
         super.destroy();

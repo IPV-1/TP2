@@ -51,7 +51,7 @@ public class AsteroidScene extends GameScene {
         addBackground();
         addAsteroids();
         addShip();
-        this.addComponent(this.getGame().BOARD);
+        this.addComponent(this.getGame().getBoard());
         super.onSetAsCurrent();
     }
 

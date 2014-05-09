@@ -1,6 +1,6 @@
 package asteroid;
 
-import boards.Board;
+import components.misc.boards.Board;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
@@ -14,137 +14,137 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class AsteroidGame extends Game {
-	private static AsteroidScene defaultScene = new Level1();
-	private static String defaultConfigurationFile = "application.xml";
-	private HashMap<String, Sprite> sprites;
-	private HashMap<String, Double> values;
-	private Config configuration;
-	
-	public final Board BOARD = new Board(0, 0, Color.WHITE);
-	
-	public AsteroidGame(String configFile, AsteroidScene scene) {
-		super();
-		setConfiguration(new Config(configFile));
-		loadConfigurations();
-		setCurrentScene(scene);
-	}
+    private static AsteroidScene defaultScene = new Level1();
+    private static String defaultConfigurationFile = "application.xml";
+    private HashMap<String, Sprite> sprites;
+    private HashMap<String, Double> values;
+    private Config configuration;
 
-	public AsteroidGame(AsteroidScene scene) {
-		this(defaultConfigurationFile, scene);
-	}
+    private Board board;
 
-	public AsteroidGame(String configFile) {
-		this(configFile, defaultScene);
-	}
+    public AsteroidGame(String configFile, AsteroidScene scene) {
+        super();
+        setConfiguration(new Config(configFile));
+        loadConfigurations();
+        setBoard(new Board(0, 0, Color.WHITE));
+        setCurrentScene(scene);
+    }
 
-	public AsteroidGame() {
-		this(defaultConfigurationFile, defaultScene);
-	}
+    public AsteroidGame() {
+        this(defaultConfigurationFile, defaultScene);
+    }
 
-	/**
-	 * This method should be val
-	 */
-	public void loadConfigurations() {
-		addSprite("background", getConfig("background"));
-		addSprite("bullet", getConfig("bullet"));
-		addSprite("asteroidS", getConfig("asteroidS"));
-		addSprite("asteroidM", getConfig("asteroidM"));
-		addSprite("asteroidL", getConfig("asteroidL"));
-		addSprite("ship", getConfig("ship"));
+    /**
+     * This method should be val
+     */
+    public void loadConfigurations() {
+        addSprite("background", getConfig("background"));
+        addSprite("bullet", getConfig("bullet"));
+        addSprite("asteroidS", getConfig("asteroidS"));
+        addSprite("asteroidM", getConfig("asteroidM"));
+        addSprite("asteroidL", getConfig("asteroidL"));
+        addSprite("ship", getConfig("ship"));
 
-		addValue("screenWidth");
-		addValue("screenHeight");
+        addValue("screenWidth");
+        addValue("screenHeight");
 
-		addValue("bulletSpeed");
-		addValue("asteroidMinSpeed");
-		addValue("asteroidSMaxSpeed");
-		addValue("asteroidMMaxSpeed");
-		addValue("asteroidLMaxSpeed");
-		addValue("asteroidPiExplosion");
-		addValue("shipMaxSpeed");
-		addValue("shipRotation");
+        addValue("bulletSpeed");
+        addValue("asteroidMinSpeed");
+        addValue("asteroidSMaxSpeed");
+        addValue("asteroidMMaxSpeed");
+        addValue("asteroidLMaxSpeed");
+        addValue("asteroidPiExplosion");
+        addValue("shipMaxSpeed");
+        addValue("shipRotation");
 
-		addValue("asteroidSQty");
-		addValue("asteroidMQty");
-		addValue("asteroidLQty");
-	}
+        addValue("asteroidSQty");
+        addValue("asteroidMQty");
+        addValue("asteroidLQty");
+    }
 
-	@Override
-	protected void initializeResources() {
-		setSprites(new HashMap<String, Sprite>());
-		setValues(new HashMap<String, Double>());
-	}
+    @Override
+    protected void initializeResources() {
+        setSprites(new HashMap<String, Sprite>());
+        setValues(new HashMap<String, Double>());
+    }
 
-	@Override
-	protected void setUpScenes() {
-		// setCurrentScene(new Level1());
-	}
+    @Override
+    protected void setUpScenes() {
+        // setCurrentScene(new Level1());
+    }
 
-	@Override
-	public Dimension getDisplaySize() {
-		return new Dimension((int) getValue("screenWidth"),
-				(int) getValue("screenHeight"));
-	}
+    @Override
+    public Dimension getDisplaySize() {
+        return new Dimension((int) getValue("screenWidth"),
+                (int) getValue("screenHeight"));
+    }
 
-	@Override
-	public String getTitle() {
-		return "Asteroid";
-	}
+    @Override
+    public String getTitle() {
+        return "Asteroid";
+    }
 
-	public Config getConfiguration() {
-		return this.configuration;
-	}
+    public Config getConfiguration() {
+        return this.configuration;
+    }
 
-	public String getConfig(String key) {
-		return getConfiguration().fetch(key);
-	}
+    public String getConfig(String key) {
+        return getConfiguration().fetch(key);
+    }
 
-	public void addSprite(String key, String spritePath) {
-		getSprites().put(key, ResourceUtils.getSprite(spritePath));
-	}
+    public void addSprite(String key, String spritePath) {
+        getSprites().put(key, ResourceUtils.getSprite(spritePath));
+    }
 
-	public Sprite getSprite(String spriteKey) {
-		return getSprites().get(spriteKey);
-	}
+    public Sprite getSprite(String spriteKey) {
+        return getSprites().get(spriteKey);
+    }
 
-	public void addValue(String value) {
-		this.addValue(value, getConfig(value));
-	}
+    public void addValue(String value) {
+        this.addValue(value, getConfig(value));
+    }
 
-	public void addValue(String key, String value) {
-		getValues().put(key, Double.valueOf(value));
-	}
+    public void addValue(String key, String value) {
+        getValues().put(key, Double.valueOf(value));
+    }
 
-	public double getValue(String valueKey) {
-		return getValues().get(valueKey);
-	}
+    public double getValue(String valueKey) {
+        return getValues().get(valueKey);
+    }
 
-	public static void main(String[] args) throws Exception {
-		new DesktopGameLauncher(new AsteroidGame()).launch();
-	}
+    public static void main(String[] args) throws Exception {
+        new DesktopGameLauncher(new AsteroidGame()).launch();
+    }
 
-	/**
-	 * Privates methods
-	 */
+    /**
+     * Privates methods
+     */
 
-	private void setConfiguration(Config configuration) {
-		this.configuration = configuration;
-	}
+    private void setConfiguration(Config configuration) {
+        this.configuration = configuration;
+    }
 
-	private HashMap<String, Sprite> getSprites() {
-		return this.sprites;
-	}
+    private HashMap<String, Sprite> getSprites() {
+        return this.sprites;
+    }
 
-	private void setSprites(HashMap<String, Sprite> sprites) {
-		this.sprites = sprites;
-	}
+    private void setSprites(HashMap<String, Sprite> sprites) {
+        this.sprites = sprites;
+    }
 
-	public HashMap<String, Double> getValues() {
-		return values;
-	}
+    public HashMap<String, Double> getValues() {
+        return values;
+    }
 
-	public void setValues(HashMap<String, Double> values) {
-		this.values = values;
-	}
+    public void setValues(HashMap<String, Double> values) {
+        this.values = values;
+    }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }
