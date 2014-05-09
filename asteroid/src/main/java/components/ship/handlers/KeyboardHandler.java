@@ -1,6 +1,6 @@
-package handlers;
+package components.ship.handlers;
 
-import ship.Ship;
+import components.ship.Ship;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.events.constants.Key;

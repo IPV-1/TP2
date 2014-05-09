@@ -1,8 +1,8 @@
-package ship;
+package components.ship;
 
 import components.Collidable;
 import components.CollidableMovingGameComponent;
-import handlers.KeyboardHandler;
+import components.ship.handlers.KeyboardHandler;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;

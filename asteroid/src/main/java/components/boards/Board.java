@@ -1,4 +1,4 @@
-package components.misc.boards;
+package components.boards;
 
 import java.awt.Color;
 import java.awt.Font;

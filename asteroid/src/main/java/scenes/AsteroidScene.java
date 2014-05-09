@@ -9,7 +9,7 @@ import components.asteroids.pools.BulletPool;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.CollidableMovingGameComponent;
 import components.shapes.Circle;
-import ship.Ship;
+import components.ship.Ship;
 
 import asteroid.AsteroidGame;
 import components.asteroids.Asteroid;

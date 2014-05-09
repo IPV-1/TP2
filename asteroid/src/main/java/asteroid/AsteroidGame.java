@@ -1,11 +1,11 @@
 package asteroid;
 
-import components.misc.boards.Board;
+import components.boards.Board;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Sprite;
-import config.Config;
+import asteroid.config.Config;
 import resource.ResourceUtils;
 import scenes.AsteroidScene;
 import scenes.levels.Level1;
