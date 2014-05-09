@@ -2,7 +2,21 @@ package asteroids.estrategies;
 
 import asteroids.pools.AsteroidPools;
 
+/**
+ * This class is stateless, so i made it singleton.
+ */
 public class ExplodeToSmallAsteroids implements ExplodeStrategy {
+
+    private static ExplodeToSmallAsteroids ourInstance = new ExplodeToSmallAsteroids();
+
+    public static ExplodeToSmallAsteroids getInstance() {
+        return ourInstance;
+    }
+
+    private ExplodeToSmallAsteroids() {
+    }
+
+
     @Override
     public void explode(Exploitable exploitable) {
         double radius = exploitable.getGame().getSprite("asteroidS").getWidth() / 2;

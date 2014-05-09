@@ -12,7 +12,7 @@ import asteroid.AsteroidGame;
 
 public class Asteroid extends CollidableMovingGameComponent implements Exploitable {
     private int points;
-    private ExplodeStrategy explodeStrategy = new JustExplode();
+    private ExplodeStrategy explodeStrategy = JustExplode.getInstance();
 
     protected double pi;
 
