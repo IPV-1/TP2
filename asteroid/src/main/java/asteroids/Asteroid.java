@@ -4,15 +4,13 @@ import asteroids.estrategies.ExplodeStrategy;
 import asteroids.estrategies.Exploitable;
 import asteroids.estrategies.JustExplode;
 import asteroids.pools.AsteroidPools;
-import com.uqbar.vainilla.appearances.Appearance;
+import components.Collidable;
+import components.CollidableMovingGameComponent;
 import utils.Utils;
 
 import asteroid.AsteroidGame;
 
-import components.ShapeableMovingGameComponent;
-import components.shapes.Shape;
-
-public class Asteroid extends ShapeableMovingGameComponent implements Exploitable {
+public class Asteroid extends CollidableMovingGameComponent implements Exploitable {
     private int points;
     private ExplodeStrategy explodeStrategy = new JustExplode();
 
@@ -37,10 +35,12 @@ public class Asteroid extends ShapeableMovingGameComponent implements Exploitabl
 
     @Override
     public void destroy() {
-        this.getScene().getGame().BOARD.add(this.getPoints());
-        this.store();
+        getScene().getEnemyGroup().remove(this);
+        this.getGame().BOARD.add(this.getPoints());
         this.explode();
         super.destroy();
+        this.store();
+
     }
 
     public double getPi() {
@@ -65,5 +65,11 @@ public class Asteroid extends ShapeableMovingGameComponent implements Exploitabl
 
     public void setExplodeStrategy(ExplodeStrategy explodeStrategy) {
         this.explodeStrategy = explodeStrategy;
+    }
+
+    @Override
+    public void collidedBy(Collidable component) {
+        if (!isDestroyPending())
+            destroy();
     }
 }

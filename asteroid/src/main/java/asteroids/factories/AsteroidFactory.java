@@ -6,6 +6,7 @@ import asteroids.Asteroid;
 import asteroids.estrategies.ExplodeStrategy;
 import asteroids.estrategies.ExplodeToMediumAsteroids;
 import asteroids.estrategies.ExplodeToSmallAsteroids;
+import asteroids.estrategies.JustExplode;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.shapes.Circle;
 import utils.Utils;
@@ -92,6 +93,15 @@ public class AsteroidFactory {
     public static Asteroid clean(Asteroid asteroidSmall, AsteroidGame game) {
         double pi = Utils.randDouble(2);
         return clean(asteroidSmall, game, pi);
+    }
+
+    public static Asteroid cleanSmall(Asteroid asteroidSmall, AsteroidGame game, double pi) {
+        Circle shape = new Circle(game.getSprite("asteroidS").getWidth());
+        Appearance appearance = new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int) shape.getDiameter());
+        clean(appearance, asteroidSmall, game, shape, game.getValue("asteroidMinSpeed"), game.getValue("asteroidSMaxSpeed"), 10, new JustExplode());
+        asteroidSmall.setPi(pi);
+        asteroidSmall.getUVector().setPI(pi);
+        return asteroidSmall;
     }
 
 

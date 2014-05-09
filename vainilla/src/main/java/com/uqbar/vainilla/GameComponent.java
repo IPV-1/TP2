@@ -137,8 +137,7 @@ public class GameComponent<SceneType extends GameScene> {
 	public void update(DeltaState deltaState) {
 		this.getAppearance().update(deltaState.getDelta());
 	}
-	
-	public void collide(GameComponent<?> component) {}
+
 
 	// ****************************************************************
 	// ** ACCESSORS

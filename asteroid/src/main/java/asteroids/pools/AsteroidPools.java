@@ -66,7 +66,7 @@ public class AsteroidPools {
         if (getAsteroidPool().empty() ){
             asteroid = AsteroidFactory.newAsteroidSmall(game, newPi);
         }else {
-            asteroid = AsteroidFactory.clean(getAsteroidPool().pop(),game, newPi);
+            asteroid = AsteroidFactory.cleanSmall(getAsteroidPool().pop(),game, newPi);
         }
         asteroid.setX(x);
         asteroid.setY(y);

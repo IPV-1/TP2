@@ -1,42 +1,42 @@
 package components.shapes;
 
-import components.ShapeableMovingGameComponent;
+import components.CollidableMovingGameComponent;
 import junit.framework.TestCase;
 
 public class CircleTest extends TestCase {
-    ShapeableMovingGameComponent component;
+    CollidableMovingGameComponent component;
     Circle circle;
 
 
-    ShapeableMovingGameComponent component2;
+    CollidableMovingGameComponent component2;
     Circle circle2;
 
-    ShapeableMovingGameComponent component3;
+    CollidableMovingGameComponent component3;
     Rectangle rectangle;
 
-    ShapeableMovingGameComponent component4;
+    CollidableMovingGameComponent component4;
     MultiShape multiShape;
 
 
     public void setUp() {
-        component = new ShapeableMovingGameComponent(0, 0);
+        component = new CollidableMovingGameComponent(0, 0);
         circle = new Circle(20);
         circle.setShapeable(component);
 
-        component2 = new ShapeableMovingGameComponent(0, 0);
+        component2 = new CollidableMovingGameComponent(0, 0);
         circle2 = new Circle(20);
         circle2.setShapeable(component2);
 
-        component3 = new ShapeableMovingGameComponent(0, 0);
+        component3 = new CollidableMovingGameComponent(0, 0);
         rectangle = new Rectangle(20, 10);
         rectangle.setShapeable(component3);
 
-        component4 = new ShapeableMovingGameComponent(0,0);
+        component4 = new CollidableMovingGameComponent(0,0);
         multiShape = new MultiShape();
         Rectangle multiShapeRectangle = new Rectangle(40, 20);
         Rectangle multiShapeRectangle2 = new Rectangle(20, 40);
-        multiShapeRectangle.setShapeable(new ShapeableMovingGameComponent(0, 0));
-        multiShapeRectangle2.setShapeable(new ShapeableMovingGameComponent(0, 0));
+        multiShapeRectangle.setShapeable(new CollidableMovingGameComponent(0, 0));
+        multiShapeRectangle2.setShapeable(new CollidableMovingGameComponent(0, 0));
         multiShape.addShape(multiShapeRectangle);
         multiShape.addShape(multiShapeRectangle2);
 

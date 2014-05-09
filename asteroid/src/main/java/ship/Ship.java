@@ -1,13 +1,14 @@
 package ship;
 
+import components.Collidable;
+import components.CollidableMovingGameComponent;
 import handlers.KeyboardHandler;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
-import components.ShapeableMovingGameComponent;
 import components.shapes.Shape;
 
-public class Ship extends ShapeableMovingGameComponent {
+public class Ship extends CollidableMovingGameComponent {
 
 	private double rotation = 0;
 	private double rotationSpeed;
@@ -110,4 +111,10 @@ public class Ship extends ShapeableMovingGameComponent {
 	public void setMaxSpeed(double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
+
+    @Override
+    public void collide(Collidable collidable) {
+        super.collide(collidable);
+        explode();
+    }
 }

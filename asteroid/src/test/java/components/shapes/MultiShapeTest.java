@@ -1,31 +1,31 @@
 package components.shapes;
 
-import components.ShapeableMovingGameComponent;
+import components.CollidableMovingGameComponent;
 import junit.framework.TestCase;
 
 public class MultiShapeTest extends TestCase {
 
     private MultiShape multiShape;
-    private ShapeableMovingGameComponent component;
+    private CollidableMovingGameComponent component;
     private Circle circle;
     private Rectangle rectangle;
-    private ShapeableMovingGameComponent component1;
+    private CollidableMovingGameComponent component1;
     private MultiShape multiShape2;
 
     public void setUp() {
         multiShape = new MultiShape();
         Rectangle multiShapeRectangle = new Rectangle(40, 20);
         Rectangle multiShapeRectangle2 = new Rectangle(20, 40);
-        multiShapeRectangle.setShapeable(new ShapeableMovingGameComponent(0, 0));
-        multiShapeRectangle2.setShapeable(new ShapeableMovingGameComponent(0, 0));
+        multiShapeRectangle.setShapeable(new CollidableMovingGameComponent(0, 0));
+        multiShapeRectangle2.setShapeable(new CollidableMovingGameComponent(0, 0));
         multiShape.addShape(multiShapeRectangle);
         multiShape.addShape(multiShapeRectangle2);
 
-        component = new ShapeableMovingGameComponent(0, 0);
+        component = new CollidableMovingGameComponent(0, 0);
         circle = new Circle(20);
         circle.setShapeable(component);
 
-        component1 = new ShapeableMovingGameComponent(0, 0);
+        component1 = new CollidableMovingGameComponent(0, 0);
         rectangle = new Rectangle(20, 20);
         rectangle.setShapeable(component1);
 

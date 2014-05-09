@@ -5,20 +5,20 @@ import com.uqbar.vainilla.appearances.Appearance;
 import components.shapes.Shape;
 import components.shapes.Shapeable;
 
-public class ShapeableMovingGameComponent extends BasicAsteroidMovingGameComponent implements Shapeable {
+public class CollidableMovingGameComponent extends BasicAsteroidMovingGameComponent implements Collidable {
     private Shape shape;
     
-    public ShapeableMovingGameComponent(){
+    public CollidableMovingGameComponent(){
     }
 
-	public ShapeableMovingGameComponent(Appearance appearance, Shape shape, double xPos,
-	                                    double yPos, double xVec, double yVec, double speed){
+	public CollidableMovingGameComponent(Appearance appearance, Shape shape, double xPos,
+                                         double yPos, double xVec, double yVec, double speed){
 		super(appearance, xPos, yPos, xVec, yVec, speed);
 		setShape(shape);
 		shape.setShapeable(this);
 	}
 
-    public ShapeableMovingGameComponent(double x, double y) {
+    public CollidableMovingGameComponent(double x, double y) {
         super(x, y);
     }
 
@@ -34,5 +34,15 @@ public class ShapeableMovingGameComponent extends BasicAsteroidMovingGameCompone
 
     public void setShape(Shape shape) {
         this.shape = shape;
+    }
+
+    @Override
+    public void collide(Collidable collidable) {
+        collidable.collidedBy(collidable);
+    }
+
+    @Override
+    public void collidedBy(Collidable collidable) {
+
     }
 }
