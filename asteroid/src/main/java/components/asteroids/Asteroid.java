@@ -1,9 +1,9 @@
-package asteroids;
+package components.asteroids;
 
-import asteroids.estrategies.ExplodeStrategy;
-import asteroids.estrategies.Exploitable;
-import asteroids.estrategies.JustExplode;
-import asteroids.pools.AsteroidPools;
+import components.asteroids.estrategies.ExplodeStrategy;
+import components.asteroids.estrategies.Exploitable;
+import components.asteroids.estrategies.JustExplode;
+import components.asteroids.pools.AsteroidPools;
 import components.Collidable;
 import components.CollidableMovingGameComponent;
 import utils.Utils;

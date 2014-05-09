@@ -1,6 +1,6 @@
-package asteroids.estrategies;
+package components.asteroids.estrategies;
 
-import asteroids.pools.AsteroidPools;
+import components.asteroids.pools.AsteroidPools;
 
 /**
  * This class is stateless, so i made it singleton.

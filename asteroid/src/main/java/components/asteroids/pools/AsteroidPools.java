@@ -1,8 +1,8 @@
-package asteroids.pools;
+package components.asteroids.pools;
 
 import asteroid.AsteroidGame;
-import asteroids.Asteroid;
-import asteroids.factories.AsteroidFactory;
+import components.asteroids.Asteroid;
+import components.asteroids.factories.AsteroidFactory;
 
 import java.util.Stack;
 

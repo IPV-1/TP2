@@ -1,12 +1,12 @@
-package asteroids.factories;
+package components.asteroids.factories;
 
 
 import asteroid.AsteroidGame;
-import asteroids.Asteroid;
-import asteroids.estrategies.ExplodeStrategy;
-import asteroids.estrategies.ExplodeToMediumAsteroids;
-import asteroids.estrategies.ExplodeToSmallAsteroids;
-import asteroids.estrategies.JustExplode;
+import components.asteroids.Asteroid;
+import components.asteroids.estrategies.ExplodeStrategy;
+import components.asteroids.estrategies.ExplodeToMediumAsteroids;
+import components.asteroids.estrategies.ExplodeToSmallAsteroids;
+import components.asteroids.estrategies.JustExplode;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.shapes.Circle;
 import utils.Utils;

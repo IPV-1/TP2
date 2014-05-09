@@ -1,4 +1,4 @@
-package asteroids.estrategies;
+package components.asteroids.estrategies;
 
 
 /**

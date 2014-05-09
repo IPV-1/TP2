@@ -1,4 +1,4 @@
-package asteroids.pools;
+package components.asteroids.pools;
 
 
 import asteroid.AsteroidGame;

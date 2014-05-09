@@ -4,15 +4,15 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import asteroids.pools.AsteroidPools;
-import asteroids.pools.BulletPool;
+import components.asteroids.pools.AsteroidPools;
+import components.asteroids.pools.BulletPool;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.CollidableMovingGameComponent;
 import components.shapes.Circle;
 import ship.Ship;
 
 import asteroid.AsteroidGame;
-import asteroids.Asteroid;
+import components.asteroids.Asteroid;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;

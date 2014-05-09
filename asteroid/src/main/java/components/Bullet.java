@@ -1,6 +1,6 @@
 package components;
 
-import asteroids.pools.BulletPool;
+import components.asteroids.pools.BulletPool;
 import com.uqbar.vainilla.DeltaState;
 
 public class Bullet extends CollidableMovingGameComponent {
