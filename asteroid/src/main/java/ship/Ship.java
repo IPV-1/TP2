@@ -15,8 +15,7 @@ public class Ship extends CollidableMovingGameComponent {
 	private Sprite defaultSprite;
 	private double maxSpeed;
 
-
-	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed, double maxSpeed){
+	public Ship(Sprite appearance, Shape shape, double x, double y, int xV, int yV, int speed, double rotationSpeed, double maxSpeed) {
 		super(appearance, shape, x, y, xV, yV, speed);
 		setMaxSpeed(maxSpeed);
 		setDefaultSprite(appearance);
@@ -24,27 +23,29 @@ public class Ship extends CollidableMovingGameComponent {
 		initRotation();
 	}
 
-	public void initRotation(){
+	@Override
+	public void collide(Collidable collidable) {
+		super.collide(collidable);
+		explode();
+	}
+
+	public void initRotation() {
 		getUVector().setAngle(getDirection());
 		Sprite sprite = getAppearance().rotate(getRotation());
 		setAppearance(sprite);
 	}
-	
+
 	protected void explode() {
 	}
 
-	public Sprite getAppearance(){
+	public Sprite getAppearance() {
 		return (Sprite) super.getAppearance();
 	}
 
-	
 	@Override
 	public void update(DeltaState deltaState) {
 		super.update(deltaState);
-		
 		KeyboardHandler.INSTANCE.updateShip(this, deltaState);
-		
-		//this.getScene().update(this);
 	}
 
 	public void setMaxSpeed() {
@@ -53,9 +54,7 @@ public class Ship extends CollidableMovingGameComponent {
 
 	public void rotate(int direction) {
 		this.setRotation(getRotation() + getRotationSpeed() * direction);
-		
-        this.getUVector().setAngle(this.getDirection());
-        
+		this.getUVector().setAngle(this.getDirection());
 		Sprite sprite = getDefaultSprite().rotate(getRotation());
 		this.setAppearance(sprite);
 	}
@@ -63,29 +62,29 @@ public class Ship extends CollidableMovingGameComponent {
 	public void shot() {
 		this.getScene().addBullet(this.getCenterX(), this.getCenterY(), this.getDirection());
 	}
-	
+
 	private double getCenterX() {
 		return this.getX() + this.getWidth() / 2;
 	}
-	
+
 	private double getCenterY() {
 		return this.getY() + this.getHeight() / 2;
 	}
-	
+
 	private double getDirection() {
 		return Math.toDegrees(this.getRotation()) + 90;
 	}
-	
+
+	public void breakingSpeed(DeltaState deltaState) {
+		this.setSpeed(this.getSpeed() - deltaState.getDelta() * 10);
+	}
+
 	public double getRotation() {
 		return rotation;
 	}
 
 	public void setRotation(double rotation) {
 		this.rotation = rotation;
-	}
-
-	public void breakingSpeed(DeltaState deltaState) {
-		this.setSpeed(this.getSpeed() - deltaState.getDelta() * 10);
 	}
 
 	public double getRotationSpeed() {
@@ -111,10 +110,4 @@ public class Ship extends CollidableMovingGameComponent {
 	public void setMaxSpeed(double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
-
-    @Override
-    public void collide(Collidable collidable) {
-        super.collide(collidable);
-        explode();
-    }
 }
