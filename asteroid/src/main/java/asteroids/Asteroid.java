@@ -38,9 +38,8 @@ public class Asteroid extends CollidableMovingGameComponent implements Exploitab
         getScene().getEnemyGroup().remove(this);
         this.getGame().BOARD.add(this.getPoints());
         this.explode();
-        super.destroy();
         this.store();
-
+        super.destroy();
     }
 
     public double getPi() {

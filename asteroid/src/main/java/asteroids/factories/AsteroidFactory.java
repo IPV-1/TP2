@@ -73,7 +73,7 @@ public class AsteroidFactory {
 
     //Small
     public static Asteroid newAsteroidSmall(AsteroidGame game, double newPi) {
-        return clean(new Asteroid(), game, newPi);
+        return cleanSmall(new Asteroid(), game, newPi);
     }
 
     public static Asteroid newAsteroidSmall(AsteroidGame game) {
