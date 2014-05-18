@@ -110,7 +110,7 @@ public class AsteroidScene extends GameScene {
 	protected void remove(ShapeableMovingGameComponent comp, List<ShapeableMovingGameComponent> fromList) {
 		fromList.remove(comp);
 		comp.destroy();
-		this.removeComponent(comp);
+//		this.removeComponent(comp);
 	}
 	
 	/*

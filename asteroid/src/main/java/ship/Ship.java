@@ -23,6 +23,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	protected void explode() {}
 	
 	protected Ship clean() {
+		this.setRotation(0);
 		this.setSpeed(0);
 		this.setDestroyPending(false);
 		
@@ -58,7 +59,7 @@ public class Ship extends ShapeableMovingGameComponent {
 		
 		KeyboardHandler.INSTANCE.updateShip(this, deltaState);
 		
-		//this.getScene().update(this);
+		this.getScene().updatePlayerComponent(this);
 	}
 
 	public void setMaxSpeed() {
@@ -118,6 +119,11 @@ public class Ship extends ShapeableMovingGameComponent {
 		}
 
 		this.getUVector().setAngle(this.getDirection());		
+	}
+	
+	@Override
+	public void destroy() {
+		this.clean();
 	}
 	
 }
