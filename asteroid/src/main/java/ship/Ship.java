@@ -100,9 +100,13 @@ public class Ship extends ShapeableMovingGameComponent {
 	public void setRotation(double rotation) {
 		this.rotation = rotation;
 	}
-
+	
 	public void breakingSpeed(DeltaState deltaState) {
-		this.setSpeed(this.getSpeed() - deltaState.getDelta() * 10);
+		this.setSpeed(this.getSpeed() + getDeltaFriction(deltaState));
 	}
 
+	private double getDeltaFriction(DeltaState deltaState) {
+		return this.getSpeed() * -deltaState.getDelta() * Configuration.getValue("shipFriction");
+	}
+	
 }

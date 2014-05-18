@@ -38,6 +38,7 @@ public class Configuration {
 		addValue("asteroidPiExplosion");
 		addValue("shipMaxSpeed");
 		addValue("shipRotation");
+		addValue("shipFriction");
 	
 		addValue("asteroidSQty");
 		addValue("asteroidMQty");
