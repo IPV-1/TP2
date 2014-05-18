@@ -2,6 +2,8 @@ package components;
 
 import java.util.Stack;
 
+import ship.Ship;
+
 import config.Configuration;
 
 import asteroids.AsteroidLarge;
@@ -22,11 +24,12 @@ public class PoolManager {
 		}
 	}
 
-	public static Bullet getBullet(double x, double y, double angle) {
+	public static Bullet getBullet(double x, double y, double angle, Ship ship) {
 		Bullet bullet;
 		if (!BULLETS.empty()) {
 			bullet = BULLETS.pop();
 			bullet.reset(x, y, angle);
+			bullet.applyShipModifier(ship);
 		} else {
 			bullet = null;
 		}

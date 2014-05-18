@@ -59,9 +59,9 @@ public class AsteroidScene extends GameScene {
 				"background"), 0, 0));
 	}
 
-	public void addBullet(double x, double y, double angle) {
+	public void addBullet(double x, double y, double angle, Ship ship) {
 		if(PoolManager.bulletAvailable()) {
-			Bullet bullet = PoolManager.getBullet(x, y, angle);
+			Bullet bullet = PoolManager.getBullet(x, y, angle, ship);
 			bullet.setX(x - bullet.getWidth() / 2);
 			bullet.setY(y - bullet.getHeight() / 2);
 			

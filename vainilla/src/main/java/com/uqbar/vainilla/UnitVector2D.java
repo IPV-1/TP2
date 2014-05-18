@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 public class UnitVector2D {
 	
 	protected Point2D.Double point;
+	protected Double pi;
 
 	public UnitVector2D(double x, double y) {
 		this.point = new Point2D.Double();
@@ -33,6 +34,7 @@ public class UnitVector2D {
 		}
 		double module = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 		this.setLocation(x / module, y / module);
+		this.setPi(null); //TODO?
 	}
 	
 	public void setX(double x) throws RuntimeException {
@@ -44,6 +46,7 @@ public class UnitVector2D {
 	}
 	
 	public void setPI(double multiplier) {
+		this.setPi(multiplier);
 		this.setLocation(Math.cos(Math.PI * multiplier), Math.sin(Math.PI * multiplier));
 	}
 	
@@ -70,6 +73,14 @@ public class UnitVector2D {
 	
 	protected Point2D.Double getPoint() {
 		return this.point;
+	}
+
+	public Double getPi() {
+		return pi;
+	}
+
+	protected void setPi(Double pi) {
+		this.pi = pi;
 	}
 
 }
