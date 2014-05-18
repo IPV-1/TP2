@@ -14,6 +14,7 @@ import config.Configuration;
 public class Ship extends ShapeableMovingGameComponent {
 	
 	private double rotation = 0;
+	private ShipState state = new ShipWaiting();
 		
 	public Ship() {
 		super();
@@ -40,7 +41,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 	
 	protected Sprite getSprite() {
-		return Configuration.getSprite("ship");
+		return this.getState().getSprite();
 	}
 
 	protected double getMaxSpeed() {
@@ -48,7 +49,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 	
 	protected Shape shape() {
-		SimpleShape shape = new Circle(this.getSprite().getWidth());
+		SimpleShape shape = new Circle(this.getSprite().getWidth() - 10);
 		shape.setComponent(this);
 		return shape;
 	}
@@ -124,6 +125,14 @@ public class Ship extends ShapeableMovingGameComponent {
 	@Override
 	public void destroy() {
 		this.clean();
+	}
+
+	public ShipState getState() {
+		return state;
+	}
+
+	public void setState(ShipState state) {
+		this.state = state;
 	}
 	
 }

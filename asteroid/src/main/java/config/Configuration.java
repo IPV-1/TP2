@@ -25,6 +25,8 @@ public class Configuration {
 		addSprite("asteroidM");
 		addSprite("asteroidL");
 		addSprite("ship");
+		addSprite("shipFire");
+		addSprite("shipWaiting");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");

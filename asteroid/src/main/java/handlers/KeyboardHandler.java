@@ -20,14 +20,15 @@ public class KeyboardHandler {
 	
 	public static final KeyboardHandler INSTANCE = new KeyboardHandler();
 	
-	private Map<Key, Boolean> KEYS = new HashMap<Key, Boolean>();
+	private Map<Key, Action> KEYS = new HashMap<Key, Action>();
 	
 	private KeyboardHandler() {
 		super();
 		
-		for (Key key : getListeningKeys()) {
-			KEYS.put(key, false);
-		}
+		KEYS = getKeyActions();
+//		for (Key key : getListeningKeys()) {
+//			KEYS.put(key, false);
+//		}
 	}
 	
 	/**
@@ -47,7 +48,7 @@ public class KeyboardHandler {
 		
 		this.updateKEYS(ship, deltaState);
 		
-		if(! KEYS.get(Key.UP) && ship.getSpeed() > 0) {
+		if(! KEYS.get(Key.UP).isSelected() && ship.getSpeed() > 0) {
         	ship.breakingSpeed(deltaState);
 		}
 	}
@@ -55,12 +56,12 @@ public class KeyboardHandler {
 	private void updateKEYS(Ship ship, DeltaState deltaState) {
 		for (Key key : getListeningKeys()) {
 			if(deltaState.isKeyPressed(key)) {
-				KEYS.put(key, true);
+				KEYS.get(key).setSelected(ship, true);
 			} else if(deltaState.isKeyReleased(key)){
-				KEYS.put(key, false);
+				KEYS.get(key).setSelected(ship, false);
 			}
 			
-			if(KEYS.get(key)) {
+			if(KEYS.get(key).isSelected()) {
 				getKeyActions().get(key).execute(ship, deltaState.getDelta());
 			}
 		}
