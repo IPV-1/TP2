@@ -47,6 +47,8 @@ public class Bullet extends ShapeableMovingGameComponent {
 	}
 
 	public void applyShipModifier(Ship ship) {
+		//Doing
+		
 //		double shipRelativeSpeed = ship.getSpeed() / this.getSpeed();
 //		UnitVector2D uv = ship.getUVector();
 //		this.getUVector().sum()
