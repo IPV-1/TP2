@@ -49,7 +49,7 @@ public class Ship extends ShapeableMovingGameComponent {
 	}
 	
 	protected Shape shape() {
-		SimpleShape shape = new Circle(this.getSprite().getWidth() - 10);
+		SimpleShape shape = new Circle(this.getSprite().getWidth() - 15);
 		shape.setComponent(this);
 		return shape;
 	}
