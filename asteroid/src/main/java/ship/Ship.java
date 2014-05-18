@@ -133,6 +133,7 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void setState(ShipState state) {
 		this.state = state;
+		rotate();
 	}
 	
 }
