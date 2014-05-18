@@ -10,5 +10,8 @@ public class ActionSpace extends Action {
 			ship.shot();
 		}
 	}
+
+	@Override
+	public void execute(Ship ship, double delta) {}
 	
 }
