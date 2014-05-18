@@ -109,4 +109,15 @@ public class Ship extends ShapeableMovingGameComponent {
 		return this.getSpeed() * -deltaState.getDelta() * Configuration.getValue("shipFriction");
 	}
 	
+	public void speedUp(double delta) {
+		
+		this.setSpeed(this.getSpeed() + Configuration.getValue("shipAceleration") * delta);
+		
+		if(this.getSpeed() > this.getMaxSpeed()) {
+			this.setMaxSpeed();
+		}
+
+		this.getUVector().setAngle(this.getDirection());		
+	}
+	
 }
