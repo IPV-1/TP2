@@ -34,7 +34,7 @@ public class UnitVector2D {
 		}
 		double module = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 		this.setLocation(x / module, y / module);
-		this.setPi(null); //TODO?
+		this.setPi(0.5); //TODO?
 	}
 	
 	public void setX(double x) throws RuntimeException {

@@ -55,11 +55,17 @@ public class Bullet extends ShapeableMovingGameComponent {
 		double bulletPi = this.getUVector().getPi() % 2;
 		double minPi = Math.min(shipPi, bulletPi);
 		double maxPi = Math.max(shipPi, bulletPi);
-		double newPi = (maxPi - minPi) / 2;
-		boolean piAdds = newPi < 1;
-		newPi = piAdds ? newPi + minPi : newPi + maxPi;
-		
+		double difPi = (maxPi - minPi) / 2;
 		boolean bulletFaster = this.getSpeed() > ship.getSpeed();
+		if(difPi == 0.5 || difPi == 0) {
+			if(!bulletFaster) {
+				this.getUVector().setPI(shipPi);
+			}
+			return;
+		}
+		boolean piAdds = difPi < 1;
+		double newPi = piAdds ? difPi + minPi : difPi + maxPi;
+		
 		double maxSpeed = bulletFaster ? this.getSpeed() : ship.getSpeed();
 		double minSpeed = bulletFaster ? ship.getSpeed() : this.getSpeed();
 		double timesFaster = maxSpeed / minSpeed;
@@ -70,6 +76,23 @@ public class Bullet extends ShapeableMovingGameComponent {
 		newPi = fasterPi + piOffset;
 		
 		this.getUVector().setPI(newPi);
+		
+		this.setSpeed(this.getSpeed() + (ship.getSpeed() * (1 -difPi)));
+	}
+	
+	public static void main(String[] args) {
+		double speed = 100;
+		Ship s = new Ship(true);
+		s.getUVector().setPI(-0.5);
+		s.setSpeed(speed);
+		Bullet b = new Bullet(true);
+		b.getUVector().setPI(0.5);
+		b.setSpeed(speed * 2);
+		System.out.println(b.getUVector().getPi());
+		System.out.println(b.getSpeed());
+		b.applyShipModifier(s);
+		System.out.println(b.getUVector().getPi());
+		System.out.println(b.getSpeed());
 	}
 
 }
