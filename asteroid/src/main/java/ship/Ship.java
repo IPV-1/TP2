@@ -28,6 +28,8 @@ public class Ship extends ShapeableMovingGameComponent {
 	protected void explode() {}
 	
 	protected Ship clean() {
+		KeyboardHandler.INSTANCE.reset();
+		
 		this.setRotation(0);
 		this.setSpeed(0);
 		this.setDestroyPending(false);

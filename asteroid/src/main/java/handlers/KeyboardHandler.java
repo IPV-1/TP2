@@ -24,10 +24,13 @@ public class KeyboardHandler {
 	
 	private KeyboardHandler() {
 		super();
-		
-		KEYS = getKeyActions();
+		reset();
 	}
 	
+	public void reset() {
+		KEYS = getKeyActions();
+	}
+
 	/**
 	 * Change to define key actions
 	 */
@@ -75,7 +78,7 @@ public class KeyboardHandler {
 	}
 
 	private List<Key> getListeningKeys() {
-		return new ArrayList<Key>(getKeyActions().keySet());
+		return new ArrayList<Key>(KEYS.keySet());
 	}
 	
 }
