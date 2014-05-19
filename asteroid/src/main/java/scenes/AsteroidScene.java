@@ -70,6 +70,7 @@ public class AsteroidScene extends GameScene {
 			
 			this.getPlayerGroup().add(bullet);
 			this.addComponent(bullet);
+			Configuration.getSound("shooting").play();
 		}
 	}
 
