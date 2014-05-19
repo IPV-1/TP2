@@ -14,9 +14,9 @@ public abstract class Game {
 	// ****************************************************************
 
 	public Game() {
+		this.initializeResources();
 		this.setCurrentScene(new GameScene());
 
-		this.initializeResources();
 		this.setUpScenes();
 	}
 

@@ -100,12 +100,12 @@ public class Configuration {
 		sounds.put(key, ResourceUtils.getSound(FETCH(key)));
 	}
 
-	public static double getDisplayWidth() {
-		return getValue("screenWidth");
+	public static int getDisplayWidth() {
+		return getValue("screenWidth").intValue();
 	}
 
-	public static double getDisplayHeight() {
-		return getValue("screenHeight");
+	public static int getDisplayHeight() {
+		return getValue("screenHeight").intValue();
 	}
 
 }
