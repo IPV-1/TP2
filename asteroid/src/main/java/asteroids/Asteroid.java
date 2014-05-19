@@ -59,13 +59,20 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 		double piExp = Configuration.getValue("asteroidPiExplosion");
 		return Utils.randDouble(pi - piExp, pi + piExp);
 	}
-		
+	
 	@Override
 	public void destroy() {
+		this.store();
+		super.destroy();
+	}
+	
+	@Override
+	public void collided() {
+		super.collided();
 		this.getScene().getGame().BOARD.add(this.getPoints());
 		this.store();
 		this.explode();
-		super.destroy();
+		this.destroy();
 	}
 	
 	protected Shape shape() {
