@@ -81,6 +81,7 @@ public class Ship extends ShapeableMovingGameComponent {
 
 	public void shot() {
 		this.getScene().addBullet(this.getCenterX(), this.getCenterY(), this.getDirection());
+		Configuration.getSound("shooting").play();
 	}
 	
 	private double getCenterX() {

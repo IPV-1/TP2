@@ -29,5 +29,7 @@
 	<entry key="shipFriction">0.3</entry>
 	<entry key="shipAceleration">100</entry>
 
+	<entry key="shooting">ball_hit.wav</entry>
+	<entry key="loseSound">ball_lose.wav</entry>
 
 </properties>
