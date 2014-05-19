@@ -59,8 +59,7 @@ public class AsteroidScene extends GameScene {
 	}
 
 	protected void addBackground() {
-		addComponent(new BasicAsteroidComponent(getGame().getSprite(
-				"background"), 0, 0));
+		addComponent(new BasicAsteroidComponent(Configuration.getSprite("background"), 0, 0));
 	}
 
 	public void addBullet(double x, double y, double angle, Ship ship) {
@@ -75,13 +74,13 @@ public class AsteroidScene extends GameScene {
 	}
 
 	protected void addAsteroids() {
-		for (int i = 0; i < this.getGame().getValue("asteroidLQty"); i++) {
+		for (int i = 0; i < Configuration.getValue("asteroidLQty"); i++) {
 			this.addAsteroidL();
 		}
-		for (int i = 0; i < this.getGame().getValue("asteroidMQty"); i++) {
+		for (int i = 0; i < Configuration.getValue("asteroidMQty"); i++) {
 			this.addAsteroidM();
 		}
-		for (int i = 0; i < this.getGame().getValue("asteroidSQty"); i++) {
+		for (int i = 0; i < Configuration.getValue("asteroidSQty"); i++) {
 			this.addAsteroidS();
 		}
 	}
