@@ -142,6 +142,7 @@ public class AsteroidScene extends GameScene {
     }
     
     public void lose() {
+    	this.releaseComponents();
     	this.getLivesBoard().die();
 
     	if (this.getLivesBoard().lose()) {
