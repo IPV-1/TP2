@@ -62,6 +62,16 @@ public class KeyboardHandler {
 				getKeyActions().get(key).execute(ship, deltaState.getDelta());
 			}
 		}
+		
+		verifyMultipleSides(ship, deltaState);
+	}
+
+	private void verifyMultipleSides(Ship ship, DeltaState deltaState) {
+		if(deltaState.isKeyPressed(Key.LEFT)) {
+			KEYS.get(Key.RIGHT).setSelected(ship, false);
+		} else if(deltaState.isKeyReleased(Key.RIGHT)){
+			KEYS.get(Key.LEFT).setSelected(ship, false);
+		}
 	}
 
 	private List<Key> getListeningKeys() {
