@@ -45,10 +45,10 @@ public class AsteroidScene extends GameScene {
 	@Override
 	public void onSetAsCurrent() {
 		addBackground();
-		addAsteroids();
-		addShip();
 		this.addComponent(this.getGame().BOARD);
 		this.addComponent(this.getGame().LIVES);
+		addAsteroids();
+		addShip();
 		super.onSetAsCurrent();
 	}
 

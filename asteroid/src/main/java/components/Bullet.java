@@ -3,7 +3,6 @@ package components;
 import ship.Ship;
 
 import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.shapes.Circle;
 import components.shapes.SimpleShape;
@@ -15,7 +14,6 @@ public class Bullet extends ShapeableMovingGameComponent {
 	public Bullet() {
 		Sprite sprite = Configuration.getSprite("bullet");
 		this.setAppearance(sprite);
-		//this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.GREEN, (int) sprite.getWidth()));
 		SimpleShape shape = new Circle(sprite.getWidth());
 		this.setShape(shape);
 		shape.setComponent(this);
@@ -51,6 +49,11 @@ public class Bullet extends ShapeableMovingGameComponent {
 	}
 
 	public void applyShipModifier(Ship ship) {
+		double difPi = this.applyAngleModifier(ship);
+		this.applySpeedModifier(ship.getSpeed(), difPi);
+	}
+	
+	protected double applyAngleModifier(Ship ship) {
 		double shipPi = ship.getUVector().getPi() % 2;
 		double bulletPi = this.getUVector().getPi() % 2;
 		double minPi = Math.min(shipPi, bulletPi);
@@ -61,7 +64,7 @@ public class Bullet extends ShapeableMovingGameComponent {
 			if(!bulletFaster) {
 				this.getUVector().setPI(shipPi);
 			}
-			return;
+			return difPi * 2;
 		}
 		boolean piAdds = difPi < 1;
 		double newPi = piAdds ? difPi + minPi : difPi + maxPi;
@@ -76,23 +79,11 @@ public class Bullet extends ShapeableMovingGameComponent {
 		newPi = fasterPi + piOffset;
 		
 		this.getUVector().setPI(newPi);
-		
-		this.setSpeed(this.getSpeed() + (ship.getSpeed() * (1 -difPi)));
+		return difPi * 2;
 	}
 	
-	public static void main(String[] args) {
-		double speed = 100;
-		Ship s = new Ship(true);
-		s.getUVector().setPI(-0.5);
-		s.setSpeed(speed);
-		Bullet b = new Bullet(true);
-		b.getUVector().setPI(0.5);
-		b.setSpeed(speed * 2);
-		System.out.println(b.getUVector().getPi());
-		System.out.println(b.getSpeed());
-		b.applyShipModifier(s);
-		System.out.println(b.getUVector().getPi());
-		System.out.println(b.getSpeed());
+	protected void applySpeedModifier(double shipSpeed, double difPi) {
+		this.setSpeed(this.getSpeed() + (shipSpeed * (1 - difPi * 2)));
 	}
 
 }

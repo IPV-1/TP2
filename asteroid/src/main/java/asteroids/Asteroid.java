@@ -16,7 +16,6 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	
 	protected Asteroid(double pi) {
 		this.reset();
-//		this.setAppearance(new com.uqbar.vainilla.appearances.Circle(Color.BLUE, (int)this.getSprite().getWidth()));
 		this.setAppearance(this.getSprite());
 		this.setShape(this.shape());
 		this.setPi(pi);
