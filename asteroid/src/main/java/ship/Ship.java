@@ -21,6 +21,10 @@ public class Ship extends ShapeableMovingGameComponent {
 		this.clean();
 	}
 	
+	public Ship(boolean test) {
+		super();
+	}
+	
 	protected void explode() {}
 	
 	protected Ship clean() {
