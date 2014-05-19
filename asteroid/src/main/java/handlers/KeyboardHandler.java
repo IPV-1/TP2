@@ -26,9 +26,6 @@ public class KeyboardHandler {
 		super();
 		
 		KEYS = getKeyActions();
-//		for (Key key : getListeningKeys()) {
-//			KEYS.put(key, false);
-//		}
 	}
 	
 	/**
