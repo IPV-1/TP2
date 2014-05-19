@@ -5,17 +5,18 @@ import java.awt.Font;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Label;
+
 import components.BasicAsteroidComponent;
 
-public abstract class Board extends BasicAsteroidComponent {
-	
-	private int value;
-	private boolean changed = false;
-	
-	public Board(double x, double y, Color color) {
-		super(new Label(new Font("verdana",  Font.BOLD, 34), color, "0"), x, y);
+public class BoardB extends BasicAsteroidComponent {
+
+	protected int value;
+	protected boolean changed = false;
+
+	public BoardB(double x, double y, Color color) {
+		super(new Label(new Font("verdana", Font.PLAIN, 24), color, "0"), x, y);
 	}
-	
+
 	public void add(int value) {
 		this.setValue(this.getValue() + value);
 	}
@@ -23,24 +24,20 @@ public abstract class Board extends BasicAsteroidComponent {
 	public void reset() {
 		this.setValue(0);
 	}
-	
+
 	@Override
 	public void update(DeltaState deltaState) {
 		if(this.isChanged()) {
-			this.getAppearance().setText(this.getLabel());
+			this.getAppearance().setText(Integer.toString(this.getValue()));
 			this.setChanged(false);
 		}
 		super.update(deltaState);
 	}
-	
-    protected String getLabel() {
-		return String.valueOf(this.getValue());
-	}
 
 	@Override
-    public Label getAppearance(){
-        return (Label) super.getAppearance();
-    }
+	public Label getAppearance() {
+		return (Label) super.getAppearance();
+	}
 
 	public int getValue() {
 		return value;
@@ -51,12 +48,12 @@ public abstract class Board extends BasicAsteroidComponent {
 		this.value = value;
 	}
 
-	public boolean isChanged() {
+	protected boolean isChanged() {
 		return changed;
 	}
 
-	public void setChanged(boolean changed) {
+	protected void setChanged(boolean changed) {
 		this.changed = changed;
 	}
-	
+
 }
