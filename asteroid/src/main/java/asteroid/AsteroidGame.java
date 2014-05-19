@@ -1,18 +1,21 @@
 package asteroid;
 
-import boards.Board;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.HashMap;
+
+import resource.ResourceUtils;
+import scenes.AsteroidScene;
+import scenes.levels.Level1;
+import boards.LivesBoard;
+import boards.ScoreBoard;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Sprite;
+
 import config.Config;
 import config.Configuration;
-import resource.ResourceUtils;
-import scenes.AsteroidScene;
-import scenes.levels.Level1;
-
-import java.awt.*;
-import java.util.HashMap;
 
 public class AsteroidGame extends Game {
 	private static AsteroidScene defaultScene = new Level1();
@@ -21,7 +24,8 @@ public class AsteroidGame extends Game {
 	private HashMap<String, Double> values;
 	private Config configuration;
 	
-	public final Board BOARD = new Board(0, 0, Color.WHITE);
+	public final ScoreBoard BOARD = new ScoreBoard(20, 0, Color.WHITE);
+	public final LivesBoard LIVES = new LivesBoard(620, 0, Color.WHITE);
 	
 	public AsteroidGame(String configFile, AsteroidScene scene) {
 		super();

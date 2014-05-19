@@ -130,6 +130,11 @@ public class Ship extends ShapeableMovingGameComponent {
 	public void destroy() {
 		this.clean();
 	}
+	
+	@Override
+	public void collided() {
+		this.getScene().lose();
+	}
 
 	public ShipState getState() {
 		return state;

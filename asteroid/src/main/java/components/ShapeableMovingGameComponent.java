@@ -35,4 +35,8 @@ public class ShapeableMovingGameComponent extends BasicAsteroidMovingGameCompone
     public void setShape(Shape shape) {
         this.shape = shape;
     }
+
+	public void collided() {
+		this.destroy();
+	}
 }
