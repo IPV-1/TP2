@@ -14,6 +14,7 @@ public abstract class Board extends BasicAsteroidComponent {
 	
 	public Board(double x, double y, Color color) {
 		super(new Label(new Font("verdana",  Font.BOLD, 34), color, "0"), x, y);
+		this.setZ(100);
 	}
 	
 	public void add(int value) {

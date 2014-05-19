@@ -14,7 +14,10 @@ import config.Configuration;
 public class Ship extends ShapeableMovingGameComponent {
 	
 	private double rotation = 0;
-	private ShipState state = new ShipWaiting();
+	private ShipState state = new ShipImmune();
+	
+	private double time = 0d;
+	private boolean initialized = false;
 		
 	public Ship() {
 		super();
@@ -30,6 +33,9 @@ public class Ship extends ShapeableMovingGameComponent {
 	protected Ship clean() {
 		KeyboardHandler.INSTANCE.reset();
 		
+		this.setState(new ShipImmune());
+		time = 0d;
+		initialized = false;
 		this.setRotation(0);
 		this.setSpeed(0);
 		this.setDestroyPending(false);
@@ -64,9 +70,14 @@ public class Ship extends ShapeableMovingGameComponent {
 	public void update(DeltaState deltaState) {
 		super.update(deltaState);
 		
-		KeyboardHandler.INSTANCE.updateShip(this, deltaState);
+		this.getState().update(this, deltaState);
 		
-		this.getScene().updatePlayerComponent(this);
+		if(time > 5 && !initialized ) {
+			this.setState(new ShipWaiting());
+			initialized = true;
+		} else {
+			time += deltaState.getDelta();
+		}
 	}
 
 	public void setMaxSpeed() {
