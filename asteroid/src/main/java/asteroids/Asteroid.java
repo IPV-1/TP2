@@ -68,9 +68,7 @@ public abstract class Asteroid extends ShapeableMovingGameComponent {
 	
 	@Override
 	public void collided() {
-		super.collided();
 		this.getScene().getGame().BOARD.add(this.getPoints());
-		this.store();
 		this.explode();
 		this.destroy();
 	}
