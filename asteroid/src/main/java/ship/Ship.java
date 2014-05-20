@@ -1,8 +1,10 @@
 package ship;
 
+import utils.Vector2D;
 import handlers.KeyboardHandler;
 
 import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.appearances.Sprite;
 import components.ShapeableMovingGameComponent;
 import components.shapes.Circle;
@@ -130,13 +132,17 @@ public class Ship extends ShapeableMovingGameComponent {
 	
 	public void speedUp(double delta) {
 		
-		this.setSpeed(this.getSpeed() + Configuration.getValue("shipAceleration") * delta);
+		Vector2D velocity = new Vector2D(getUVector(), getSpeed());
+		Vector2D aceleration = new Vector2D(new UnitVector2D(getDirection()), Configuration.getValue("shipAceleration") * delta);
+		
+		velocity.sum(aceleration);
+		
+		this.uVector = velocity.asUnitVector();
+		this.setSpeed(velocity.getModule());
 		
 		if(this.getSpeed() > this.getMaxSpeed()) {
 			this.setMaxSpeed();
 		}
-
-		this.getUVector().setAngle(this.getDirection());		
 	}
 	
 	@Override

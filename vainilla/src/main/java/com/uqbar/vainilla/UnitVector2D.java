@@ -11,6 +11,11 @@ public class UnitVector2D {
 		this.point = new Point2D.Double();
 		this.set(x, y);
 	}
+	
+	public UnitVector2D(double angle) {
+		this.point = new Point2D.Double();
+		this.setAngle(angle);
+	}
 
 	public void sum(UnitVector2D uV2D) {
 		this.set(this.getX() + uV2D.getX(), this.getY() + uV2D.getY());

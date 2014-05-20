@@ -24,7 +24,7 @@
 	<entry key="ship">ship.png</entry>
 	<entry key="shipFire">shipFire.png</entry>
 	<entry key="shipWaiting">shipWaiting.png</entry>
-	<entry key="shipMaxSpeed">250</entry>
+	<entry key="shipMaxSpeed">1350</entry>
 	<entry key="shipRotation">3</entry>
 	<entry key="shipFriction">0.3</entry>
 	<entry key="shipAceleration">100</entry>
