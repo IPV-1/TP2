@@ -1,6 +1,7 @@
 package components;
 
 import ship.Ship;
+import utils.Vector2D;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Sprite;
@@ -49,8 +50,16 @@ public class Bullet extends ShapeableMovingGameComponent {
 	}
 
 	public void applyShipModifier(Ship ship) {
-		double difPi = this.applyAngleModifier(ship);
-		this.applySpeedModifier(ship.getSpeed(), difPi);
+		Vector2D bulletV = new Vector2D(this.getUVector(), this.getSpeed());
+		Vector2D shipV = new Vector2D(ship.getUVector(), ship.getSpeed());
+		bulletV.sum(shipV);
+		
+		this.uVector = bulletV.asUnitVector();
+		this.setSpeed(bulletV.getModule());
+		
+		
+//		double difPi = this.applyAngleModifier(ship);
+//		this.applySpeedModifier(ship.getSpeed(), difPi);
 	}
 	
 	protected double applyAngleModifier(Ship ship) {

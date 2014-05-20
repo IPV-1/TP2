@@ -21,6 +21,7 @@ public class Configuration {
 	private static Map<String, Sound> sounds = new HashMap<String, Sound>();
 	
     private static void loadConfiguration() {
+		addSprite("title");
 		addSprite("background");
 		addSprite("bullet");
 		addSprite("asteroidS");

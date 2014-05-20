@@ -12,7 +12,8 @@ public class RectangleTest extends TestCase{
     Circle circle;
     private Rectangle rectangle2;
     private BasicAsteroidMovingGameComponent component3;
-    private BasicAsteroidMovingGameComponent component4;
+    @SuppressWarnings("unused")
+	private BasicAsteroidMovingGameComponent component4;
     private MultiShape multiShape;
 
     public void setUp(){

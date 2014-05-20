@@ -3,18 +3,18 @@ package asteroid;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import scenes.AsteroidScene;
-import scenes.levels.Level1;
+import scenes.statics.TitleScene;
 import boards.LivesBoard;
 import boards.ScoreBoard;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
+import com.uqbar.vainilla.GameScene;
 
 import config.Configuration;
 
 public class AsteroidGame extends Game {
-	private AsteroidScene defaultScene = new Level1();
+	private GameScene defaultScene;
 	private String defaultConfigurationFile = "application.xml";
 	
 	public final ScoreBoard BOARD = new ScoreBoard(20, 0, Color.WHITE);
@@ -23,6 +23,7 @@ public class AsteroidGame extends Game {
 	public AsteroidGame() {
 		super();
 		Configuration.LOAD(defaultConfigurationFile);
+		defaultScene = new TitleScene();
 		setCurrentScene(defaultScene);
 	}
 	
